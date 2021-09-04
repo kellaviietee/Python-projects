@@ -3,12 +3,10 @@ def hello():
     """
     1. Print Hello
     Example output:
-    
     What is your name? Mari
     Hello, Mari! Enter a random number: 5
     Great! Now enter a second random number: 4
     5 + 4 is 9
-    
     """
     # ask for a name
     name = input("What is your name? ")
@@ -23,12 +21,10 @@ def poem():
     """
     2. Poem
     Example output:
-
     Roses are red,
     violets are blue,
     I love to code
     And so will you!
-
     """
     color = input("Name your favourite color: ")
     objects = input("Name an object in plural: ")
@@ -40,12 +36,10 @@ def GreetingsGreetingsGreetings():
     """
     3. GreetingsGreetingsGreetings
     Example output:
-
     Enter a greeting: Hello
     Enter a recipient: world
     How many times to repeat: 3
     Hello world! Hello world! Hello world!
-
     """
     greeting = input("Enter a greeting: ")
     recipient = input("Enter a recipient: ")
