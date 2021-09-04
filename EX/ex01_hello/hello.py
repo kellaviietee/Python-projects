@@ -1,6 +1,7 @@
 def hello():
     """EX01 hello."""
     """
+    
     1. Print Hello
     Example output:
     What is your name? Mari
@@ -21,6 +22,7 @@ def hello():
 def poem():
     """
     2. Poem
+
     Example output:
     Roses are red,
     violets are blue,
@@ -36,6 +38,7 @@ def poem():
 def greetings_greetings_greetings():
     """
     3. GreetingsGreetingsGreetings
+
     Example output:
     Enter a greeting: Hello
     Enter a recipient: world
