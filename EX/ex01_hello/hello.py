@@ -1,7 +1,6 @@
 def hello():
     """EX01 hello."""
     """
-    
     1. Print Hello
     Example output:
     What is your name? Mari
