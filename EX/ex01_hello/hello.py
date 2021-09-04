@@ -13,7 +13,7 @@ def hello():
     # ask for first random number
     num1 = int(input(f"Hello, {name}! Enter a random number: "))
     # ask for second random number
-    num2 = int(input(f"Great! Now enter a second random number: "))
+    num2 = int(input("Great! Now enter a second random number: "))
     # print out sum
     print(num1, "+", num2, " is ", num1 + num2)
 
@@ -31,7 +31,6 @@ def poem():
     activity = input("Name an activity ")
     print(f"Roses are {color},\n{objects} are blue,\nI love to {activity} \n And so will you!")
 
-
 def GreetingsGreetingsGreetings():
     """
     3. GreetingsGreetingsGreetings
@@ -41,11 +40,13 @@ def GreetingsGreetingsGreetings():
     How many times to repeat: 3
     Hello world! Hello world! Hello world!
     """
-    greeting = input("Enter a greeting: ")
-    recipient = input("Enter a recipient: ")
+    greeting = input("Enter a greeting: ") + " "
+    recipient = input("Enter a recipient: ") + " "
     times = input("How many times to repeat: ")
-    full_greet = (greeting + " " + recipient + " ")*int(times)
+    full_greet = (greeting + recipient)*int(times)
     print(full_greet)
+
+
 hello()
 poem()
 GreetingsGreetingsGreetings()
