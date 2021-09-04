@@ -15,7 +15,7 @@ def hello():
     # ask for second random number
     num2 = int(input("Great! Now enter a second random number: "))
     # print out sum
-    print(num1, "+", num2, " is ", num1 + num2)
+    print(num1, "+", num2, " is ", str(num1 + num2) + ".")
 
 
 def poem():
@@ -33,8 +33,7 @@ def poem():
     print(f"Roses are {color},\n{objects} are blue,\nI love to {activity} \n And so will you!")
 
 
-def GreetingsGreetingsGreetings():
-
+def greetings_greetings_greetings():
     """
     3. GreetingsGreetingsGreetings
     Example output:
@@ -52,4 +51,4 @@ def GreetingsGreetingsGreetings():
 
 hello()
 poem()
-GreetingsGreetingsGreetings()
+greetings_greetings_greetings()
