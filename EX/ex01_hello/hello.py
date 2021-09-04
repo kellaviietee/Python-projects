@@ -18,7 +18,7 @@ def hello():
     print(num1, "+", num2, " is ", str(num1 + num2) + ".")
 
 
-def poem():
+def poems():
     """
     2. Poem
 
@@ -52,5 +52,5 @@ def greetings_greetings_greetings():
 
 
 hello()
-poem()
+poems()
 greetings_greetings_greetings()
