@@ -15,7 +15,7 @@ def hello():
     # ask for second random number
     num2 = int(input("Great! Now enter a second random number: "))
     # print out sum
-    print(num1, "+", num2, " is ", str(num1 + num2) + ".")
+    print(num1, "+", num2, " is ", str(num1 + num2) + " ")
 
 
 def poems():
