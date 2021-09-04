@@ -17,6 +17,7 @@ def hello():
     # print out sum
     print(num1, "+", num2, " is ", num1 + num2)
 
+
 def poem():
     """
     2. Poem
@@ -31,6 +32,7 @@ def poem():
     activity = input("Name an activity ")
     print(f"Roses are {color},\n{objects} are blue,\nI love to {activity} \n And so will you!")
 
+
 def GreetingsGreetingsGreetings():
     """
     3. GreetingsGreetingsGreetings
@@ -43,7 +45,7 @@ def GreetingsGreetingsGreetings():
     greeting = input("Enter a greeting: ") + " "
     recipient = input("Enter a recipient: ") + " "
     times = input("How many times to repeat: ")
-    full_greet = (greeting + recipient)*int(times)
+    full_greet = (greeting + recipient) * int(times)
     print(full_greet)
 
 
