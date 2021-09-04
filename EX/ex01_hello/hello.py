@@ -44,10 +44,10 @@ def greetings_greetings_greetings():
     How many times to repeat: 3
     Hello world! Hello world! Hello world!
     """
-    greeting = input("Enter a greeting: ") + " "
-    recipient = input("Enter a recipient: ") + " "
+    greeting = input("Enter a greeting: ")
+    recipient = input("Enter a recipient: ")
     times = input("How many times to repeat: ")
-    full_greet = (greeting + recipient) * int(times)
+    full_greet = (greeting + "! " + recipient) * int(times)
     print(full_greet)
 
 
