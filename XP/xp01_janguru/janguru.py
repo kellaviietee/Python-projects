@@ -20,11 +20,11 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2) -> int:
             relative_distance = pos2 - pos1
             relative_speed = speed1 - speed2
             time = relative_distance / relative_speed
-            return pos1 + speed1 * time
+            return int(pos1 + speed1 * time)
         if (pos1 > pos2) and (speed2 > speed1):
             relative_distance = pos1 - pos2
             relative_speed = speed2 - speed1
             time = relative_distance / relative_speed
-            return pos2 + speed2 * time
+            return int(pos2 + speed2 * time)
 
 
