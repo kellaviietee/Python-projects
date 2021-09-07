@@ -13,6 +13,8 @@ def is_prime_number(number: int) -> bool:
     :param number: the number for check.
     :return: boolean True if number is a prime number or False if number is not a prime number.
     """
+    if number == 0 or number == 1:
+        return False
     for test_number in range(2, number):
         if (number % test_number) == 0:
             return False
