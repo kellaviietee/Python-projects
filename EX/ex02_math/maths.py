@@ -12,6 +12,8 @@ def ects(ects, weeks):
     2. ects(1, 1) == 26
     3. ects(1, 0) == "Impossible!"
     """
+    if weeks <= 0:
+        return "Impossible!"
     total_hours_per_week = 7 * 24
     total_hours_for_ects = ects * 26
     hours_per_week = total_hours_for_ects / weeks
