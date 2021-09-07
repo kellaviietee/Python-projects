@@ -35,7 +35,6 @@ def encode(message: str, shift: int) -> str:
     return coded_message
 
 
-
 if __name__ == '__main__':
     print(encode("i like turtles", 6))  # -> o roqk zaxzrky
     print(encode("o roqk zaxzrky", 20))  # -> i like turtles
