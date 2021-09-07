@@ -1,5 +1,4 @@
 """Primes identifier."""
-import math
 
 
 def is_prime_number(number: int) -> bool:

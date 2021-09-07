@@ -22,12 +22,12 @@ def div(x, y):
 
 
 def modulus(x, y):
-    """Divide x by y and return remainder. Use an arithmetic operator!"""
+    """Divide x by y and return remainder. Use an arithmetic operator."""
     return x % y
 
 
 def floor_div(x, y):
-    """Divide x by y and floor the value. Use an arithmetic operator!"""
+    """Divide x by y and floor the value. Use an arithmetic operator."""
     return x // y
 
 
@@ -58,7 +58,9 @@ def x_is_not_y(x, y):
 
 def if_else(a, b, c, d):
     """
-        Create a program that has 4 numeric parameters. Multiply parameters 1-2 (multiply a by b) by each other and divide
+        Create a program that has 4 numeric parameters.
+
+        Multiply parameters 1-2 (multiply a by b) by each other and divide
         parameters 3-4 (divide c by d) by each other. Next check and return the greater value. If both values are the same
         then return 0 (number zero).
         """
