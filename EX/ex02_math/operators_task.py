@@ -2,50 +2,66 @@
 
 
 def add(x, y):
+    """Add x to y."""
     return x + y
 
 
 def sub(x, y):
+    """Subtract y from x."""
     return x - y
 
 
 def multiply(x, y):
+    """Multiply x by y."""
     return x * y
 
 
 def div(x, y):
+    """Divide x by y."""
     return x / y
 
 
 def modulus(x, y):
+    """Divide x by y and return remainder. Use an arithmetic operator!"""
     return x % y
 
 
 def floor_div(x, y):
+    """Divide x by y and floor the value. Use an arithmetic operator!"""
     return x // y
 
 
 def exponent(x, y):
+    """Calculate x where y is an exponent."""
     return x ** y
 
 
 def first_greater_or_equal(x, y):
+    """If x is greater or equal than y then return True. If not then return False."""
     return x >= y
 
 
 def second_less_or_equal(x, y):
+    """If y is less or equal than x then return True. If not then return False."""
     return y <= x
 
 
 def x_is_y(x, y):
+    """If x same as y then return True. If not then return False."""
     return x == y
 
 
 def x_is_not_y(x, y):
+    """If x is not same as y then return True. If not then return False."""
     return x != y
 
 
 def if_else(a, b, c, d):
+    """
+        Create a program that has 4 numeric parameters. Multiply parameters 1-2 (multiply a by b) by each other and divide
+        parameters 3-4 (divide c by d) by each other. Next check and return the greater value. If both values are the same
+        then return 0 (number zero).
+        """
     mult = a * b
     divise = c / d
     if mult > divise:
@@ -57,10 +73,12 @@ def if_else(a, b, c, d):
 
 
 def surface(a, b):
+    """Add the missing parameters to calculate the surface. Calculate and return the value of surface."""
     return a * b
 
 
 def volume(a, b, c):
+    """Add the missing parameters to calculate the volume. Calculate and return the value of volume."""
     return a * b * c
 
 
