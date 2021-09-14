@@ -24,6 +24,8 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2) -> int:
     else:
         pos1 += jump_distance1
         pos2 += jump_distance2
+        if speed1 == speed2:
+            return -1
         meet_time = (pos2 - pos1) / (speed1 - speed2)
         meet_time = round(meet_time)
         if meet_time < 0:
