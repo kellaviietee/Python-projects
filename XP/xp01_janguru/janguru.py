@@ -26,7 +26,7 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2) -> int:
         pos2 += jump_distance2
         meet_time = (pos2 - pos1) / (speed1 - speed2)
         meet_time = round(meet_time)
-        if meet_time < 0:
+        if meet_time <= 0:
             return -1
         lcm = math.lcm(sleep1, sleep2)
         closest_multiple_of_lcm = math.floor(meet_time / lcm)
