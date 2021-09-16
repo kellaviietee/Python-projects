@@ -51,9 +51,9 @@ def get_gender(gender: int) -> str:
     :return: string
     """
     if gender % 2 == 0:
-        return "Female"
+        return "female"
     else:
-        return "Male"
+        return "male"
 
 
 def is_valid_year_number(year_number: int) -> bool:
