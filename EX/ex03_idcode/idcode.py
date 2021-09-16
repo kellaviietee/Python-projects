@@ -206,7 +206,8 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     :param day_number: int
     :return: boolean
     """
-    pass
+    gender = get_gender(gender_number)
+    leap_year = is_leap_year(year_number)
 
 
 def is_id_valid(id_code: str) -> bool:
