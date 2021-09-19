@@ -82,14 +82,14 @@ def is_valid_month_number(month_number: int) -> bool:
         return False
 
 
-def is_valid_birth_number(birth_number: int):
+def is_valid_birth_number(birth_number: int) -> bool:
     """
     Check if given value is correct for birth number in ID code.
 
     :param birth_number: int
     :return: boolean
     """
-    if birth_number >= 1:
+    if birth_number > 0:
         return True
     else:
         return False
