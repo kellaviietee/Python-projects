@@ -193,7 +193,6 @@ def is_valid_control_number(id_code: str) -> bool:
         return False
 
 
-
 def is_valid_day_number(gender_number: int, year_number: int, month_number: int, day_number: int) -> bool:
     """
     Check if given value is correct for day number in ID code.
@@ -206,8 +205,26 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     :param day_number: int
     :return: boolean
     """
+    month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     gender = get_gender(gender_number)
-    leap_year = is_leap_year(year_number)
+    full_year = get_full_year(gender, year_number)
+    leap_year = is_leap_year(full_year)
+    if month_number < 1 or month_number > 12:
+        return False
+    else:
+        if month_number == 2:
+            if leap_year:
+                if day_number <= month_days[month_number - 1] + 1:
+                    return True
+            elif not leap_year:
+                if day_number <= month_days[month_number - 1]:
+                    return True
+            return False
+        else:
+            if day_number <= month_days[month_number - 1]:
+                return True
+            else:
+                return False
 
 
 def is_id_valid(id_code: str) -> bool:
@@ -235,68 +252,6 @@ def get_data_from_id(id_code: str) -> str:
 
 
 if __name__ == '__main__':
-    print("\nFind ID code:")
-    print(find_id_code(""))  # -> "Not enough numbers!"
-    print(find_id_code("123456789123456789"))  # -> "Too many numbers!"
-    print(find_id_code("ID code is: 49403136526"))  # -> "49403136526"
-    print(find_id_code("efs4  9   #4aw0h 3r 1a36g5j2!!6-"))  # -> "49403136526"
-
-    print("\nGender number:")
-    for i in range(9):
-        print(f"{i} {is_valid_gender_number(i)}")
-        # 0 -> False
-        # 1...6 -> True
-        # 7...8 -> False
-
-    print("\nGet gender:")
-    print(get_gender(2))  # -> "female"
-    print(get_gender(5))  # -> "male"
-
-    print("\nYear number:")
-    print(is_valid_year_number(100))  # -> False
-    print(is_valid_year_number(50))  # -> true
-
-    print("\nMonth number:")
-    print(is_valid_month_number(2))  # -> True
-    print(is_valid_month_number(15))  # -> False
-
-    print("\nBorn order number:")
-    print(is_valid_birth_number(0))  # -> False
-    print(is_valid_birth_number(1))  # -> True
-    print(is_valid_birth_number(850))  # -> True
-
-    print("\nLeap year:")
-    print(is_leap_year(1804))  # -> True
-    print(is_leap_year(1800))  # -> False
-
-    print("\nGet full year:")
-    print(get_full_year(1, 28))  # -> 1828
-    print(get_full_year(4, 85))  # -> 1985
-    print(get_full_year(5, 1))  # -> 2001
-
-    print("\nChecking where the person was born")
-    print(get_birth_place(0))  # -> "Wrong input!"
-    print(get_birth_place(1))  # -> "Kuressaare"
-    print(get_birth_place(273))  # -> "Tartu"
-    print(get_birth_place(220))  # -> "Tallinn"
-
-    print("\nControl number:")
-    print(is_valid_control_number("49808270244"))  # -> True
-    print(is_valid_control_number("60109200187"))  # -> False, it must be 6
-
-    print("\nDay number:")
-    print(is_valid_day_number(4, 5, 12, 25))  # -> True
-    print(is_valid_day_number(3, 10, 8, 32))  # -> False
-    print("\nFebruary check:")
-    print(
-        is_valid_day_number(4, 96, 2, 30))  # -> False (February cannot contain more than 29 days in any circumstances)
-    print(is_valid_day_number(4, 99, 2, 29))  # -> False (February contains 29 days only during leap year)
-    print(is_valid_day_number(4, 8, 2, 29))  # -> True
-    print("\nMonth contains 30 or 31 days check:")
-    print(is_valid_day_number(4, 22, 4, 31))  # -> False (April contains max 30 days)
-    print(is_valid_day_number(4, 18, 10, 31))  # -> True
-    print(is_valid_day_number(4, 15, 9, 31))  # -> False (September contains max 30 days)
-
     print("\nOverall ID check::")
     print(is_id_valid("49808270244"))  # -> True
     print(is_id_valid("12345678901"))  # -> False
