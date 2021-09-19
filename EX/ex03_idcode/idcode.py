@@ -236,7 +236,15 @@ def is_id_valid(id_code: str) -> bool:
     :param id_code: str
     :return: boolean
     """
-    pass
+    if find_id_code(id_code):
+        if is_valid_gender_number(int(id_code[0])):
+            if is_valid_year_number(int(id_code[1:3])):
+                if is_valid_month_number(int(id_code[3:5])):
+                    if is_valid_day_number(int(id_code[0]), int(id_code[1:3]), int(id_code[3:5]), int(id_code[5:7])):
+                        if is_valid_birth_number(int(id_code[7:10])):
+                            if is_valid_control_number(id_code):
+                                return True
+    return False
 
 
 def get_data_from_id(id_code: str) -> str:
@@ -248,11 +256,18 @@ def get_data_from_id(id_code: str) -> str:
     :param id_code: str
     :return: str
     """
-    pass
+    if not is_id_valid(id_code):
+        return "Given invalid ID code!"
+    else:
+        gender = get_gender(int(id_code[0]))
+        day = id_code[5:7]
+        month = id_code[3:5]
+        full_year = get_full_year(int(id_code[0]), int(id_code[1:3]))
+        birth_place = get_birth_place(int(id_code[7:10]))
+        return f"This is a {gender} born on {day}.{month}.{full_year} in {birth_place}."
 
 
 if __name__ == '__main__':
-    print("\nBorn order number:")
-    print(is_valid_birth_number(0))  # -> False
-    print(is_valid_birth_number(1))  # -> True
-    print(is_valid_birth_number(850))  # -> True
+    print("\nFull message:")
+    print(get_data_from_id("49808270244"))  # -> "This is a female born on 27.08.1998 in Tallinn."
+    print(get_data_from_id("60109200187"))  # -> "Given invalid ID code!"
