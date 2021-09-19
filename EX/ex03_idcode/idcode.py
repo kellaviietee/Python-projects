@@ -238,6 +238,11 @@ def is_id_valid(id_code: str) -> bool:
     """
     if len(id_code) != 11:
         return False
+    for char in id_code:
+        try:
+            int(char)
+        except ValueError:
+            return False
     if is_valid_gender_number(int(id_code[0])):
         if is_valid_year_number(int(id_code[1:3])):
             if is_valid_month_number(int(id_code[3:5])):
