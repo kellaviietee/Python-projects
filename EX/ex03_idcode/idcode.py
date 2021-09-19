@@ -89,9 +89,8 @@ def is_valid_birth_number(birth_number: int):
     :param birth_number: int
     :return: boolean
     """
-    if isinstance(birth_number, int):
-        if birth_number > 0:
-            return True
+    if birth_number > 0:
+        return True
     else:
         return False
 
@@ -253,14 +252,7 @@ def get_data_from_id(id_code: str) -> str:
 
 
 if __name__ == '__main__':
-    print("\nOverall ID check::")
-    print(is_id_valid("49808270244"))  # -> True
-    print(is_id_valid("12345678901"))  # -> False
-
-    print("\nFull message:")
-    print(get_data_from_id("49808270244"))  # -> "This is a female born on 27.08.1998 in Tallinn."
-    print(get_data_from_id("60109200187"))  # -> "Given invalid ID code!"
-
-    # print("\nTest now your own ID code:")
-    # personal_id = input()  # type your own id in command prompt
-    # print(is_id_valid(personal_id))  # -> True
+    print("\nBorn order number:")
+    print(is_valid_birth_number(0))  # -> False
+    print(is_valid_birth_number(1))  # -> True
+    print(is_valid_birth_number(850))  # -> True
