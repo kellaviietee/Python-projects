@@ -89,8 +89,9 @@ def is_valid_birth_number(birth_number: int):
     :param birth_number: int
     :return: boolean
     """
-    if birth_number > 0:
-        return True
+    if isinstance(birth_number, int):
+        if birth_number > 0:
+            return True
     else:
         return False
 
