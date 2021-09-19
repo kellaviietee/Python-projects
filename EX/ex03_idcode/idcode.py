@@ -238,11 +238,8 @@ def is_id_valid(id_code: str) -> bool:
     """
     if len(id_code) != 11:
         return False
-    for char in id_code:
-        try:
-            int(char)
-        except ValueError:
-            return False
+    if not check_if_id_has_letters_in_it(id_code):
+        return False
     if is_valid_gender_number(int(id_code[0])):
         if is_valid_year_number(int(id_code[1:3])):
             if is_valid_month_number(int(id_code[3:5])):
@@ -251,6 +248,21 @@ def is_id_valid(id_code: str) -> bool:
                         if is_valid_control_number(id_code):
                             return True
     return False
+
+
+def check_if_id_has_letters_in_it(id_code: str) -> bool:
+    """
+    Check if  given ID code contains only numbers.
+
+    :param id_code:
+    :return: bool
+    """
+    for char in id_code:
+        try:
+            int(char)
+        except ValueError:
+            return False
+    return True
 
 
 def get_data_from_id(id_code: str) -> str:
