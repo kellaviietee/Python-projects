@@ -1,8 +1,6 @@
 def generate_list(amount: int, data_type: str) -> list:
     """Write a function that returns a list with amount elements of type data_type."""
     a = []
-    if amount == 0:
-        return  a
     if data_type == "int":
         b = int
         for i in range(amount):
