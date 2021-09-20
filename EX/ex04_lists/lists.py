@@ -9,7 +9,7 @@ def generate_list(amount: int, data_type: str) -> list:
         b = float
         for i in range(amount):
             a.append(b)
-    if data_type == "string":
+    if data_type == "str":
         b = str
         for i in range(amount):
             a.append(b)
