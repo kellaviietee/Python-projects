@@ -331,7 +331,7 @@ def generate_id_code(start_id_code: str, control_number: str, weight: int = -1) 
         equal_dist = math.floor(remain / 3)
         print(equal_dist, equal_dist, remain - 2 * equal_dist)
         final_id_code = start_id_code + str(equal_dist) + str(equal_dist) + str(remain - 2 * equal_dist) + control_number
-        print(get_data_from_id(final_id_code))
+        return final_id_code
     if weight == 1:
         total_sum = 0
         for pos in range(0, 7):
