@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """ID code."""
+import math
 
 
 def find_id_code(text: str) -> str:
@@ -285,7 +286,61 @@ def get_data_from_id(id_code: str) -> str:
         return f"This is a {gender} born on {day}.{month}.{full_year} in {birth_place}."
 
 
+def generate_id_code(start_id_code: str, control_number: str, weight: int = -1) -> str:
+    """
+    Generate full id-code based on the given numbers.
+    Given the first 7 numbers (gender + day of birth) and the control sum,
+    find the birth number.
+    The returned id code should contain the given numbers (first 7 and the last)
+    and a birth number so that the id code is valid.
+    The given numbers themselves are valid (ie there's no wrong day etc).
+
+    The optional step parameter.
+
+    If the third argument is not passed to the function, there are no limits.
+    If the third argument is 1,
+    the result id code should come after the first round of weights.
+    This means that after calculating the sum with the first weights
+    and taking the modulo of 11, the result cannot be 10.
+    If the third argument is 2,
+    the result id code should come after the second round of weights.
+    But the modulo of the sum cannot be 10 with the second round weights.
+    If the third argument is 3,
+    the result id code should come when the second round calculation
+    results with 10 (meaning the control number is 0).
+
+    There are usually several possible id codes, any will do.
+
+    generate_id_code("3910606", "1") => "39106060041" or "39106068921" etc
+    generate_id_code("3910702", "5") => "39107020035"
+    generate_id_code("3910702", "5", 1) => "39107020095"
+    generate_id_code("6010607", "0", 2) => "60106078620"
+    generate_id_code("5050505", "0", 3) => "50505053660"
+
+    """
+    first_class_weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1]
+    second_class_weights = [3, 4, 5, 6, 7, 8, 9, 1, 2, 3]
+    if weight == -1:
+        total_sum = 0
+        for pos in range(0, 7):
+            num = first_class_weights[pos] * int(start_id_code[pos])
+            total_sum += num
+        remain = (total_sum - int(control_number)) % 11
+        if 0 < remain < 3:
+            remain += 11
+        equal_dist = math.floor(remain / 3)
+        print(equal_dist, equal_dist, remain - 2 * equal_dist)
+        final_id_code = start_id_code + str(equal_dist) + str(equal_dist) + str(remain - 2 * equal_dist) + control_number
+        print(get_data_from_id(final_id_code))
+    if weight == 1:
+        total_sum = 0
+        for pos in range(0, 7):
+            num = first_class_weights[pos] * int(start_id_code[pos])
+            total_sum += num
+        remain = (total_sum - int(control_number)) % 11
+        print(remain)
+
+
+
 if __name__ == '__main__':
-    print("\nFull message:")
-    print(get_data_from_id("49808270244"))  # -> "This is a female born on 27.08.1998 in Tallinn."
-    print(get_data_from_id("60109200187"))  # -> "Given invalid ID code!"
+    generate_id_code("3910606", "1", 1)
