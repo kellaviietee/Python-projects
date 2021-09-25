@@ -1,3 +1,6 @@
+"""Exercises of week four."""
+
+
 def generate_list(amount: int, data_type: str) -> list:
     """Write a function that returns a list with amount elements of type data_type."""
     a = []
@@ -14,20 +17,21 @@ def generate_list(amount: int, data_type: str) -> list:
             b = "hello" * i
             a.append(b)
     if data_type == "list":
-        b = []
         for i in range(amount):
+            b = [i]
             a.append(b)
     if data_type == "tuple":
-        b = ()
         for i in range(amount):
+            b = (i,)
             a.append(b)
     if data_type == "dict":
-        b = {}
         for i in range(amount):
+            b = {i: i}
             a.append(b)
     if data_type == "set":
-        b = set()
         for i in range(amount):
+            b = set()
+            b.add(i)
             a.append(b)
     return a
 
@@ -78,6 +82,19 @@ def generate_combined_list_unique(inputs: list) -> list:
     return combined_list
 
 
-# Part 3
-print(generate_combined_list_unique([(3, 'int'), (5, 'int')]))  # [1, 2, 3, 4, 5]
-print(generate_combined_list_unique([(2, 'int'), (2, 'float'), (1, 'int')]))  # [43, 93, 4.3, 2.1]
+def generate_combined_list_unique_advanced(inputs: list) -> list:
+    """
+    Write a function that returns a list with the minimal possible length, that still satisfies the criteria below.
+
+    Every element of 'inputs' is a tuple (int amount, string data_type).
+    For each element of 'inputs', it must be true that the returned list contains at least 'amount' of elements of type 'data_type'.
+    All the data types from the first function are used here.
+    The returned list can contain only unique elements.
+    """
+    return []
+
+
+# Part 4
+print(generate_combined_list_unique_advanced([(3, 'int'), (5, 'int')]))  # [1, 2, 3, 4, 5]
+print(generate_combined_list_unique_advanced([(2, 'list'), (3, 'string')]))  # ["a", [2], "asd", [], "abc"]
+print(generate_combined_list_unique_advanced([(2, 'float'), (3, 'dict')]))  # [{3: "abd"}, {"a": "a"}, {}, 3.14, 3.15]
