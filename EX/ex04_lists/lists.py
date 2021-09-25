@@ -32,4 +32,31 @@ def generate_list(amount: int, data_type: str) -> list:
     return a
 
 
-print(generate_list(5, "string"))
+def generate_combined_list(inputs: list) -> list:
+    """
+    Write a function that returns a list with the minimal possible length, that still satisfies the criteria below.
+
+    Every element of 'inputs' is a tuple (int amount, string data_type).
+    For each element of 'inputs', it must be true that the returned list contains at least 'amount' of elements of type 'data_type'.
+    """
+    what_we_need = {}
+    for item in inputs:
+        if item[1] in what_we_need.keys():
+            if item[0] > what_we_need[item[1]]:
+                what_we_need[item[1]] = item[0]
+            else:
+                continue
+        else:
+            what_we_need[item[1]] = item[0]
+    hmm = []
+    for key in what_we_need:
+        hmm.append(generate_list(what_we_need[key], key))
+    return hmm
+
+
+# Part 2
+print(generate_combined_list([(3, 'int'), (5, 'int')]))  # [1, 2, 3, 4, 5]
+print(generate_combined_list([(3, 'int'), (5, 'int')]))  # [0, 0, 0, 0, 0]
+print(generate_combined_list([(3, 'int'), (5, 'int'), (4, 'int')]))  # [100, 80, 60, 40, 20]
+print(generate_combined_list([(2, 'list'), (3, 'string')]))  # ["a", [], "a", [], "a"]
+print(generate_combined_list([(2, 'float'), (3, 'dict')]))  # [{}, {}, {}, 3.14, 3.15]
