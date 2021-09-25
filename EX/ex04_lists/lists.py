@@ -50,7 +50,7 @@ def generate_combined_list(inputs: list) -> list:
             what_we_need[item[1]] = item[0]
     hmm = []
     for key in what_we_need:
-        hmm.append(generate_list(what_we_need[key], key))
+        hmm += (generate_list(what_we_need[key], key))
     return hmm
 
 
