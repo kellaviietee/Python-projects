@@ -91,7 +91,19 @@ def generate_combined_list_unique_advanced(inputs: list) -> list:
     All the data types from the first function are used here.
     The returned list can contain only unique elements.
     """
-    return []
+    what_we_need = {}
+    for item in inputs:
+        if item[1] in what_we_need.keys():
+            if item[0] > what_we_need[item[1]]:
+                what_we_need[item[1]] = item[0]
+            else:
+                continue
+        else:
+            what_we_need[item[1]] = item[0]
+    combined_list = []
+    for key in what_we_need:
+        combined_list += (generate_list(what_we_need[key], key))
+    return combined_list
 
 
 # Part 4
