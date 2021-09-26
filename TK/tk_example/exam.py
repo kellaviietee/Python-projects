@@ -42,7 +42,12 @@ def sorta_sum(a: int, b: int) -> int:
     :param b: Integer
     :return: Sum or 20
     """
-    pass
+    sort_sum = a + b
+    if 10 <= sort_sum <= 19:
+        return 20
+    else:
+        return sort_sum
+
 
 
 def extra_end(s: str) -> str:
@@ -107,7 +112,7 @@ def divisions(numbers: list) -> int:
     return 0
 
 
-print(workday_count(9))  # => 7
-print(workday_count(3))  # => 3
-print(workday_count(7))  # => 5
-print(workday_count(15))  # => 11
+print(sorta_sum(3, 4))  # => 7
+print(sorta_sum(9, 4))  # => 3
+print(sorta_sum(10, 11))  # => 5
+
