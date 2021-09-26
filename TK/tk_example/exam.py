@@ -49,7 +49,6 @@ def sorta_sum(a: int, b: int) -> int:
         return sort_sum
 
 
-
 def extra_end(s: str) -> str:
     """
     Given a string, return a new string made of 3 copies of the last 2 chars of the original string.
@@ -63,7 +62,10 @@ def extra_end(s: str) -> str:
     :param s: Input string
     :return: 3 copies of last 2 chars.
     """
-    pass
+    end_of_string = ""
+    for char in range(len(s) - 2, len(s)):
+        end_of_string += s[char]
+    return end_of_string * 3
 
 
 def last_indices_elements_sum(nums):
@@ -112,7 +114,6 @@ def divisions(numbers: list) -> int:
     return 0
 
 
-print(sorta_sum(3, 4))  # => 7
-print(sorta_sum(9, 4))  # => 3
-print(sorta_sum(10, 11))  # => 5
-
+print(extra_end('Hello'))  # => 7
+print(extra_end('ab'))  # => 3
+print(extra_end('Hi'))  # => 5
