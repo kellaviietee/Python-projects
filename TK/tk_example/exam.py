@@ -118,10 +118,22 @@ def divisions(numbers: list) -> int:
     :param numbers: List of integers
     :return: Amount of pairs
     """
-    return 0
+    if len(numbers) < 2:
+        return 0
+    else:
+        pairs = []
+        numbers.sort()
+        for num in numbers:
+            index = numbers.index(num)
+            for i in range(index + 1, len(numbers)):
+                if numbers[i] % num == 0:
+                    pairs.append((numbers[i], num))
+        return len(pairs)
 
 
-print(last_indices_elements_sum([0, 1, 2, 0])) #=> 2 (0 + 2)
-print(last_indices_elements_sum([0, 1, 1, 7])) #=> 1 (just 1)
-print(last_indices_elements_sum([0, 1, 7, 2])) #=> 7 (just 7)
-print(last_indices_elements_sum([0, 1, 7, 8])) #=> 0 (indices too large, 0 + 0)
+print(divisions([]))  # => 0
+print(divisions([5]))  # => 0
+print(divisions([3, 14, 12, 6]))  # => 3 (The pairs are {3, 12}, {3, 6} and {12, 6})
+print(divisions([2, 3, 8]))  # => 1 (The only valid pair is {2, 8})
+print(divisions([25, 22, 4, 400, 50]))  # => 4 (The pairs are {25, 400}, {25, 50}, {4, 400} and {400, 50})
+print(divisions([5, 7, 1]))  # => 2 (The pairs are {5, 1} and {7, 1})
