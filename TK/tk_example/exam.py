@@ -88,7 +88,14 @@ def last_indices_elements_sum(nums):
     :param nums: List of non-negative integers.
     :return: Sum of elements at indices of last two elements.
     """
-    pass
+    last_sum = 0
+    for index in range(len(nums) - 1, len(nums) - 3, -1):
+        value = nums[index]
+        if value <= len(nums) - 1:
+            last_sum += nums[value]
+        else:
+            last_sum += 0
+    return last_sum
 
 
 def divisions(numbers: list) -> int:
@@ -114,6 +121,7 @@ def divisions(numbers: list) -> int:
     return 0
 
 
-print(extra_end('Hello'))  # => 7
-print(extra_end('ab'))  # => 3
-print(extra_end('Hi'))  # => 5
+print(last_indices_elements_sum([0, 1, 2, 0])) #=> 2 (0 + 2)
+print(last_indices_elements_sum([0, 1, 1, 7])) #=> 1 (just 1)
+print(last_indices_elements_sum([0, 1, 7, 2])) #=> 7 (just 7)
+print(last_indices_elements_sum([0, 1, 7, 8])) #=> 0 (indices too large, 0 + 0)
