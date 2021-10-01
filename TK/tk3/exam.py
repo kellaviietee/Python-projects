@@ -26,11 +26,15 @@ def is_sum_of_two(a: int, b: int, c: int) -> bool:
     is_sum_of_two(3, 1, 1) => False
     is_sum_of_two(3, 2, 5) => True
     """
-    all_values = sorted([a, b, c])
-    if all_values[0] + all_values[1] == all_values[2]:
+    if a + b == c:
+        return True
+    elif a + c == b:
+        return True
+    elif b + c == a:
         return True
     else:
         return False
+
 
 
 def first_half(text: str) -> str:
