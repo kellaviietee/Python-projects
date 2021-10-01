@@ -97,6 +97,3 @@ def mirror_ends(s: str) -> str:
         else:
             return mirror_word
     return mirror_word + s[0]
-
-
-print(non_decreasing_list([12, 12]))
