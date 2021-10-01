@@ -36,7 +36,6 @@ def is_sum_of_two(a: int, b: int, c: int) -> bool:
         return False
 
 
-
 def first_half(text: str) -> str:
     """
     Return the first half of an string.
