@@ -70,7 +70,6 @@ def non_decreasing_list(nums: list) -> bool:
         return True
 
 
-
 def mirror_ends(s: str) -> str:
     """
     Given a string, look for a mirror image (backwards) string at both the beginning and end of the given string.
@@ -89,7 +88,7 @@ def mirror_ends(s: str) -> str:
     """
     word_length = len(s)
     mirror_word = ""
-    for i in range(0, word_length-1):
+    for i in range(0, word_length - 1):
         if s[i] == s[word_length - i - 1]:
             mirror_word += s[i]
         else:
