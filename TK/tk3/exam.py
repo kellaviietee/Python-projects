@@ -67,10 +67,10 @@ def non_decreasing_list(nums: list) -> bool:
     """
     sorted_nums = sorted(nums)
     sorted_nums.reverse()
-    if sorted_nums == nums:
-        return False
-    else:
-        return True
+    for num in range(0,len(nums)):
+        if nums[num] != sorted_nums[num]:
+            return True
+    return False
 
 
 def mirror_ends(s: str) -> str:
