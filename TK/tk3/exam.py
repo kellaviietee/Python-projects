@@ -65,16 +65,11 @@ def non_decreasing_list(nums: list) -> bool:
     :param nums:
     :return:
     """
-    sorted_nums = sorted(nums)
-    sorted_nums.reverse()
-    print(nums)
-    print(sorted_nums)
-    for num in range(0, len(nums)):
-        if nums[num] != sorted_nums[num]:
-            return True
-    if nums == sorted_nums:
-        return True
-    return False
+    for num in range(0, len(nums) - 1):
+        if nums[num] > nums[num + 1]:
+            return False
+    return True
+
 
 
 def mirror_ends(s: str) -> str:
