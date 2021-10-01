@@ -67,7 +67,7 @@ def non_decreasing_list(nums: list) -> bool:
     """
     sorted_nums = sorted(nums)
     sorted_nums.reverse()
-    for num in range(0,len(nums)):
+    for num in range(0, len(nums)):
         if nums[num] != sorted_nums[num]:
             return True
     return False
