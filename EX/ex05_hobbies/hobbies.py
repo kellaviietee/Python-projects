@@ -117,7 +117,7 @@ def find_most_popular_hobbies(data: str) -> list:
     name_hobby_dict = create_dictionary(data)
     all_hobbies = name_hobby_dict.values()
     unique_hobbies = find_unique_hobbies(all_hobbies)
-    hobby_name_dict = create_hobby_number_dict(unique_hobbies,all_hobbies)
+    hobby_name_dict = create_hobby_number_dict(unique_hobbies, all_hobbies)
     number_of_people = 0
     most_popular_hobbies = []
     for hobby in hobby_name_dict:
@@ -134,6 +134,7 @@ def find_most_popular_hobbies(data: str) -> list:
 def create_hobby_number_dict(unique_hobbies: list, all_hobbies: list) -> dict:
     """
     Create a dictionary of how many people practices  a hobby.
+
     :param unique_hobbies: List of unique hobbies
     :param all_hobbies: list of list of peoples hobbies
     :return:
@@ -151,6 +152,7 @@ def create_hobby_number_dict(unique_hobbies: list, all_hobbies: list) -> dict:
 def find_unique_hobbies(all_hobbies: list) -> list:
     """
     Find all the unique hobbies.
+
     :param all_hobbies: given list of everybodys hobbies
     :return: list of all of the unique hobbies
     """
@@ -175,7 +177,7 @@ def find_least_popular_hobbies(data: str) -> list:
     name_hobby_dict = create_dictionary(data)
     all_hobbies = name_hobby_dict.values()
     unique_hobbies = find_unique_hobbies(all_hobbies)
-    hobby_name_dict = create_hobby_number_dict(unique_hobbies,all_hobbies)
+    hobby_name_dict = create_hobby_number_dict(unique_hobbies, all_hobbies)
     number_of_people = hobby_name_dict[unique_hobbies[0]]
     least_popular_hobbies = []
     for hobby in hobby_name_dict:
