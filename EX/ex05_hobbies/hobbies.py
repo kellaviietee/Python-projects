@@ -174,21 +174,18 @@ def find_least_popular_hobbies(data: str) -> list:
     :param data: given string from database
     :return: list of least popular hobbies. Sorted alphabetically.
     """
-    name_hobby_dict = create_dictionary(data)
-    all_hobbies = name_hobby_dict.values()
-    unique_hobbies = find_unique_hobbies(all_hobbies)
-    hobby_name_dict = create_hobby_number_dict(unique_hobbies, all_hobbies)
-    number_of_people = hobby_name_dict[unique_hobbies[0]]
+    all_hobbies = create_dictionary_with_hobbies(data)
+    highest_hobby = find_most_popular_hobbies(data)
+    highest_number = len(all_hobbies[highest_hobby[0]])
     least_popular_hobbies = []
-    for hobby in hobby_name_dict:
-        if hobby == unique_hobbies[0]:
-            continue
-        if hobby_name_dict[hobby] < number_of_people:
+    for hobbies in all_hobbies:
+        how_many_practice = len(all_hobbies[hobbies])
+        if how_many_practice < highest_number:
             least_popular_hobbies.clear()
-            number_of_people = hobby_name_dict[hobby]
-            least_popular_hobbies.append(hobby)
-        elif hobby_name_dict[hobby] == number_of_people:
-            least_popular_hobbies.append(hobby)
+            highest_number = how_many_practice
+            least_popular_hobbies.append(hobbies)
+        elif how_many_practice == highest_number:
+            least_popular_hobbies.append(hobbies)
     least_popular_hobbies.sort()
     return least_popular_hobbies
 
@@ -218,3 +215,6 @@ def sort_names_and_hobbies(data: str) -> tuple:
         name_hobbies_list.append(new_tuple)
     final_tuple = tuple(name_hobbies_list)
     return final_tuple
+
+sample_data = """Jack:crafting\nPeter:hiking\nWendy:gaming\nMonica:tennis\nChris:origami\nSophie:sport\nMonica:design\nCarmen:sport\nChris:sport\nMonica:skateboarding\nCarmen:cooking\nWendy:photography\nMonica:tennis\nCooper:yoga\nWendy:sport\nCooper:movies\nMonica:theatre\nCooper:yoga\nChris:gaming\nMolly:fishing\nJack:skateboarding\nWendy:fishing\nJack:drawing\nMonica:baking\nSophie:baking\nAlfred:driving\nAlfred:shopping\nAlfred:crafting\nJack:drawing\nCarmen:shopping\nCarmen:driving\nPeter:drawing\nCarmen:shopping\nWendy:fitness\nAlfred:travel\nJack:origami\nSophie:design\nJack:pets\nCarmen:dance\nAlfred:baking\nSophie:sport\nPeter:gaming\nJack:skateboarding\nCooper:football\nAlfred:sport\nCooper:fitness\nChris:yoga\nWendy:football\nMolly:design\nJack:hiking\nMonica:pets\nCarmen:photography\nJack:baking\nPeter:driving\nChris:driving\nCarmen:driving\nPeter:theatre\nMolly:hiking\nWendy:puzzles\nJack:crafting\nPeter:photography\nCarmen:theatre\nSophie:crafting\nCarmen:cooking\nAlfred:gaming\nPeter:theatre\nCooper:hiking\nChris:football\nChris:pets\nJack:football\nMonica:skateboarding\nChris:driving\nCarmen:pets\nCooper:gaming\nChris:hiking\nJack:cooking\nPeter:fishing\nJack:gaming\nPeter:origami\nCarmen:movies\nSophie:driving\nJack:sport\nCarmen:theatre\nWendy:shopping\nCarmen:pets\nWendy:gaming\nSophie:football\nWendy:theatre\nCarmen:football\nMolly:theatre\nPeter:theatre\nMonica:flowers\nMolly:skateboarding\nPeter:driving\nSophie:travel\nMonica:photography\nCooper:cooking\nJack:fitness\nPeter:cooking\nChris:gaming"""
+print(find_least_popular_hobbies(sample_data))
