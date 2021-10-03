@@ -55,10 +55,9 @@ def find_sentences(text: str) -> list:
     :param text: given string to find sentences from
     :return: list of sentences found in given string
     """
-    pattern = r'[A-Z|Õ|Ä|Ö|Ü].+?(?:[\.|!|\?])'
+    pattern = r'[A-Z|Õ|Ä|Ö|Ü].+?(?:[\.|!|\?]+)'
     all_matches = re.findall(pattern, text)
     return all_matches
-
 
 
 def find_words_from_sentence(sentence: str) -> list:
@@ -76,7 +75,7 @@ def find_words_from_sentence(sentence: str) -> list:
     :return: list of words found in given sentence
     """
     pattern = r'\w+'
-    all_words = re.findall(pattern,sentence)
+    all_words = re.findall(pattern, sentence)
     return all_words
 
 
@@ -96,7 +95,6 @@ def find_words_from_sentences_only(text: str) -> list:
         words = find_words_from_sentence(sentence)
         all_words += words
     return all_words
-
 
 
 def find_years(text: str) -> list:
@@ -149,7 +147,6 @@ def find_phone_numbers(text: str) -> dict:
         else:
             phone_dict[phone_num[0]].append(phone_num[2])
     return phone_dict
-
 
 
 if __name__ == '__main__':
