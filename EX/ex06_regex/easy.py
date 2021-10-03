@@ -116,7 +116,10 @@ def find_years(text: str) -> list:
     """
     pattern = r'(?<!\d)\d{4}(?!\d)'
     all_years = re.findall(pattern, text)
-    return all_years
+    all_years_numbers = []
+    for year in all_years:
+        all_years_numbers.append(int(year))
+    return all_years_numbers
 
 
 def find_phone_numbers(text: str) -> dict:
