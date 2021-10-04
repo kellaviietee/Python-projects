@@ -29,7 +29,7 @@ class Entry:
         date_pattern = r'(\d\d)-(\d\d)-(\d{4})'
         date_str = re.findall(date_pattern, text)
         if text == "None":
-            return "None"
+            return None
         else:
             day = date_str[0][0]
             month = date_str[0][1]
