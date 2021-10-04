@@ -25,7 +25,16 @@ class Entry:
         If the object doesn't have date of birth given, return None.
         :return:
         """
-        pass
+        text = self.date_of_birth
+        date_pattern = r'(\d\d)-(\d\d)-(\d{4})'
+        date_str = re.findall(date_pattern, text)
+        if text == "None":
+            return "None"
+        else:
+            day = date_str[0][0]
+            month = date_str[0][1]
+            year = date_str[0][2]
+            return f"Day: {day}, Month: {month}, Year: {year}"
 
     def __repr__(self) -> str:
         """Object representation."""
@@ -53,21 +62,13 @@ def parse(row: str) -> Entry:
     :param row: String representation of the data.
     :return: Entry object with filled values
     """
-    name_pattern = r'([A-ZÕÄÖÜ][a-zõäöü]+)([A-ZÕÄÖÜ][a-zõäöü]+)'
-    name = re.findall(name_pattern, row)
-    print(name)
-    id_pattern = r'\d{11}'
-    id_code = re.findall(id_pattern, row)
-    print(id_code)
-    phone_pattern = r'(?<=\d)(\+\d{3})?\s(\d{7,8})'
-    phone_number = re.findall(phone_pattern, row)
-    print(phone_number)
-    birth_pattern = r'\d\d-\d\d-\d\d\d\d'
-    birthday = re.findall(birth_pattern, row)
-    all_info_pattern = r'([A-ZÕÄÖÜ][a-zõäöü]+)?([A-ZÕÄÖÜ][a-zõäöü]+)?(\d{11})(?<=\d)(\+\d{3}?\s\d{7,8})?(\d+-\d+-\d{4})?(.+)?'
+    all_info_pattern = r'([A-ZÕÄÖÜ][a-zõäöü]+)?([A-ZÕÄÖÜ][a-zõäöü]+)?(\d{11})(\+?\d{3}?\s?\d{7,8})?(\d+-\d+-\d{4})?(.+)?'
     all_info = re.findall(all_info_pattern, row)
-    info_list = all_info[0]
-    return Entry(info_list[0], info_list[1], info_list[2], info_list[3], info_list[4], info_list[5])
+    new_list = list(all_info[0])
+    for i in range(0, len(new_list)):
+        if not new_list[i]:
+            new_list[i] = "None"
+    return Entry(new_list[0], new_list[1], new_list[2], new_list[3], new_list[4], new_list[5])
 
 
 if __name__ == '__main__':
