@@ -28,7 +28,7 @@ class Entry:
         text = self.date_of_birth
         date_pattern = r'(\d\d)-(\d\d)-(\d{4})'
         date_str = re.findall(date_pattern, text)
-        if text == "None":
+        if text is None:
             return None
         else:
             day = date_str[0][0]
@@ -67,7 +67,7 @@ def parse(row: str) -> Entry:
     new_list = list(all_info[0])
     for i in range(0, len(new_list)):
         if not new_list[i]:
-            new_list[i] = "None"
+            new_list[i] = None
     return Entry(new_list[0], new_list[1], new_list[2], new_list[3], new_list[4], new_list[5])
 
 
