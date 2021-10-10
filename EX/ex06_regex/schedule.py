@@ -33,6 +33,7 @@ def create_schedule_string(input_string: str) -> str:
     table.append("-" * (total_width + 7))
     return "\n".join(table)
 
+
 def find_schedule_from_text(input_string: str) -> dict:
     time_activity_pattern = r"(\d{1,2})\D(\d{1,2})\s+([a-zA-Z]+)"
     time_activity = {}
@@ -43,11 +44,12 @@ def find_schedule_from_text(input_string: str) -> dict:
         if hours < 24 and minutes < 60:
             timestamp = f"{hours:02}:{minutes:02}"
             if timestamp in time_activity:
-                if activity not in time_activity[timestamp]:
+                if activity.lower() not in time_activity[timestamp]:
                     time_activity[timestamp].append(activity.lower())
             else:
                 time_activity[timestamp] = [activity.lower()]
     return time_activity
+
 
 def convert_to_12_hour_format(time: str) -> str:
     """
@@ -68,5 +70,5 @@ def convert_to_12_hour_format(time: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("wat 11:00 teine tekst 11:0 jah ei 10:00 pikktekst "))
-    #create_schedule_file("schedule_input.txt", "schedule_output.txt")
+    print(create_schedule_string("wat 10:00 teine tekst 11:0 jah ei 10:00 Teine "))
+    # create_schedule_file("schedule_input.txt", "schedule_output.txt")
