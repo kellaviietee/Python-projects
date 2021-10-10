@@ -62,17 +62,6 @@ def convert_dictionary_to_12h_format(dictionary_with_24h: dict) -> dict:
     return time_activity_dict_12h
 
 
-def create_table(table_size: list) -> None:
-    """
-    Create a table with specified table_size
-    :param table_size: Consists of first column width, second column width, total width and number of rows.
-    :return: table with these parameters
-    """
-    text = "-"
-    first_row = text.center(table_size[2] - 1, "-")
-    pass
-
-
 def get_table_size(schedule_dict: dict) -> list:
     """
     Get the needed line lengths to create a schedule table.
