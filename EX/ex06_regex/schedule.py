@@ -18,8 +18,14 @@ def create_schedule_string(input_string: str) -> str:
     converted_dict = convert_dictionary_to_12h_format(time_activity_dict)
     converted_single_dict = make_all_activities_single_item(converted_dict)
     line_lengths = get_table_size(converted_single_dict)
-    print(line_lengths)
     table = []
+    if line_lengths == [0, 0, 0]:
+        table.append("-" * 18)
+        table.append(f"| {'time':>{4}} | {'items':<{7}} |")
+        table.append("-" * 18)
+        table.append(f"| {'No Items found':^{10}} |")
+        table.append("-" * 18)
+        return "\n".join(table)
     table.append("-" * (line_lengths[2] + 7))
     # | time | items |
     table.append(f"| {'time':>{line_lengths[0]}} | {'items':<{line_lengths[1]}} |")
@@ -69,9 +75,12 @@ def get_table_size(schedule_dict: dict) -> list:
     :param schedule_dict: Sorted dictionary of schedule times and activities.
     :return: List of parameters to be used to create the schedule table.
     """
+    if len(schedule_dict.keys()) == 0:
+        return [0, 0, 0]
+
     maximum_time_length = max(len(time) for time in schedule_dict)
     maximum_activity_length = max(len(activity) for activity in schedule_dict.values())
-    return maximum_time_length, maximum_activity_length, maximum_activity_length + maximum_time_length
+    return [maximum_time_length, maximum_activity_length, maximum_activity_length + maximum_time_length]
 
 
 def convert_to_12_hour_format(time: str) -> str:
@@ -117,5 +126,5 @@ def create_sorted_schedule_dictionary(schedule_list: list) -> dict:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("wat 0:00 Teine tekst 0:0 jah ei 3:00 PIKKikktekst "))
-    create_schedule_file("schedule_input.txt", "schedule_output.txt")
+    print(create_schedule_string("wat 0:72 Teine tekst 28:0 jah ei 33:00 PIKKikktekst "))
+    # create_schedule_file("schedule_input.txt", "schedule_output.txt")
