@@ -18,7 +18,7 @@ def create_schedule_string(input_string: str) -> str:
         hours = int(match.group(1))
         minutes = int(match.group(2))
         activity = match.group(3)
-        if hours < 24 and minutes <60:
+        if hours < 24 and minutes < 60:
             timestamp = f"{hours:02}:{minutes:02}"
             if timestamp in time_activity:
                 if activity not in time_activity[timestamp]:
@@ -26,7 +26,7 @@ def create_schedule_string(input_string: str) -> str:
             else:
                 time_activity[timestamp] = [activity.lower()]
     time_activity = convert_dictionary_to_12h_format(time_activity)
-    sorted_time_activities = sorted(time_activity.items(), key= lambda  x: x[0])
+    sorted_time_activities = sorted(time_activity.items(), key=lambda x: x[0])
     time_activity.clear()
     for times in sorted_time_activities:
         time_activity[times[0]] = times[1]
