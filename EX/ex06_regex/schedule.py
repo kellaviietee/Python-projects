@@ -45,7 +45,7 @@ def make_all_activities_single_item(converted_dictionary: dict) -> dict:
     """
     for times in converted_dictionary.keys():
         if len(converted_dictionary[times]) > 0:
-            joined_list = ", ".join(converted_dictionary[times])
+            joined_list = ",".join(converted_dictionary[times])
             converted_dictionary[times] = joined_list
     return converted_dictionary
 
