@@ -24,6 +24,16 @@ def create_schedule_string(input_string: str) -> str:
         max_width_of_activity = max(max_width_of_activity, len(activity_str))
         max_width_of_time = max(max_width_of_time, len(time_formatted))
     total_width = max_width_of_time + max_width_of_activity
+    if max_width_of_activity == 0 or max_width_of_time == 0:
+        total_width = len("No items found") + 4
+        print(total_width)
+        table = []
+        table.append("-" * total_width)
+        table.append(f"| {'time':>{5}} | {'items':<{6}} |")
+        table.append("-" * total_width)
+        table.append(f"| {'No items found'} |")
+        table.append("-" * total_width)
+        return "\n".join(table)
     table = []
     table.append("-" * (total_width + 7))
     table.append(f"| {'time':>{max_width_of_time}} | {'items':<{max_width_of_activity}} |")
@@ -72,5 +82,5 @@ def convert_to_12_hour_format(time: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("start wsilnxeqj pftbkm rftjpahv xhfuxglbu qynzahyqj sxfmnhgs tqswbd 07,39   AVdPZh jjxahfz pvqzuy cakmghi jwelabwkgn knbexaqo prhbi urctd whjwfbvtly 09b33   AvdpzH qedwauova nykgkfvsac 23B25    XTTDalWeNv 7B08    XTtDAlWEnV dkjimmv tyoreqecqu uaqcyxwqyk hkeuvcyuuq qukvl zlkpd lsuydlhvlw zhrfet 23!46    zpcAmfi tockymzed yqyornaism ysafindn 11B43  QJqXEEa kkajwcllh pgrzly glsqprdajp tluqy 15!14    XttdALWeNv ikzkn agxgsrbsri kukra sjjnmuss wpsqntoto fkwytmfm wngegi npfvvi ihznm 17,45    jjybubO kkfeqsz eblgvce lkvsq klfdrw gbwvf kuvpkr xudss -1:39  xtTdalweNv txoymi hfolm twhjgc ktmdp 2A-1    aVDpzh kaantvxbsy esnnv aogrj dwanaxrx okdyyox giuqji 20A29    AJhmRxO uqmxmw atlaqnxpfu rlxoo zqxfnl wpidf qfsiwwrgs bghysxnm acuwxhwok melbk 17=21    QJqXEea hzncnjkl pemorpvxe tfdbgx wgkqyzzer ymhyogai 19A02  jjybUBO vzbonj yjqyct pstcnmrm bdapdhnsdf ohvoe syuprhvlpz oaktftn eawjw 12:00 ajHmRxO xshvketr tbclxkqukt tjsmtlz phiitzjtre gspicbyga redvcsuai vtjtvmwhu jmseqo pzheddzw 17?42  ajHMRXo gzmnrxped xpgyikp 25a36  XTTdAlWenV qwkwen nnptoosvb gfduywpbio kecaxlmzyn iwtyubnxls"))
+    print(create_schedule_string(""))
     # create_schedule_file("schedule_input.txt", "schedule_output.txt")
