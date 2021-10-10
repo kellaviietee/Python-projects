@@ -46,7 +46,8 @@ def create_schedule_string(input_string: str) -> str:
 
 def find_schedule_from_text(input_string: str) -> dict:
     """
-    Find a schedule from a string of text
+    Find a schedule from a string of text.
+
     :param input_string: Text that has times and activities in it
     :return: Dictionary of timestamps and activities with it
     """
