@@ -25,28 +25,24 @@ def create_schedule_string(input_string: str) -> str:
                     time_activity[timestamp].append(activity.lower())
             else:
                 time_activity[timestamp] = [activity.lower()]
-    time_activity = convert_dictionary_to_12h_format(time_activity)
     sorted_time_activities = sorted(time_activity.items(), key=lambda x: x[0])
-    time_activity.clear()
-    for times in sorted_time_activities:
-        time_activity[times[0]] = times[1]
-    time_activity = make_all_activities_single_item(time_activity)
-    line_lengths = get_table_size(time_activity)
+    formatted_time_activity = []
+    max_width_of_time = 0
+    max_width_of_activity = 0
+    for activity_pair in sorted_time_activities:
+        time_formatted = convert_to_12_hour_format(activity_pair[0])
+        activity_str = ", ".join(activity_pair[1])
+        formatted_time_activity.append((time_formatted, activity_str))
+        max_width_of_activity = max(max_width_of_activity, len(activity_str))
+        max_width_of_time = max(max_width_of_time, len(time_formatted))
+    total_width = max_width_of_time + max_width_of_activity + 7
     table = []
-    if line_lengths == [0, 0, 0]:
-        table.append("-" * 18)
-        table.append(f"| {'time':>{5}} | {'items':<{6}} |")
-        table.append("-" * 18)
-        table.append(f"| {'No Items found':^{10}} |")
-        table.append("-" * 18)
-        return "\n".join(table)
-    table.append("-" * (line_lengths[2] + 7))
-    # | time | items |
-    table.append(f"| {'time':>{line_lengths[0]}} | {'items':<{line_lengths[1]}} |")
-    table.append("-" * (line_lengths[2] + 7))
-    for time_str, activity_str in time_activity.items():
-        table.append(f"| {time_str:>{line_lengths[0]}} | {activity_str:<{line_lengths[1]}} |")
-    table.append("-" * (line_lengths[2] + 7))
+    table.append("-" * (total_width + 7))
+    table.append(f"| {'time':>{max_width_of_time}} | {'items':<{max_width_of_activity}} |")
+    table.append("-" * (total_width + 7))
+    for activity_pair in formatted_time_activity:
+        table.append(f"| {activity_pair[0]:>{max_width_of_time}} | {activity_pair[1]:<{max_width_of_activity}} |")
+    table.append("-" * (total_width + 7))
     return "\n".join(table)
 
 
