@@ -51,7 +51,7 @@ def find_schedule_from_text(input_string: str) -> dict:
     :param input_string: Text that has times and activities in it
     :return: Dictionary of timestamps and activities with it
     """
-    time_activity_pattern = r"[^-](\d{1,2})\D(\d{1,2})\s+([a-zA-Z]+)"
+    time_activity_pattern = r"[\s]+[^-](\d{1,2})\D(\d{1,2})\s+([a-zA-Z]+)"
     time_activity = {}
     for match in re.finditer(time_activity_pattern, input_string):
         hours = int(match.group(1))
