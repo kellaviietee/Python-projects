@@ -76,7 +76,8 @@ def get_table_size(schedule_dict: dict) -> list:
 
 def convert_to_12_hour_format(time: str) -> str:
     """
-    Converts 24 hour times into 12h times
+    Convert 24 hour times into 12h times.
+
     :param time: Timestamp in 24 hour clock format
     :return: Time in 12h time format
     """
