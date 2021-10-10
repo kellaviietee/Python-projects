@@ -23,7 +23,7 @@ def create_schedule_string(input_string: str) -> str:
         formatted_time_activity.append((time_formatted, activity_str))
         max_width_of_activity = max(max_width_of_activity, len(activity_str))
         max_width_of_time = max(max_width_of_time, len(time_formatted))
-    total_width = max_width_of_time + max_width_of_activity + 7
+    total_width = max_width_of_time + max_width_of_activity
     table = []
     table.append("-" * (total_width + 7))
     table.append(f"| {'time':>{max_width_of_time}} | {'items':<{max_width_of_activity}} |")
