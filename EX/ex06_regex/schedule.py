@@ -110,21 +110,24 @@ def create_sorted_schedule_dictionary(schedule_list: list) -> dict:
     :return: Schedule dictionary
     """
     time_activity_dict = {}
-    for event in schedule_list:
-        if int(event[0]) < 24 and int(event[1]) < 60:
-            time = event[0].zfill(2) + ":" + event[1].zfill(2)
-            if time not in time_activity_dict:
-                time_activity_dict[time] = [event[2].lower()]
-            elif time in time_activity_dict:
-                time_activity_dict[time].append(event[2].lower())
-    dic_items = time_activity_dict.items()
-    sorted_items = sorted(dic_items)
-    time_activity_dict.clear()
-    for time_activity in sorted_items:
-        time_activity_dict[time_activity[0]] = time_activity[1]
-    return time_activity_dict
+    for events in schedule_list:
+        hours = int(events[0])
+        minutes = int(events[1])
+        if hours < 24 and minutes < 59:
+            timestamp = f"{str(events[0]).zfill(2)}:{str(events[1]).zfill(2)}"
+            if timestamp not in time_activity_dict.keys():
+                time_activity_dict[timestamp] = [events[2].lower()]
+            elif timestamp in time_activity_dict.keys() and events[2].lower() in time_activity_dict[timestamp]:
+                continue
+            else:
+                time_activity_dict[timestamp].append(events[2].lower())
+    keys_sorted = sorted(time_activity_dict.keys())
+    sorted_dict = {}
+    for key in keys_sorted:
+        sorted_dict[key] = time_activity_dict[key]
+    return sorted_dict
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("wat 0:72 Teine tekst 28:0 jah ei 33:00 PIKKikktekst "))
-    # create_schedule_file("schedule_input.txt", "schedule_output.txt")
+    print(create_schedule_string("wat 11:00 teine tekst 11:0 jah ei 10:00 pikktekst "))
+    create_schedule_file("schedule_input.txt", "schedule_output.txt")
