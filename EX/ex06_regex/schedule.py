@@ -41,7 +41,7 @@ def find_schedule_from_text(input_string: str) -> dict:
         hours = int(match.group(1))
         minutes = int(match.group(2))
         activity = match.group(3)
-        if hours < 24 and minutes < 60:
+        if 0 <= hours < 24 and 0 <= minutes < 60:
             timestamp = f"{hours:02}:{minutes:02}"
             if timestamp in time_activity:
                 if activity.lower() not in time_activity[timestamp]:
@@ -70,5 +70,5 @@ def convert_to_12_hour_format(time: str) -> str:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("wat 10:00 teine tekst 11:0 jah ei 10:00 Teine "))
+    print(create_schedule_string("wat 16:00 teine tekst 11:0 jah ei 10:00 Teine "))
     # create_schedule_file("schedule_input.txt", "schedule_output.txt")
