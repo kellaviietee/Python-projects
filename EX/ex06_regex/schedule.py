@@ -12,7 +12,7 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
-    time_activity_pattern = r"(?<=\s)(\d?\d)\D(\d?\d)\s+(\w+)"
+    time_activity_pattern = r"\d{1-2}\D(\d{1-2})\s+[a-zA-Z]+"
     time_activity = re.findall(time_activity_pattern, input_string)
     time_activity_dict = create_sorted_schedule_dictionary(time_activity)
     converted_dict = convert_dictionary_to_12h_format(time_activity_dict)
