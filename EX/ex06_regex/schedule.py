@@ -12,14 +12,26 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
-    time_activity_pattern = r"\d{1,2}\D(\d{1,2})\s+[a-zA-Z]+"
-    time_activity = []
+    time_activity_pattern = r"(\d{1,2})\D(\d{1,2})\s+([a-zA-Z]+)"
+    time_activity = {}
     for match in re.finditer(time_activity_pattern, input_string):
-        time_activity.append(match)
-    time_activity_dict = create_sorted_schedule_dictionary(time_activity)
-    converted_dict = convert_dictionary_to_12h_format(time_activity_dict)
-    converted_single_dict = make_all_activities_single_item(converted_dict)
-    line_lengths = get_table_size(converted_single_dict)
+        hours = int(match.group(1))
+        minutes = int(match.group(2))
+        activity = match.group(3)
+        if hours < 24 and minutes <60:
+            timestamp = f"{hours:02}:{minutes:02}"
+            if timestamp in time_activity:
+                if activity not in time_activity[timestamp]:
+                    time_activity[timestamp].append(activity.lower())
+            else:
+                time_activity[timestamp] = [activity.lower()]
+    time_activity = convert_dictionary_to_12h_format(time_activity)
+    sorted_time_activities = sorted(time_activity.items(), key= lambda  x: x[0])
+    time_activity.clear()
+    for times in sorted_time_activities:
+        time_activity[times[0]] = times[1]
+    time_activity = make_all_activities_single_item(time_activity)
+    line_lengths = get_table_size(time_activity)
     table = []
     if line_lengths == [0, 0, 0]:
         table.append("-" * 18)
@@ -32,7 +44,7 @@ def create_schedule_string(input_string: str) -> str:
     # | time | items |
     table.append(f"| {'time':>{line_lengths[0]}} | {'items':<{line_lengths[1]}} |")
     table.append("-" * (line_lengths[2] + 7))
-    for time_str, activity_str in converted_single_dict.items():
+    for time_str, activity_str in time_activity.items():
         table.append(f"| {time_str:>{line_lengths[0]}} | {activity_str:<{line_lengths[1]}} |")
     table.append("-" * (line_lengths[2] + 7))
     return "\n".join(table)
@@ -47,7 +59,7 @@ def make_all_activities_single_item(converted_dictionary: dict) -> dict:
     """
     for times in converted_dictionary.keys():
         if len(converted_dictionary[times]) > 0:
-            joined_list = ",".join(converted_dictionary[times])
+            joined_list = ", ".join(converted_dictionary[times])
             converted_dictionary[times] = joined_list
     return converted_dictionary
 
