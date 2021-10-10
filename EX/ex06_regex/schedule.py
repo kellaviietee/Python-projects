@@ -20,7 +20,7 @@ def create_schedule_string(input_string: str) -> str:
     line_lengths = get_table_size(converted_single_dict)
     table = []
     if line_lengths == [0, 0, 0]:
-        table.append("-" * 18)
+        table.append("-" * 19)
         table.append(f"| {'time':>{5}} | {'items':<{6}} |")
         table.append("-" * 18)
         table.append(f"| {'No Items found':^{10}} |")
@@ -129,5 +129,5 @@ def create_sorted_schedule_dictionary(schedule_list: list) -> dict:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string(" "))
+    print(create_schedule_string('------------...-------------'))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
