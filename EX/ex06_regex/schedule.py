@@ -12,8 +12,10 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
-    time_activity_pattern = r"\d{1-2}\D(\d{1-2})\s+[a-zA-Z]+"
-    time_activity = re.findall(time_activity_pattern, input_string)
+    time_activity_pattern = r"\d{1,2}\D(\d{1,2})\s+[a-zA-Z]+"
+    time_activity = []
+    for match in re.finditer(time_activity_pattern, input_string):
+        time_activity.append(match)
     time_activity_dict = create_sorted_schedule_dictionary(time_activity)
     converted_dict = convert_dictionary_to_12h_format(time_activity_dict)
     converted_single_dict = make_all_activities_single_item(converted_dict)
@@ -129,5 +131,5 @@ def create_sorted_schedule_dictionary(schedule_list: list) -> dict:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string('------------...-------------'))
+    print(create_schedule_string("wat 11:00 teine tekst 11:0 jah ei 10:00 pikktekst "))
     #create_schedule_file("schedule_input.txt", "schedule_output.txt")
