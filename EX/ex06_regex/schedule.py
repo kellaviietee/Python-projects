@@ -20,7 +20,7 @@ def create_schedule_string(input_string: str) -> str:
     line_lengths = get_table_size(converted_single_dict)
     table = []
     if line_lengths == [0, 0, 0]:
-        table.append("-" * 19)
+        table.append("-" * 18)
         table.append(f"| {'time':>{5}} | {'items':<{6}} |")
         table.append("-" * 18)
         table.append(f"| {'No Items found':^{10}} |")
@@ -75,7 +75,7 @@ def get_table_size(schedule_dict: dict) -> list:
     :param schedule_dict: Sorted dictionary of schedule times and activities.
     :return: List of parameters to be used to create the schedule table.
     """
-    if len(schedule_dict.keys()) == 0:
+    if len(schedule_dict.keys()) == 0 or len(schedule_dict.values()) == 0:
         return [0, 0, 0]
 
     maximum_time_length = max(len(time) for time in schedule_dict)
