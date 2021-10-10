@@ -21,7 +21,7 @@ def create_schedule_string(input_string: str) -> str:
     table = []
     if line_lengths == [0, 0, 0]:
         table.append("-" * 18)
-        table.append(f"| {'time':>{4}} | {'items':<{7}} |")
+        table.append(f"| {'time':>{5}} | {'items':<{6}} |")
         table.append("-" * 18)
         table.append(f"| {'No Items found':^{10}} |")
         table.append("-" * 18)
@@ -129,5 +129,5 @@ def create_sorted_schedule_dictionary(schedule_list: list) -> dict:
 
 
 if __name__ == '__main__':
-    print(create_schedule_string("wat 11:00 teine tekst 11:0 jah ei 10:00 pikktekst "))
-    create_schedule_file("schedule_input.txt", "schedule_output.txt")
+    print(create_schedule_string(" "))
+    #create_schedule_file("schedule_input.txt", "schedule_output.txt")
