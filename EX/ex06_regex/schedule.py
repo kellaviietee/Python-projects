@@ -12,19 +12,7 @@ def create_schedule_file(input_filename: str, output_filename: str) -> None:
 
 def create_schedule_string(input_string: str) -> str:
     """Create schedule string from the given input string."""
-    time_activity_pattern = r"(\d{1,2})\D(\d{1,2})\s+([a-zA-Z]+)"
-    time_activity = {}
-    for match in re.finditer(time_activity_pattern, input_string):
-        hours = int(match.group(1))
-        minutes = int(match.group(2))
-        activity = match.group(3)
-        if hours < 24 and minutes < 60:
-            timestamp = f"{hours:02}:{minutes:02}"
-            if timestamp in time_activity:
-                if activity not in time_activity[timestamp]:
-                    time_activity[timestamp].append(activity.lower())
-            else:
-                time_activity[timestamp] = [activity.lower()]
+    time_activity = find_schedule_from_text(input_string)
     sorted_time_activities = sorted(time_activity.items(), key=lambda x: x[0])
     formatted_time_activity = []
     max_width_of_time = 0
@@ -45,6 +33,21 @@ def create_schedule_string(input_string: str) -> str:
     table.append("-" * (total_width + 7))
     return "\n".join(table)
 
+def find_schedule_from_text(input_string: str) -> dict:
+    time_activity_pattern = r"(\d{1,2})\D(\d{1,2})\s+([a-zA-Z]+)"
+    time_activity = {}
+    for match in re.finditer(time_activity_pattern, input_string):
+        hours = int(match.group(1))
+        minutes = int(match.group(2))
+        activity = match.group(3)
+        if hours < 24 and minutes < 60:
+            timestamp = f"{hours:02}:{minutes:02}"
+            if timestamp in time_activity:
+                if activity not in time_activity[timestamp]:
+                    time_activity[timestamp].append(activity.lower())
+            else:
+                time_activity[timestamp] = [activity.lower()]
+    return time_activity
 
 def convert_to_12_hour_format(time: str) -> str:
     """
