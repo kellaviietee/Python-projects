@@ -29,7 +29,7 @@ def read_file_contents_to_list(filename: str) -> list:
     """
     list_of_lines = []
     f = open(filename, "r")
-    for row in  f.readlines():
+    for row in f.readlines():
         list_of_lines.append(row.rstrip("\n"))
     f.close()
     return list_of_lines
@@ -95,7 +95,8 @@ def write_lines_to_file(filename: str, lines: list) -> None:
     :return: None
     """
     with open(filename, "w") as f:
-        f.writelines(lines)
+        for row in lines:
+            f.writelines(row)
     return None
 
 
