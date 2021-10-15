@@ -9,9 +9,10 @@ def read_file_contents(filename: str) -> str:
     :param filename: File to read.
     :return: File contents as string.
     """
+    content = ""
     with open(filename, "r") as f:
         content = f.read()
-    print(content)
+    return content
 
 
 def read_file_contents_to_list(filename: str) -> list:
@@ -127,9 +128,6 @@ def write_csv_file(filename: str, data: list) -> None:
             # write list of values
             csv_writer.writerow(row)
     return None
-
-
-
 
 
 def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output: str) -> None:
