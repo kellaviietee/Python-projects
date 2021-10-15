@@ -1,6 +1,4 @@
 import csv
-import os
-import sys
 
 
 def read_file_contents(filename: str) -> str:
@@ -29,10 +27,11 @@ def read_file_contents_to_list(filename: str) -> list:
     :param filename: File to read.
     :return: List of lines.
     """
-    list_of_line = []
-    with open(filename) as f:
-        list_of_line = f.read().splitlines()
-    return list_of_line
+
+    f = open(filename, "r")
+    list_of_lines = f.readlines()
+    f.close()
+    return list_of_lines
 
 
 def read_csv_file(filename: str) -> list:
@@ -175,7 +174,3 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
     :return: None
     """
     pass
-
-
-path = os.path.join(sys.path[0], "text.txt")
-print(read_file_contents_to_list(path))
