@@ -32,7 +32,7 @@ def read_file_contents_to_list(filename: str) -> list:
         # Loops over the file one line at a time.
         temp_lines = f.read().splitlines()
         for row in temp_lines:
-            list_of_line.append(f"r'{row}'")
+            list_of_line.append(row.encode("unicode_escape").decode("utf-8"))
     # Prints "True" to show that the file has been closed
     print(f.closed)
     return list_of_line
