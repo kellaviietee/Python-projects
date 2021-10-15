@@ -30,7 +30,8 @@ def read_file_contents_to_list(filename: str) -> list:
 
     f = open(filename, "r")
     list_of_lines = f.readlines()
-    f.close()
+    for row in list_of_lines:
+        row = row.rstrip()
     return list_of_lines
 
 
