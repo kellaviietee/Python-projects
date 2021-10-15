@@ -4,7 +4,6 @@ import csv
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
-    In this exercise, we can assume the file exists.
 
     :param filename: File to read.
     :return: File contents as string.
@@ -29,9 +28,13 @@ def read_file_contents_to_list(filename: str) -> list:
     :return: List of lines.
     """
     list_of_line = []
-    with open(filename, "r") as f:
+    with open(filename) as f:
+        # Loops over the file one line at a time.
         for line in f:
-            list_of_line.append(list_of_line)
+            # Prints the current line
+            list_of_line.append(line)
+    # Prints "True" to show that the file has been closed
+    print(f.closed)
     return list_of_line
 
 
