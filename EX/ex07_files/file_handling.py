@@ -27,11 +27,11 @@ def read_file_contents_to_list(filename: str) -> list:
     :param filename: File to read.
     :return: List of lines.
     """
-
+    list_of_lines = []
     f = open(filename, "r")
-    list_of_lines = f.readlines()
-    for row in list_of_lines:
-        row = row.rstrip("\n")
+    for row in  f.readlines():
+        list_of_lines.append(row.rstrip("\n"))
+    f.close()
     return list_of_lines
 
 
