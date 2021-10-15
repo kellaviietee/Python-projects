@@ -30,7 +30,9 @@ def read_file_contents_to_list(filename: str) -> list:
     list_of_line = []
     with open(filename) as f:
         # Loops over the file one line at a time.
-        list_of_line = f.read().splitlines()
+        temp_list = f.read().splitlines()
+        for row in temp_list:
+            list_of_line.append(r"{row}")
     # Prints "True" to show that the file has been closed
     print(f.closed)
     return list_of_line
