@@ -121,11 +121,7 @@ def write_csv_file(filename: str, data: list) -> None:
     """
     with open(filename, 'w', newline='') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=";")
-        # header
-        csv_writer.writerow(['Name', 'Department', 'Birthday month'])
-        for row in data:
-            # write list of values
-            csv_writer.writerow(row)
+        csv_writer.writerows(data)
     return None
 
 
