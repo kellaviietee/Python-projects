@@ -173,7 +173,7 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
     date = read_csv_file(dates_file)
     town = read_csv_file(towns_file)
     for row in range(0, len(date[0])):
-        name_date = (date[1][row].split(":"))
+        name_date = (date[0][row].split(":"))
         name = name_date[0]
         date_time = name_date[1]
         name_town = (town[0][row].split(":"))
