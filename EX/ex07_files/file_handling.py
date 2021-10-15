@@ -182,5 +182,3 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
     write_csv_file(csv_output, name_town_date)
     return None
 
-
-print(merge_dates_and_towns_into_csv("dates.csv", "towns.csv", "date_town.csv"))
