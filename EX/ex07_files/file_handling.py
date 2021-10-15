@@ -94,9 +94,6 @@ def write_lines_to_file(filename: str, lines: list) -> None:
     :param lines: List of string to write to the file.
     :return: None
     """
-    f = open(filename, "a")
-    f.writelines(lines)
-    f.close()
     return None
 
 
