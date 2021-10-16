@@ -187,3 +187,90 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
             result.append([split_name_town[0], split_name_town[1], "-"])
     print(result)
     return None
+
+
+def read_csv_file_into_list_of_dicts(filename: str) -> list:
+    """
+    Read csv file into list of dictionaries.
+    Header line will be used for dict keys.
+
+    Each line after header line will result in a dict inside the result list.
+    Every line contains the same number of fields.
+
+    Example:
+
+    name,age,sex
+    John,12,M
+    Mary,13,F
+
+    Header line will be used as keys for each content line.
+    The result:
+    [
+      {"name": "John", "age": "12", "sex": "M"},
+      {"name": "Mary", "age": "13", "sex": "F"},
+    ]
+
+    If there are only header or no rows in the CSV-file,
+    the result is an empty list.
+
+    The order of the elements in the list should be the same
+    as the lines in the file (the first line becomes the first element etc.)
+
+    :param filename: CSV-file to read.
+    :return: List of dictionaries where keys are taken from the header.
+    """
+    contents_of_csv = read_csv_file(filename)
+    if len(contents_of_csv[0]) <= 1:
+        return []
+    else:
+        list_of_dicts = []
+        dictionary_keys = contents_of_csv[0][0].split(",")
+        for data in range(1, len(contents_of_csv[0])):
+            info = contents_of_csv[0][data].split(",")
+            new_dict = dict(zip(dictionary_keys, info))
+            list_of_dicts.append(new_dict)
+        return list_of_dicts
+
+
+def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
+    """
+    Write list of dicts into csv file.
+
+    Data contains a list of dictionaries.
+    Dictionary key represents the field.
+
+    Example data:
+    [
+      {"name": "john", "age": "23"}
+      {"name": "mary", "age": "44"}
+    ]
+    Will become:
+    name,age
+    john,23
+    mary,44
+
+    The order of fields/headers is not important.
+    The order of lines is important (the same as in the list).
+
+    Example:
+    [
+      {"name": "john", "age": "12"},
+      {"name": "mary", "town": "London"}
+    ]
+    Will become:
+    name,age,town
+    john,12,
+    mary,,London
+
+    Fields which are not present in one line will be empty.
+
+    The order of the lines in the file should be the same
+    as the order of elements in the list.
+
+    :param filename: File to write to.
+    :param data: List of dictionaries to write to the file.
+    :return: None
+    """
+
+
+print(read_csv_file_into_list_of_dicts("test.csv"))
