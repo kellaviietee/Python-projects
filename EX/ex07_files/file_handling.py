@@ -220,7 +220,9 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
     :return: List of dictionaries where keys are taken from the header.
     """
     contents_of_csv = read_csv_file(filename)
-    if len(contents_of_csv[0]) <= 1:
+    if len(contents_of_csv) == 0:
+        return []
+    if len(contents_of_csv[0]) == 1:
         return []
     else:
         list_of_dicts = []
