@@ -170,16 +170,20 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
     :param csv_output: Output CSV-file with names, towns and dates.
     :return: None
     """
-    name_town_date = [["name", "town", "date"]]
+    result = [["name", "town", "date"]]
     date = read_csv_file(dates_file)
     town = read_csv_file(towns_file)
-    for row in range(0, len(date[0])):
-        name_date = (date[0][row].split(":"))
-        name = name_date[0]
-        date_time = name_date[1]
-        name_town = (town[0][row].split(":"))
-        town_name = name_town[1]
-        name_town_date.append([name, town_name, date_time])
-    write_csv_file(csv_output, name_town_date)
+    for row in date[0]:
+        split_name_date = row.split(":")
+        result.append([split_name_date[0], "-", split_name_date[1]])
+    for row in town[0]:
+        no_name_in_result = True
+        split_name_town = row.split(":")
+        for lines in result:
+            if split_name_town[0] == lines[0]:
+                no_name_in_result = False
+                lines[1] = split_name_town[1]
+        if no_name_in_result:
+            result.append([split_name_town[0], split_name_town[1], "-"])
+    print(result)
     return None
-
