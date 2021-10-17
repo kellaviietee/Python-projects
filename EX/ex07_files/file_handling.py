@@ -275,4 +275,5 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     """
 
 
-print(read_csv_file_into_list_of_dicts("test.csv"))
+if __name__ == "__main__":
+    print(read_csv_file_into_list_of_dicts("test.csv"))
