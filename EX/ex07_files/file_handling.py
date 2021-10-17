@@ -222,7 +222,7 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
     contents_of_csv = read_csv_file(filename)
     if len(contents_of_csv) == 0:
         return []
-    if len(contents_of_csv[0]) == 1:
+    if len(contents_of_csv[0][0]) == 1:
         return []
     else:
         list_of_dicts = []
