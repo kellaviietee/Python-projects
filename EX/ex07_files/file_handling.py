@@ -226,9 +226,9 @@ def read_csv_file_into_list_of_dicts(filename: str) -> list:
         return []
     else:
         list_of_dicts = []
-        dictionary_keys = contents_of_csv[0][0].split(",")
-        for data in range(1, len(contents_of_csv[0])):
-            info = contents_of_csv[0][data].split(",")
+        dictionary_keys = contents_of_csv[0]
+        for data in range(1, len(contents_of_csv)):
+            info = contents_of_csv[data]
             new_dict = dict(zip(dictionary_keys, info))
             list_of_dicts.append(new_dict)
         return list_of_dicts
