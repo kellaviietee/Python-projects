@@ -298,7 +298,7 @@ def get_all_keys(list_of_dict: list) -> set:
     :return: set of all unique keys
     """
     all_keys = set()
-    for dictionary in data:
+    for dictionary in list_of_dict:
         keys = dictionary.keys()
         for key in keys:
             all_keys.add(key)
