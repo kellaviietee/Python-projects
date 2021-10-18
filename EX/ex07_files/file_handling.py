@@ -1,6 +1,5 @@
-"""
-Exercise 7 of introduction to programming.
-"""
+"""Exercise 7 of introduction to programming."""
+
 import csv
 from datetime import datetime
 import os
