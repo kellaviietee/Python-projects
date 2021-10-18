@@ -273,7 +273,41 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     :param data: List of dictionaries to write to the file.
     :return: None
     """
+    all_keys = get_all_keys(data)
+    all_elements = [list(all_keys)]
+    for diction in data:
+        row = []
+        for key in all_keys:
+            if key in diction:
+                element = diction[key]
+                row.append(element)
+            else:
+                element = ""
+                row.append(element)
+        all_elements.append(row)
+    write_csv_file(filename, all_elements)
+
+    return None
+
+
+def get_all_keys(list_of_dict: list) -> set:
+    """
+    From a list of dictionaries find all unique keys.
+
+    :param list_of_dict: list of dictionaries
+    :return: set of all unique keys
+    """
+    all_keys = set()
+    for dictionary in data:
+        keys = dictionary.keys()
+        for key in keys:
+            all_keys.add(key)
+    return all_keys
 
 
 if __name__ == "__main__":
-    print(read_csv_file_into_list_of_dicts("test.csv"))
+    data = [
+      {"name": "john", "age": "23"},
+      {"name": "mary", "town": "London"}
+    ]
+    print(write_list_of_dicts_to_csv_file("test.csv",data))
