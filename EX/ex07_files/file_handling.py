@@ -459,7 +459,7 @@ def check_if_all_dates(list_of_strings: list) -> list:
             new_list.append(None)
             continue
         try:
-            date_object = datetime.strptime(word, "%d.%m.%Y")
+            date_object = datetime.strptime(word, "%d.%m.%Y").date()
             new_list.append(date_object)
         except TypeError:
             return list_of_strings
