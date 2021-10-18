@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 
 def read_file_contents(filename: str) -> str:
@@ -294,7 +295,6 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
                 row.append(element)
         all_elements.append(row)
     write_csv_file(filename, all_elements)
-
     return None
 
 
@@ -313,6 +313,176 @@ def get_all_keys(list_of_dict: list) -> set:
     return all_keys
 
 
+def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
+    """
+    Read data from file and cast values into different datatypes.
+    If a field contains only numbers, turn this into int.
+    If a field contains only dates (in format dd.mm.yyyy), turn this into date.
+    Otherwise the datatype is string (default by csv reader).
+
+    Example:
+    name,age
+    john,11
+    mary,14
+
+    Becomes ('age' is int):
+    [
+      {'name': 'john', 'age': 11},
+      {'name': 'mary', 'age': 14}
+    ]
+
+    But if all the fields cannot be cast to int, the field is left to string.
+    Example:
+    name,age
+    john,11
+    mary,14
+    ago,unknown
+
+    Becomes ('age' cannot be cast to int because of "ago"):
+    [
+      {'name': 'john', 'age': '11'},
+      {'name': 'mary', 'age': '14'},
+      {'name': 'ago', 'age': 'unknown'}
+    ]
+
+    Example:
+    name,date
+    john,01.01.2020
+    mary,07.09.2021
+
+    Becomes:
+    [
+      {'name': 'john', 'date': datetime.date(2020, 1, 1)},
+      {'name': 'mary', 'date': datetime.date(2021, 9, 7)},
+    ]
+
+    Example:
+    name,date
+    john,01.01.2020
+    mary,late 2021
+
+    Becomes:
+    [
+      {'name': 'john', 'date': "01.01.2020"},
+      {'name': 'mary', 'date': "late 2021"},
+    ]
+
+    Value "-" indicates missing value and should be None in the result
+    Example:
+    name,date
+    john,-
+    mary,07.09.2021
+
+    Becomes:
+    [
+      {'name': 'john', 'date': None},
+      {'name': 'mary', 'date': datetime.date(2021, 9, 7)},
+    ]
+
+    None value also doesn't affect the data type
+    (the column will have the type based on the existing values).
+
+    The order of the elements in the list should be the same
+    as the lines in the file.
+
+    For date, strptime can be used:
+    https://docs.python.org/3/library/datetime.html#examples-of-usage-date
+    """
+    list_of_dicts = read_csv_file_into_list_of_dicts(filename)
+    sorted_dictionaries = sort_dictionaries(list_of_dicts)
+    all_values = []
+    all_keys = []
+    for category in sorted_dictionaries:
+        all_keys.append(category)
+        values = sorted_dictionaries[category]
+        values = remove_no_value_fields(values)
+        values = check_if_all_ints(values)
+        values = check_if_all_dates(values)
+        all_values.append(values)
+    people_list = list(zip(*all_values))
+    final_list = []
+    for item in people_list:
+        new_dict = dict(zip(all_keys, item))
+        final_list.append(new_dict)
+    print(final_list)
+
+
+def sort_dictionaries(all_dictionaries: list) -> list:
+    """
+    Sort dictionaries by categories.
+
+    :param all_dictionaries: Dictionries to be sorted
+    :return:
+    """
+    all_the_keys = list(all_dictionaries[0].keys())
+    all_values = {}
+    for dic in all_dictionaries:
+        for key in all_the_keys:
+            if key not in all_values:
+                value = dic[key]
+                all_values[key] = [value]
+            else:
+                value = dic[key]
+                all_values[key].append(value)
+    return all_values
+
+
+def check_if_all_ints(list_of_strings: list) -> list:
+    """
+    Check if all the strings can be cast as an integer.
+
+    :param list_of_strings: List of strings to check.
+    :return: If they are all integers, return the list as integers, else return original list.
+    """
+    new_list = []
+    for word in list_of_strings:
+        if word is None:
+            new_list.append(None)
+            continue
+        try:
+            new_list.append(int(word))
+        except ValueError:
+            return list_of_strings
+    return new_list
+
+
+def check_if_all_dates(list_of_strings: list) -> list:
+    """
+    Check if all the strings can be cast as a date.
+
+    :param list_of_strings: List of strings to check.
+    :return: If they are all integers, return the list as integers, else return original list.
+    """
+    new_list = []
+    for word in list_of_strings:
+        if word is None:
+            new_list.append(None)
+            continue
+        try:
+            date_object = datetime.strptime(word, "%d.%m.%Y")
+            new_list.append(date_object)
+        except TypeError:
+            return list_of_strings
+        except ValueError:
+            return list_of_strings
+    return new_list
+
+
+def remove_no_value_fields(list_of_values: list) -> list:
+    """
+    Replace all the "-" values with None.
+
+    :param list_of_values: list of all the values.
+    :return: list of values with missing values replaced by None
+    """
+    new_list = []
+    for word in list_of_values:
+        if word == "-":
+            new_list.append(None)
+        else:
+            new_list.append(word)
+    return new_list
+
+
 if __name__ == "__main__":
-    test_data = []
-    print(write_list_of_dicts_to_csv_file("test.csv", test_data))
+    print(read_csv_file_into_list_of_dicts_using_datatypes("test.csv"))
