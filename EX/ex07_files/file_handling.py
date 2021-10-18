@@ -120,10 +120,14 @@ def write_csv_file(filename: str, data: list) -> None:
     :param data: List of lists to write to the file.
     :return: None
     """
-    with open(filename, 'w', newline='') as csv_file:
-        csv_writer = csv.writer(csv_file, delimiter=",")
-        csv_writer.writerows(data)
-    return None
+    print(len(data[0]))
+    if len(data[0]) == 0:
+        return None
+    else:
+        with open(filename, 'w', newline='') as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter=",")
+            csv_writer.writerows(data)
+        return None
 
 
 def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output: str) -> None:
@@ -275,6 +279,8 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     """
     all_keys = get_all_keys(data)
     if len(all_keys) == 0:
+        print("this works")
+        write_csv_file(filename, [[]])
         return None
     all_elements = [list(all_keys)]
     for diction in data:
