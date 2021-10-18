@@ -1,3 +1,6 @@
+"""
+Exercise 7 of introduction to programming.
+"""
 import csv
 from datetime import datetime
 import os
@@ -17,7 +20,7 @@ def read_file_contents(filename: str) -> str:
 
 
 def read_file_contents_to_list(filename: str) -> list:
-    """
+    r"""
     Read file contents into list of lines.
 
     In this exercise, we can assume the file exists.
@@ -179,7 +182,6 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
     result = [["name", "town", "date"]]
     date = read_file_contents_to_list(dates_file)
     town = read_file_contents_to_list(towns_file)
-    dummy = []
     for items in date:
         hmm = items.split(":")
         result.append([hmm[0], "-", hmm[1]])
@@ -200,8 +202,8 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
 def read_csv_file_into_list_of_dicts(filename: str) -> list:
     """
     Read csv file into list of dictionaries.
-    Header line will be used for dict keys.
 
+    Header line will be used for dict keys.
     Each line after header line will result in a dict inside the result list.
     Every line contains the same number of fields.
 
@@ -318,10 +320,10 @@ def get_all_keys(list_of_dict: list) -> set:
 def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     """
     Read data from file and cast values into different datatype.
+
     If a field contains only numbers, turn this into int.
     If a field contains only dates (in format dd.mm.yyyy), turn this into date.
     Otherwise the datatype is string (default by csv reader).
-
     Example:
     name,age
     john,11
@@ -491,10 +493,9 @@ def remove_no_value_fields(list_of_values: list) -> list:
 def read_people_data(directory: str) -> dict:
     """
     Read people data from files.
+
     Files are inside directory. Read all *.csv files.
-
     Each file has an int field "id" which should be used to merge information.
-
     The result should be one dict where the key is id (int) and value is
     a dict of all the different values across the the files.
     Missing keys should be in every dictionary.
@@ -551,6 +552,7 @@ def read_people_data(directory: str) -> dict:
 def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> dict:
     """
     Combine a list of dictionaries into single dictionary by id.
+
     :param all_tables:
     :param num:
     :param all_keys:
