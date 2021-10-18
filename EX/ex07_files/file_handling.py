@@ -120,12 +120,14 @@ def write_csv_file(filename: str, data: list) -> None:
     :param data: List of lists to write to the file.
     :return: None
     """
-    if 0 <= len(data[0]) <= 1:
-        return None
-    else:
-        with open(filename, 'w', newline='') as csv_file:
-            csv_writer = csv.writer(csv_file, delimiter=",")
-            csv_writer.writerows(data)
+    with open(filename, 'w', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=";")
+        # header
+        if len(data[0]) >= 1:
+            csv_writer.writerow(data[0][0])
+            for row in data:
+                # write list of values
+                csv_writer.writerow(row)
         return None
 
 
