@@ -306,8 +306,8 @@ def get_all_keys(list_of_dict: list) -> set:
 
 
 if __name__ == "__main__":
-    data = [
+    test_data = [
       {"name": "john", "age": "23"},
       {"name": "mary", "town": "London"}
     ]
-    print(write_list_of_dicts_to_csv_file("test.csv",data))
+    print(write_list_of_dicts_to_csv_file("test.csv", test_data))
