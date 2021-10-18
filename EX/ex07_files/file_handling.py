@@ -120,7 +120,6 @@ def write_csv_file(filename: str, data: list) -> None:
     :param data: List of lists to write to the file.
     :return: None
     """
-    print(len(data[0]))
     if len(data[0]) == 0:
         return None
     else:
