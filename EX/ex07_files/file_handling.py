@@ -122,11 +122,12 @@ def write_csv_file(filename: str, data: list) -> None:
     """
     print(data)
     with open(filename, 'w', newline='') as csv_file:
-        if len(data) > 0:
-            csv_writer = csv.writer(csv_file, delimiter=",")
-            for row in data:
-                # write list of values
-                csv_writer.writerow(row)
+        if len(data) == 0:
+            return None
+        csv_writer = csv.writer(csv_file, delimiter=",")
+        for row in data:
+            # write list of values
+            csv_writer.writerow(row)
     return None
 
 
