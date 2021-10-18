@@ -281,7 +281,7 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     all_keys = get_all_keys(data)
     if len(all_keys) == 0:
         print("this works")
-        write_csv_file(filename, [[]])
+        write_csv_file(filename, [])
         return None
     all_elements = [list(all_keys)]
     for diction in data:
@@ -316,4 +316,4 @@ def get_all_keys(list_of_dict: list) -> set:
 
 if __name__ == "__main__":
     test_data = []
-    print(write_csv_file("test.csv", test_data))
+    print(write_list_of_dicts_to_csv_file("test.csv", test_data))
