@@ -560,11 +560,12 @@ def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> di
     for table in all_tables:
         for dictionary in table:
             if dictionary["id"] == num:
-                for key in all_keys:
-                    if key not in total_dictionary and key in dictionary:
+                for key in dictionary:
+                    if key not in total_dictionary:
                         total_dictionary[key] = dictionary[key]
-                    if key not in total_dictionary and key not in dictionary:
-                        total_dictionary[key] = None
+    for key in all_keys:
+        if key not in total_dictionary:
+            total_dictionary[key] = None
     return total_dictionary
 
 
