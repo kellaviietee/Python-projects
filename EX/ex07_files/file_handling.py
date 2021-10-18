@@ -122,10 +122,11 @@ def write_csv_file(filename: str, data: list) -> None:
     """
     print(data)
     with open(filename, 'w', newline='') as csv_file:
-        csv_writer = csv.writer(csv_file, delimiter=",")
-        for row in data:
-            # write list of values
-            csv_writer.writerow(row)
+        if len(data) > 0:
+            csv_writer = csv.writer(csv_file, delimiter=",")
+            for row in data:
+                # write list of values
+                csv_writer.writerow(row)
 
 
 def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output: str) -> None:
