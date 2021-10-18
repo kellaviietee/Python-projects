@@ -414,6 +414,8 @@ def sort_dictionaries(all_dictionaries: list) -> list:
     :param all_dictionaries: Dictionries to be sorted
     :return:
     """
+    if len(all_dictionaries) == 0:
+        return []
     all_the_keys = list(all_dictionaries[0].keys())
     all_values = {}
     for dic in all_dictionaries:
