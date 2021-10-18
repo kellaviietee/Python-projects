@@ -2,6 +2,7 @@ import csv
 from datetime import datetime
 import os
 
+
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
@@ -533,30 +534,38 @@ def read_people_data(directory: str) -> dict:
         table = read_csv_file_into_list_of_dicts_using_datatypes(directory + "/" + entry)
         all_tables.append(table)
         max_number_of_ids = max(max_number_of_ids, len(table))
+    all_keys = []
+    for tables in all_tables:
+        for dicts in tables:
+            dict_key = list(dicts.keys())
+            for key in dict_key:
+                if key not in all_keys:
+                    all_keys.append(key)
+    print(all_keys)
     all_dictionaries = {}
-    for numbers in range (1, max_number_of_ids + 1):
-        all_dictionaries[numbers] = combine_dictionaries_by_id(all_tables, numbers)
+    for numbers in range(1, max_number_of_ids + 1):
+        all_dictionaries[numbers] = combine_dictionaries_by_id(all_tables, numbers, all_keys)
     return all_dictionaries
 
 
-
-
-def combine_dictionaries_by_id(all_tables: list, num: int) -> dict:
+def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> dict:
     """
     Combine a list of dictionaries into single dictionary by id.
     :param all_tables:
     :param num:
+    :param all_keys:
     :return:
     """
     total_dictionary = {}
     for table in all_tables:
         for dictionary in table:
             if dictionary["id"] == num:
-                for key in dictionary:
-                    if key not in total_dictionary:
+                for key in all_keys:
+                    if key not in total_dictionary and key in dictionary:
                         total_dictionary[key] = dictionary[key]
+                    if key not in total_dictionary and key not in dictionary:
+                        total_dictionary[key] = None
     return total_dictionary
-
 
 
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
