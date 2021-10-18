@@ -278,11 +278,10 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     :param data: List of dictionaries to write to the file.
     :return: None
     """
-    all_keys = get_all_keys(data)
-    if len(all_keys) == 0:
-        print("this works")
-        write_csv_file(filename, [])
+    if len(data) == 0:
+        write_csv_file(filename, data)
         return None
+    all_keys = get_all_keys(data)
     all_elements = [list(all_keys)]
     for diction in data:
         row = []
