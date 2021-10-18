@@ -404,7 +404,7 @@ def read_csv_file_into_list_of_dicts_using_datatypes(filename: str) -> list:
     for item in people_list:
         new_dict = dict(zip(all_keys, item))
         final_list.append(new_dict)
-    print(final_list)
+    return final_list
 
 
 def sort_dictionaries(all_dictionaries: list) -> list:
