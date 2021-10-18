@@ -120,15 +120,12 @@ def write_csv_file(filename: str, data: list) -> None:
     :param data: List of lists to write to the file.
     :return: None
     """
+    print(data)
     with open(filename, 'w', newline='') as csv_file:
-        csv_writer = csv.writer(csv_file, delimiter=";")
-        # header
-        if len(data[0]) >= 1:
-            csv_writer.writerow(data[0][0])
-            for row in data:
-                # write list of values
-                csv_writer.writerow(row)
-        return None
+        csv_writer = csv.writer(csv_file, delimiter=",")
+        for row in data:
+            # write list of values
+            csv_writer.writerow(row)
 
 
 def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output: str) -> None:
@@ -315,6 +312,5 @@ def get_all_keys(list_of_dict: list) -> set:
 
 
 if __name__ == "__main__":
-    test_data = [
-    ]
-    print(write_list_of_dicts_to_csv_file("test.csv", test_data))
+    test_data = []
+    print(write_csv_file("test.csv", test_data))
