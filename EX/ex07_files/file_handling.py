@@ -122,7 +122,6 @@ def write_csv_file(filename: str, data: list) -> None:
     :param data: List of lists to write to the file.
     :return: None
     """
-    print(data)
     with open(filename, 'w', newline='') as csv_file:
         if len(data) == 0:
             return None
@@ -178,21 +177,23 @@ def merge_dates_and_towns_into_csv(dates_file: str, towns_file: str, csv_output:
     :return: None
     """
     result = [["name", "town", "date"]]
-    date = read_csv_file(dates_file)
-    town = read_csv_file(towns_file)
-    for row in date[0]:
-        split_name_date = row.split(":")
-        result.append([split_name_date[0], "-", split_name_date[1]])
-    for row in town[0]:
-        no_name_in_result = True
-        split_name_town = row.split(":")
-        for lines in result:
-            if split_name_town[0] == lines[0]:
-                no_name_in_result = False
-                lines[1] = split_name_town[1]
-        if no_name_in_result:
-            result.append([split_name_town[0], split_name_town[1], "-"])
-    print(result)
+    date = read_file_contents_to_list(dates_file)
+    town = read_file_contents_to_list(towns_file)
+    dummy = []
+    for items in date:
+        hmm = items.split(":")
+        result.append([hmm[0], "-", hmm[1]])
+    all_names = []
+    for data in result:
+        all_names.append(data[0])
+    for items in town:
+        hmm = items.split(":")
+        if hmm[0] not in all_names:
+            result.append([hmm[0], hmm[1], "-"])
+        else:
+            index = all_names.index(hmm[0])
+            result[index][1] = hmm[1]
+    write_csv_file(csv_output, result)
     return None
 
 
@@ -541,7 +542,6 @@ def read_people_data(directory: str) -> dict:
             for key in dict_key:
                 if key not in all_keys:
                     all_keys.append(key)
-    print(all_keys)
     all_dictionaries = {}
     for numbers in range(1, max_number_of_ids + 1):
         all_dictionaries[numbers] = combine_dictionaries_by_id(all_tables, numbers, all_keys)
@@ -612,4 +612,4 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
 
 if __name__ == "__main__":
-    print(read_people_data("data"))
+    print(merge_dates_and_towns_into_csv("dates_file.txt", "towns_file.txt", "merged.csv"))
