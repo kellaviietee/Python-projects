@@ -1,4 +1,11 @@
 def generate_list(input_amount, data_type):
+    """
+    New stuff to test
+
+    :param input_amount:
+    :param data_type:
+    :return:
+    """
     a = []
     if data_type == "int":
         for i in range(input_amount):
@@ -76,5 +83,3 @@ def generate_combined_list_unique(inputs: list) -> list:
     for key in what_we_need:
         combined_list += (generate_list(what_we_need[key], key))
     return combined_list
-
-generate_list(None,)
