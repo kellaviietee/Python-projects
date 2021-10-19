@@ -549,7 +549,7 @@ def read_people_data(directory: str) -> dict:
     all_dics = {}
     for num in range(0, len(all_ids)):
         num_dic = combine_dictionaries_by_id(all_tables, all_ids[num], all_keys)
-        all_dics[num + 1] = num_dic
+        all_dics[all_ids[num]] = num_dic
     return all_dics
 
 
