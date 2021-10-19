@@ -638,20 +638,10 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     write_list_of_dicts_to_csv_file(report_filename,list_to_write)
 
 
-def sort_people_by_birth(dic_of_dics: dict) -> dict:
-    """
-    Sort people by birth date.
-
-    :param dic_of_dics: dictionary of people data
-    :return: sorted dictionary
-    """
-
-    print(sorted(dic_of_dics.items()))
-
-
 def sort_people_by_age(dic_of_dics: dict) -> dict:
     """
-    Sort people by their age inside of the dictionary
+    Sort people by their age inside of the dictionary.
+
     :param dic_of_dics:
     :return:
     """
