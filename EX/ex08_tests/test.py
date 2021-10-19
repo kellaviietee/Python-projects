@@ -31,7 +31,7 @@ def test_part1missing_string():
 
 
 def test_part1_wrong_datatype():
-    input_amount = 5
+    input_amount = 5.7
     res = solution.generate_list(input_amount, "wrong")
     expected_len = 0
     assert len(res) == expected_len
