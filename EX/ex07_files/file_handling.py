@@ -536,15 +536,19 @@ def read_people_data(directory: str) -> dict:
         all_tables.append(table)
         max_number_of_ids = max(max_number_of_ids, len(table))
     all_keys = []
+    all_ids = []
     for table in all_tables:
         for dic in table:
             keys = list(dic.keys())
             for key in keys:
+                if key == "id":
+                    if dic[key] not in all_ids:
+                        all_ids.append(dic[key])
                 if key not in all_keys:
                     all_keys.append(key)
     all_dics = {}
-    for num in range(1, max_number_of_ids + 1):
-        num_dic = combine_dictionaries_by_id(all_tables, num, all_keys)
+    for num in range(0, len(all_ids)):
+        num_dic = combine_dictionaries_by_id(all_tables, all_ids[num], all_keys)
         all_dics[num] = num_dic
     return all_dics
 
