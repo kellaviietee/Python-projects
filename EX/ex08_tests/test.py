@@ -1,4 +1,5 @@
-import pytest
+"""Pytest testing ground."""
+
 import solution
 
 
@@ -73,11 +74,4 @@ def test_part1_both_wrong():
     assert len(res) == expected_len
 
 
-def test_no_input():
-    """
-    Test what happens if no input.
-    :return:
-    """
-    result = solution.generate_list()
-    expected_result = TypeError
-    assert result == expected_result
+
