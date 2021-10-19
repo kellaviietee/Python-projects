@@ -612,8 +612,78 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     :param report_filename: Output file.
     :return: None
     """
-    pass
+    data = read_people_data(person_data_directory)
+    for person in data:
+        person_data = data[person]
+        if person_data["death"] is None:
+            person_data["status"] = "alive"
+        else:
+            person_data["status"] = "dead"
+        if person_data["status"] == "alive":
+            today = datetime.today().date()
+            birth = person_data["birth"]
+            time_difference = today - birth
+            number_of_years = int((time_difference.days / 365.2425))
+            person_data["age"] = number_of_years
+        elif person_data["status"] == "dead" and person_data["birth"] is not None:
+            death = person_data["death"]
+            birth = person_data["birth"]
+            time_difference = death - birth
+            number_of_years = int((time_difference.days / 365.2425))
+            person_data["age"] = number_of_years
+        elif person_data["status"] == "dead" and person_data["birth"] is None:
+            person_data["age"] = -1
+    sorted_people_by_age = sort_people_by_age(data)
+    list_of_sorted = []
+    for dics in sorted_people_by_age:
+        list_of_sorted.append(sorted_people_by_age[dics])
+    write_list_of_dicts_to_csv_file(report_filename,list_of_sorted)
+
+    sorted_people_by_birth = sort_people_by_birth(sorted_people_by_age)
+
+
+def sort_people_by_birth(dic_of_dics: dict) -> dict:
+    """
+    Sort people by birth date.
+
+    :param dic_of_dics: dictionary of people data
+    :return: sorted dictionary
+    """
+    all_ages = []
+    for people in dic_of_dics:
+        person_data: dict = dic_of_dics[people]
+        print(person_data)
+
+
+def sort_people_by_age(dic_of_dics: dict) -> dict:
+    """
+    Sort people by their age inside of the dictionary
+    :param dic_of_dics:
+    :return:
+    """
+    all_ages = []
+    all_non_ages = []
+    for people in dic_of_dics:
+        person_data = dic_of_dics[people]
+        age = person_data["age"]
+        if age != -1:
+            all_ages.append(age)
+        else:
+            all_non_ages.append(age)
+    all_ages = sorted(all_ages)
+    reordered_dictionary = {}
+    for age in all_ages:
+        for people in dic_of_dics:
+            person_data = dic_of_dics[people]
+            if person_data["age"] == age:
+                reordered_dictionary[person_data["id"]] = person_data
+    for age in all_non_ages:
+        for people in dic_of_dics:
+            person_data = dic_of_dics[people]
+            if person_data["age"] == age:
+                reordered_dictionary[person_data["id"]] = person_data
+    return reordered_dictionary
 
 
 if __name__ == "__main__":
-    print(read_people_data("data"))
+    print(generate_people_report("data", "report.csv"))
