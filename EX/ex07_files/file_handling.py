@@ -650,7 +650,7 @@ def sort_people_by_birth(birthdate) -> int:
     if birthdate is None:
         return 100000000
     else:
-        return (datetime.today().date() - birthdate).days
+        return -(datetime.today().date() - birthdate).days
 
 
 def sort_people_by_age(dic_of_dics: dict) -> dict:
