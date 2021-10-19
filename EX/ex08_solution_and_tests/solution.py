@@ -1,3 +1,6 @@
+"""Here be exercises"""
+
+
 def students_study(time: int, coffee_needed: bool) -> bool:
     """
    Check if the conditions are right for studying.
