@@ -9,11 +9,11 @@ def students_study(time: int, coffee_needed: bool) -> bool:
    :param coffee_needed: is the coffee needed
    :return: Return True if students study in given circumstances.
    """
-    if (18 <= time <= 24):
+    if 18 <= time <= 24:
         return True
     elif (5 <= time <= 17) and coffee_needed:
         return True
     elif 1 <= time <= 4:
         return False
     else:
-        return None
+        return False
