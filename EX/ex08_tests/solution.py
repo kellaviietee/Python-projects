@@ -3,7 +3,7 @@
 
 def generate_list(input_amount, data_type):
     """
-    New stuff to test
+    New stuff to test.
 
     :param input_amount:
     :param data_type:
