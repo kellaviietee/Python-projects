@@ -14,3 +14,17 @@ def test_part1_int_no_len():
     res = solution.generate_list(input_amount, "string")
     expected_len = 0
     assert len(res) == expected_len
+
+
+def test_part1_int_negative_len():
+    input_amount = -1
+    res = solution.generate_list(input_amount, "string")
+    expected_len = 0
+    assert len(res) == expected_len
+
+
+def test_part1missing_string():
+    input_amount = 5
+    res = solution.generate_list(input_amount, "")
+    expected_len = 0
+    assert len(res) == expected_len
