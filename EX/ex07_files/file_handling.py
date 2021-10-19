@@ -546,7 +546,7 @@ def read_people_data(directory: str) -> dict:
     for num in range(1, max_number_of_ids + 1):
         num_dic = combine_dictionaries_by_id(all_tables, num, all_keys)
         all_dics[num] = num_dic
-    print(all_dics)
+    return all_dics
 
 
 def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> dict:
