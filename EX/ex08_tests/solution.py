@@ -1,9 +1,6 @@
-"""Week 8 exercises."""
-
-
 def generate_list(input_amount, data_type):
     """
-    New stuff to test.
+    New try.
 
     :param input_amount:
     :param data_type:
