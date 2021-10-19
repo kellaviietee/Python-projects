@@ -636,7 +636,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
     list_to_write = sorted(data.values(), key=lambda x: (
         x["age"] if x["age"] > -1 else 1000,
         -sort_people_by_birth(x["birth"]),
-        x["name"],
+        x["name"] if x["name"] is not None else -1000,
         x["id"]))
     write_list_of_dicts_to_csv_file(report_filename, list_to_write)
 
@@ -644,6 +644,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 def sort_people_by_birth(birthdate) -> int:
     """
     Sort people by their birth.
+
     :param birthdate:
     :return:
     """
