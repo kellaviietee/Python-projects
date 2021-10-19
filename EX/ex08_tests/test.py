@@ -35,3 +35,9 @@ def test_part1_wrong_datatype():
     res = solution.generate_list(input_amount, "wrong")
     expected_len = 0
     assert len(res) == expected_len
+
+def test_part1_both_wrong():
+    input_amount = -1
+    res = solution.generate_list(input_amount, "kaisa")
+    expected_len = 0
+    assert len(res) == expected_len
