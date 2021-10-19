@@ -1,3 +1,6 @@
+"""Week 8 exercises."""
+
+
 def generate_list(input_amount, data_type):
     """
     New stuff to test

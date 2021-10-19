@@ -72,7 +72,3 @@ def test_part1_both_wrong():
     res = solution.generate_list(None, None)
     expected_len = None
     assert len(res) == expected_len
-
-
-
-
