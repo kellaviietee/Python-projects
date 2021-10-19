@@ -553,10 +553,10 @@ def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> di
     """
     Combine a list of dictionaries into single dictionary by id.
 
-    :param all_tables:
-    :param num:
-    :param all_keys:
-    :return:
+    :param all_tables: All tables that has dictionaries in it
+    :param num: id number to collect them by
+    :param all_keys: all the possible keys
+    :return: Dictionary that is merged by the id.
     """
     num_dict = {}
     for table in all_tables:
