@@ -619,7 +619,9 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             person_data["status"] = "alive"
         else:
             person_data["status"] = "dead"
-        if person_data["status"] == "alive":
+        if person_data["birth"] is None:
+            person_data["age"] = -1
+        elif person_data["status"] == "alive":
             today = datetime.today().date()
             birth = person_data["birth"]
             time_difference = today - birth
@@ -631,8 +633,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             time_difference = death - birth
             number_of_years = int((time_difference.days / 365.2425))
             person_data["age"] = number_of_years
-        elif person_data["status"] == "dead" and person_data["birth"] is None:
-            person_data["age"] = -1
+
     sorted_people_by_age = sort_people_by_age(data)
     list_of_sorted = []
     for dics in sorted_people_by_age:
