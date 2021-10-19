@@ -637,7 +637,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
         x["age"] if x["age"] > -1 else 1000,
         -sort_people_by_birth(x["birth"]),
         x["name"] if x["name"] is not None else -1000,
-        x["id"]))
+        -x["id"]))
     write_list_of_dicts_to_csv_file(report_filename, list_to_write)
 
 
