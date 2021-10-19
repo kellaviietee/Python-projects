@@ -634,13 +634,8 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             number_of_years = int((time_difference.days / 365.2425))
             person_data["age"] = number_of_years
 
-    sorted_people_by_age = sort_people_by_age(data)
-    list_of_sorted = []
-    for dics in sorted_people_by_age:
-        list_of_sorted.append(sorted_people_by_age[dics])
-    write_list_of_dicts_to_csv_file(report_filename,list_of_sorted)
-
-    sorted_people_by_birth = sort_people_by_birth(sorted_people_by_age)
+    list_to_write = sorted(data.values(), key=lambda x: (x["age"], x["id"], x["birth"], x["name"], x["id"]))
+    write_list_of_dicts_to_csv_file(report_filename,list_to_write)
 
 
 def sort_people_by_birth(dic_of_dics: dict) -> dict:
@@ -650,10 +645,8 @@ def sort_people_by_birth(dic_of_dics: dict) -> dict:
     :param dic_of_dics: dictionary of people data
     :return: sorted dictionary
     """
-    all_ages = []
-    for people in dic_of_dics:
-        person_data: dict = dic_of_dics[people]
-        print(person_data)
+
+    print(sorted(dic_of_dics.items()))
 
 
 def sort_people_by_age(dic_of_dics: dict) -> dict:
