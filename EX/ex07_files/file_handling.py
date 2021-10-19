@@ -636,7 +636,7 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
     list_to_write = sorted(data.values(), key=lambda x: (
         x["age"] if x["age"] > -1 else 1000,
-        x["birth"],
+        -x["birth"],
         x["name"],
         x["id"]))
     write_list_of_dicts_to_csv_file(report_filename, list_to_write)
