@@ -1,4 +1,4 @@
-death,id,age,birth,name,status
-2020-02-01,2,-1,,mary,dead
-,1,20,2001-01-01,john,alive
-,3,31,1990-06-05,john,alive
+death,id,age,name,status,birth
+,1,20,john,alive,2001-01-01
+,3,31,john,alive,1990-06-05
+2020-02-01,2,-1,mary,dead,

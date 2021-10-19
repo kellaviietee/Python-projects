@@ -634,7 +634,12 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
             number_of_years = int((time_difference.days / 365.2425))
             person_data["age"] = number_of_years
 
-    list_to_write = sorted(data.values(), key=lambda x: (x["age"], x["id"], x["birth"], x["name"], x["id"]))
+    list_to_write = sorted(data.values(), key=lambda x: (
+        x["age"] if x["age"] > -1 else 1000,
+        x["id"],
+        x["birth"],
+        x["name"],
+        x["id"]))
     write_list_of_dicts_to_csv_file(report_filename, list_to_write)
 
 
