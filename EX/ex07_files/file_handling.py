@@ -536,16 +536,17 @@ def read_people_data(directory: str) -> dict:
         all_tables.append(table)
         max_number_of_ids = max(max_number_of_ids, len(table))
     all_keys = []
-    for tables in all_tables:
-        for dicts in tables:
-            dict_key = list(dicts.keys())
-            for key in dict_key:
+    for table in all_tables:
+        for dic in table:
+            keys = list(dic.keys())
+            for key in keys:
                 if key not in all_keys:
                     all_keys.append(key)
-    all_dictionaries = {}
-    for numbers in range(1, max_number_of_ids + 1):
-        all_dictionaries[numbers] = combine_dictionaries_by_id(all_tables, numbers, all_keys)
-    return all_dictionaries
+    all_dics = {}
+    for num in range(1, max_number_of_ids + 1):
+        num_dic = combine_dictionaries_by_id(all_tables, num, all_keys)
+        all_dics[num] = num_dic
+    print(all_dics)
 
 
 def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> dict:
@@ -557,17 +558,15 @@ def combine_dictionaries_by_id(all_tables: list, num: int, all_keys: list) -> di
     :param all_keys:
     :return:
     """
-    total_dictionary = {}
+    num_dict = {}
     for table in all_tables:
-        for dictionary in table:
-            if dictionary["id"] == num:
-                for key in dictionary:
-                    if key not in total_dictionary:
-                        total_dictionary[key] = dictionary[key]
+        for dic in table:
+            if dic["id"] == num:
+                num_dict.update(dic)
     for key in all_keys:
-        if key not in total_dictionary:
-            total_dictionary[key] = None
-    return total_dictionary
+        if key not in num_dict:
+            num_dict[key] = None
+    return num_dict
 
 
 def generate_people_report(person_data_directory: str, report_filename: str) -> None:
@@ -613,4 +612,4 @@ def generate_people_report(person_data_directory: str, report_filename: str) -> 
 
 
 if __name__ == "__main__":
-    print(merge_dates_and_towns_into_csv("dates_file.txt", "towns_file.txt", "merged.csv"))
+    print(read_people_data("data"))
