@@ -1,3 +1,6 @@
+"""Is this i a docstring."""
+
+
 def generate_list(input_amount, data_type):
     """
     New try.
