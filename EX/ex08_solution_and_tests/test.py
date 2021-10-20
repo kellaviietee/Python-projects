@@ -376,3 +376,11 @@ def test_fruit_enough_bigs_not_enough_smalls_large_numbers():
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = -1
     assert result == expected_result
+
+def test_fruit_enough_bigs_not_enough_smalls_large_numbers():
+    small_basket = 30000000000
+    big_basket = 1280000004
+    order_amount = 36400000020
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = small_basket
+    assert result == expected_result
