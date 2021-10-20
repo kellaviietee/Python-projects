@@ -69,7 +69,7 @@ def test_part1_both_wrong():
 
     :return:
     """
-    res = solution.generate_list(None, "")
+    res = solution.generate_list(0, "")
     expected_len = 0
     assert len(res) == expected_len
 
