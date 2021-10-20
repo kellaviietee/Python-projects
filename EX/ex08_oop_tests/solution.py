@@ -2,7 +2,13 @@
 
 
 class Factory:
+    """
+    Factory that bakes cakes.
+    """
     def __init__(self):
+        """
+        Initializes the factory.
+        """
         self.all_cakes = []
 
     def bake_cake(self, toppings: int, base: int) -> int:
