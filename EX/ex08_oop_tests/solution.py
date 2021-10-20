@@ -9,7 +9,6 @@ class Factory:
         for cake_type in cake_types:
             while ingredients >= cake_type:
                 how_many_cakes += 1
-                all_cakes.append(Cake)
                 ingredients -= cake_type
         return how_many_cakes
 
@@ -30,7 +29,7 @@ class Cake:
 
     @property
     def type(self):
-        return self
+        pass
 
     def __repr__(self):
         pass
