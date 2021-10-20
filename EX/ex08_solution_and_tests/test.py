@@ -249,7 +249,7 @@ def test_fruit_zero_amnt():
     big_basket = 3
     order_amount = 0
     result = solution.fruit_order(small_basket, big_basket, order_amount)
-    expected_result = small_basket
+    expected_result = order_amount
     assert result == expected_result
 
 
