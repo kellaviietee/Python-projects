@@ -54,7 +54,7 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
         if remaining_amount > small_baskets:
             return -1
         else:
-            return small_baskets
+            return min(small_baskets, remaining_amount)
 
 
-print(fruit_order(3, 1, 10))
+print(fruit_order(10, 0, 9))
