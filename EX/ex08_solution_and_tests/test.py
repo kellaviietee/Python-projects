@@ -289,6 +289,15 @@ def test_fruit_only_big_more_than_needed_no_match():
     assert result == expected_result
 
 
+def test_fruit_only_small_match_more_than_5():
+    small_basket = 6
+    big_basket = 0
+    order_amount = 6
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = -1
+    assert result == expected_result
+
+
 """
 def test_fruit_too_big_order():
     small_basket = 2
