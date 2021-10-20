@@ -28,7 +28,10 @@ class Factory:
         return self.all_cakes
 
     def __str__(self):
-        pass
+        if len(self.all_cakes) == 1:
+            return f"Factory with {len(self.all_cakes)} cake."
+        else:
+            return f"Factory with {len(self.all_cakes)} cakes."
 
 
 class Cake:
@@ -40,21 +43,20 @@ class Cake:
             self.type_of_cake = "medium"
         elif (base_amount, toppings_amount) == (5, 5):
             self.type_of_cake = "large"
+        else:
+            raise WrongIngredientsAmountException(Exception)
 
     @property
     def type(self):
         return self.type_of_cake
 
     def __repr__(self):
-        rep = 'Cake(medium)'
+        rep = f"Cake({self.type})"
         return rep
 
     def __eq__(self, other):
-        pass
+        return self.type == other.type
 
 
 class WrongIngredientsAmountException(Exception):
     pass
-
-
-print(Factory.bake_cake(Factory(), 3, 3))
