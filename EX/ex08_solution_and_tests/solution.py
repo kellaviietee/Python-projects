@@ -1,4 +1,4 @@
-"""Here be exercises"""
+"""Here be exercises."""
 import math
 
 

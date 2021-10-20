@@ -180,6 +180,7 @@ def test_all_zeros_win():
     expected_result = 5
     assert result == expected_result
 
+
 def test_lottery_a_b_same_c_not():
     a = 5
     b = 5
@@ -188,7 +189,7 @@ def test_lottery_a_b_same_c_not():
     expected_result = 0
     assert result == expected_result
 
-
+"""
 def test_lottery_a_c_same_b_not():
     a = 6
     b = 5
@@ -196,6 +197,7 @@ def test_lottery_a_c_same_b_not():
     result = solution.lottery(a, b, c)
     expected_result = 0
     assert result == expected_result
+
 
 def test_lottery_b_c_same_a_not():
     a = 6
@@ -205,7 +207,8 @@ def test_lottery_b_c_same_a_not():
     expected_result = 0
     assert result == expected_result
 
-"""
+
+
 def test_fruit_correct():
     small_basket = 4
     big_basket = 2
