@@ -3,6 +3,7 @@ import random
 import pytest
 from solution import Factory, Cake, WrongIngredientsAmountException
 
+
 @pytest.fixture
 def factory() -> Factory:
     """
