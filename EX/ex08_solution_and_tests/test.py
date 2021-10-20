@@ -154,13 +154,32 @@ def test_lottery_jackpot():
     assert result == expected_result
 
 
-def test_lottery_small_win():
+def test_lottery_all_positive_win():
     a = 1
     b = 1
     c = 1
     result = solution.lottery(a, b, c)
     expected_result = 5
     assert result == expected_result
+
+
+def test_all_negative_win():
+    a = -1
+    b = -1
+    c = -1
+    result = solution.lottery(a, b, c)
+    expected_result = 5
+    assert result == expected_result
+
+
+def test_all_zeros_win():
+    a = 0
+    b = 0
+    c = 0
+    result = solution.lottery(a, b, c)
+    expected_result = 5
+    assert result == expected_result
+
 
 """
 def test_lottery_constallation_win():
