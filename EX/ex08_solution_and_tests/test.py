@@ -197,7 +197,7 @@ def test_lottery_a_c_same_b_not():
     result = solution.lottery(a, b, c)
     expected_result = 0
     assert result == expected_result
-"""
+
 
 def test_lottery_b_c_same_a_not():
     a = 6
@@ -206,7 +206,7 @@ def test_lottery_b_c_same_a_not():
     result = solution.lottery(a, b, c)
     expected_result = 1
     assert result == expected_result
-
+"""
 
 
 def test_fruit_correct():
