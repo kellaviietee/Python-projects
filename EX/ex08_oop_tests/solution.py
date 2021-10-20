@@ -6,7 +6,6 @@ class Factory:
 
     def __init__(self):
         """Initialize the factory."""
-
         self.all_cakes = []
 
     def bake_cake(self, toppings: int, base: int) -> int:
@@ -54,7 +53,6 @@ class Factory:
 
     def __str__(self):
         """How is factory called."""
-
         if len(self.all_cakes) == 1:
             return f"Factory with {len(self.all_cakes)} cake."
         else:
@@ -102,4 +100,5 @@ class Cake:
 
 class WrongIngredientsAmountException(Exception):
     """The ingredients are wrong you doofus."""
+
     pass
