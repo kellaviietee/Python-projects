@@ -8,6 +8,7 @@ def test_evening_no_coffee():
     expected_result = True
     assert result == expected_result
 
+
 """
 def test_evening_yes_coffee():
     coffee_needs = True
