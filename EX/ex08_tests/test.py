@@ -14,3 +14,8 @@ def test_part1_int_incorrect_ints():
     expected_len = 0
     assert len(res) == expected_len
 
+def test_part1_no_length():
+    input_amount = 0
+    result = solution.generate_list(input_amount, "string")
+    expected_len = 0
+    assert len(result) == expected_len
