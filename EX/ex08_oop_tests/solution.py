@@ -6,6 +6,13 @@ class Factory:
         self.all_cakes = []
 
     def bake_cake(self, toppings: int, base: int) -> int:
+        """
+        Bakes a cake in a factory giving out basic, medium and large cakes.
+
+        :param toppings: How much toppings does the Factory have to work with
+        :param base: How many cake bases does factory have.
+        :return: Number of cakes the Factory produces.
+        """
         cake_types = [5, 2, 1]
         how_many_cakes = 0
         ingredients = base
@@ -25,9 +32,20 @@ class Factory:
         return how_many_cakes
 
     def get_last_cakes(self, n: int) -> list:
+        """
+        Gets the n last cakes that factory made.
+
+        :param n: How many of the last cakes you interested.
+        :return: List of cakes that were made.
+        """
         return self.all_cakes[len(self.all_cakes) - n: len(self.all_cakes)]
 
     def get_cakes_baked(self) -> list:
+        """
+        Get all the cakes that are currently present at the factory.
+
+        :return:
+        """
         return self.all_cakes
 
     def __str__(self):
