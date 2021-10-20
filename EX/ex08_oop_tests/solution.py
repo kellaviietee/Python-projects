@@ -1,6 +1,6 @@
 class Factory:
     def __init__(self):
-        pass
+        self.all_cakes = []
 
     def bake_cake(self, toppings: int, base: int) -> int:
         cake_types = [5, 2, 1]
@@ -8,6 +8,15 @@ class Factory:
         ingredients = base
         for cake_type in cake_types:
             while ingredients >= cake_type:
+                if cake_type == 5:
+                    new_cake = Cake(5, 5)
+                    self.all_cakes.append(new_cake)
+                if cake_type == 2:
+                    new_cake = Cake(2, 2)
+                    self.all_cakes.append(new_cake)
+                if cake_type == 1:
+                    new_cake = Cake(1, 1)
+                    self.all_cakes.append(new_cake)
                 how_many_cakes += 1
                 ingredients -= cake_type
         return how_many_cakes
@@ -16,7 +25,7 @@ class Factory:
         pass
 
     def get_cakes_baked(self) -> list:
-        pass
+        return self.all_cakes
 
     def __str__(self):
         pass
