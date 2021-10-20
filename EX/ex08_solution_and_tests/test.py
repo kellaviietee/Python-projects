@@ -143,7 +143,7 @@ def test_night_other_edge_yes_coffee():
     result = solution.students_study(clock, coffee_needs)
     expected_result = False
     assert result == expected_result
-"""
+
 
 def test_lottery_jackpot():
     a = 5
@@ -153,6 +153,7 @@ def test_lottery_jackpot():
     expected_result = 10
     assert result == expected_result
 
+"""
 
 def test_lottery_small_win():
     a = 1
