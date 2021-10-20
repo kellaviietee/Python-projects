@@ -1,4 +1,5 @@
 """Here be exercises"""
+import math
 
 
 def students_study(time: int, coffee_needed: bool) -> bool:
@@ -36,3 +37,24 @@ def lottery(a: int, b: int, c: int) -> int:
     else:
         return 0
 
+
+def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> int:
+    """
+    Return number of small fruit baskets if it's possible to finish the order, otherwise return -1.
+
+    (4, 1, 9) -> 4
+    (3, 1, 10) -> -1
+    """
+    if small_baskets + 5 * big_baskets < ordered_amount:
+        return -1
+    else:
+        needed_big = math.floor(ordered_amount / 5)
+        how_many_are_covered = min(needed_big, big_baskets)
+        remaining_amount = ordered_amount - 5 * how_many_are_covered
+        if remaining_amount > small_baskets:
+            return -1
+        else:
+            return small_baskets
+
+
+print(fruit_order(3, 1, 10))

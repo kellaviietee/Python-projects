@@ -99,3 +99,39 @@ def test_lottery_no_win():
     result = solution.lottery(a, b, c)
     expected_result = 0
     assert result == expected_result
+
+
+def test_fruit_correct():
+    small_basket = 4
+    big_basket = 2
+    order_amount = 14
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = small_basket
+    assert result == expected_result
+
+
+def test_fruit_too_big_order():
+    small_basket = 2
+    big_basket = 2
+    order_amount = 20
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = -1
+    assert result == expected_result
+
+
+def test_fruit_no_big_basket():
+    small_basket = 2
+    big_basket = 0
+    order_amount = 2
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = small_basket
+    assert result == expected_result
+
+
+def test_fruit_not_enough_small():
+    small_basket = 1
+    big_basket = 1
+    order_amount = 4
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = -1
+    assert result == expected_result
