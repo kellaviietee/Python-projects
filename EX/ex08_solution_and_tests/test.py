@@ -335,7 +335,7 @@ def test_lottery_b_c_same_a_not():
 
 def test_lottery_all_dif():
     """
-    You do know that your own tests doesn\t even take this into account or something.
+    You do know that your own tests does not  even take this into account or something.
 
     :return:
     """
@@ -436,6 +436,7 @@ def test_fruit_only_big_not_enough_but_mlt_5():
 def test_fruit_only_big_more_than_needed_match():
     """
     What will I do with the rest of the baskets.
+
     :return:
     """
     small_basket = 0
@@ -449,6 +450,7 @@ def test_fruit_only_big_more_than_needed_match():
 def test_fruit_only_big_more_than_needed_no_match():
     """
     He/She needs to order some more. No takebacksies.
+
     :return:
     """
     small_basket = 0
@@ -504,6 +506,7 @@ def test_fruit_only_small_more_than_needed():
 def test_fruit_match_small_more_than_five():
     """
     Hey the smallest things in life add up in the  end.
+
     :return:
     """
     small_basket = 6
@@ -559,6 +562,7 @@ def test_fruit_some_small_all_big():
 def test_fruit_not_enough():
     """
     There is just no room for the rest of them.
+
     :return:
     """
     small_basket = 6
@@ -572,6 +576,7 @@ def test_fruit_not_enough():
 def test_fruit_enough_bigs_not_enough_smalls():
     """
     I could put them all in the big ones but that would be wasteful.
+
     :return:
     """
     small_basket = 3
@@ -585,6 +590,7 @@ def test_fruit_enough_bigs_not_enough_smalls():
 def test_fruit_enough_bigs_not_enough_smalls_large_numbers():
     """
     Are you a character from math problems.
+
     :return:
     """
     small_basket = 3
