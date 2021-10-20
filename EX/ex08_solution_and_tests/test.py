@@ -252,6 +252,7 @@ def test_fruit_zero_amnt():
     expected_result = order_amount
     assert result == expected_result
 
+
 def test_fruit_only_big_exact():
     small_basket = 0
     big_basket = 3
@@ -259,6 +260,7 @@ def test_fruit_only_big_exact():
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = small_basket
     assert result == expected_result
+
 
 def test_fruit_only_big_not_enough_but_mlt_5():
     small_basket = 0
@@ -268,13 +270,25 @@ def test_fruit_only_big_not_enough_but_mlt_5():
     expected_result = -1
     assert result == expected_result
 
-def test_fruit_only_big_more_than_needed():
+
+def test_fruit_only_big_more_than_needed_match():
     small_basket = 0
     big_basket = 5
     order_amount = 20
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = small_basket
     assert result == expected_result
+
+
+def test_fruit_only_big_more_than_needed_no_match():
+    small_basket = 0
+    big_basket = 5
+    order_amount = 23
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = -1
+    assert result == expected_result
+
+
 """
 def test_fruit_too_big_order():
     small_basket = 2
