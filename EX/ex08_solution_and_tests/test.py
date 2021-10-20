@@ -121,7 +121,7 @@ def test_night_edge_no_coffee():
     assert result == expected_result
 
 
-def test_day_other_edge_no_coffee():
+def test_night_other_edge_no_coffee():
     coffee_needs = False
     clock = 4
     result = solution.students_study(clock, coffee_needs)
@@ -129,7 +129,7 @@ def test_day_other_edge_no_coffee():
     assert result == expected_result
 
 
-def test_day_edge_yes_coffee():
+def test_night_edge_yes_coffee():
     coffee_needs = True
     clock = 1
     result = solution.students_study(clock, coffee_needs)
@@ -137,7 +137,7 @@ def test_day_edge_yes_coffee():
     assert result == expected_result
 
 
-def test_day_other_edge_yes_coffee():
+def test_night_other_edge_yes_coffee():
     coffee_needs = True
     clock = 4
     result = solution.students_study(clock, coffee_needs)
