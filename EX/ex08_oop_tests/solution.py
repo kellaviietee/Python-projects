@@ -1,3 +1,6 @@
+"""Week 8 exercises, testing."""
+
+
 class Factory:
     def __init__(self):
         self.all_cakes = []
