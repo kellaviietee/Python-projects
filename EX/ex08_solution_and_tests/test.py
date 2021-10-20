@@ -153,7 +153,6 @@ def test_lottery_jackpot():
     expected_result = 10
     assert result == expected_result
 
-"""
 
 def test_lottery_small_win():
     a = 1
@@ -163,7 +162,7 @@ def test_lottery_small_win():
     expected_result = 5
     assert result == expected_result
 
-
+"""
 def test_lottery_constallation_win():
     a = 5
     b = 6
