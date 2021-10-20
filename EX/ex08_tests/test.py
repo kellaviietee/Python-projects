@@ -16,6 +16,6 @@ def test_part1_int_incorrect_ints():
 
 def test_part1_int_incorrect_both():
     input_amount = -1
-    res = solution.generate_list(input_amount, "week")
+    res = solution.generate_list(input_amount, "list")
     expected_len = 0
     assert len(res) == expected_len
