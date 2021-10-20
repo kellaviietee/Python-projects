@@ -25,3 +25,9 @@ def test_part1_int_incorrect_int():
     res = solution.generate_list(input_amount, "int")
     expected_len = 3
     assert len(res) == expected_len
+
+def test_part1_int_incorrect_int():
+    input_amount = 3
+    res = solution.generate_list(input_amount, "float")
+    expected_len = 3
+    assert len(res) == expected_len
