@@ -32,7 +32,7 @@ def test_morning_no_coffee():
     result = solution.students_study(clock, coffee_needs)
     expected_result = False
     assert result == expected_result
-"""
+
 
 def test_overtime_no_coffee():
     coffee_needs = False
@@ -64,7 +64,7 @@ def test_undertime_yes_coffee():
     result = solution.students_study(clock, coffee_needs)
     expected_result = False
     assert result == expected_result
-
+"""
 
 def test_lottery_jackpot():
     a = 5
