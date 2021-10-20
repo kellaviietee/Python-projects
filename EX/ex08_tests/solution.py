@@ -1,4 +1,4 @@
-"""Exercise 8 of introduction to programming."""
+"""Wohoo."""
 
 
 def generate_list(input_amount, data_type):
