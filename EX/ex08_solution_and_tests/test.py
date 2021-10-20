@@ -51,7 +51,7 @@ def test_night_yes_coffee():
 
 def test_evening_edge_yes_coffee():
     coffee_needs = True
-    clock = 18
+    clock = 24
     result = solution.students_study(clock, coffee_needs)
     expected_result = True
     assert result == expected_result
