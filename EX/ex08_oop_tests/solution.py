@@ -34,14 +34,19 @@ class Factory:
 class Cake:
 
     def __init__(self, base_amount, toppings_amount):
-        pass
+        if (base_amount, toppings_amount) == (1, 1):
+            self.type_of_cake = "basic"
+        elif (base_amount, toppings_amount) == (2, 2):
+            self.type_of_cake = "medium"
+        elif (base_amount, toppings_amount) == (5, 5):
+            self.type_of_cake = "large"
 
     @property
     def type(self):
-        pass
+        return self.type_of_cake
 
     def __repr__(self):
-        rep = "A cake"
+        rep = 'Cake(medium)'
         return rep
 
     def __eq__(self, other):
