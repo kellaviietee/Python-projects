@@ -22,7 +22,7 @@ class Factory:
         return how_many_cakes
 
     def get_last_cakes(self, n: int) -> list:
-        return self.all_cakes[-n:]
+        return self.all_cakes[len(self.all_cakes) - n: len(self.all_cakes)]
 
     def get_cakes_baked(self) -> list:
         return self.all_cakes
@@ -52,4 +52,4 @@ class WrongIngredientsAmountException(Exception):
     pass
 
 
-print(Factory.bake_cake(Factory(), 9, 9))
+print(Factory.bake_cake(Factory(), 3, 3))
