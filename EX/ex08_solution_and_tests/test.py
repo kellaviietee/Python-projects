@@ -343,6 +343,15 @@ def test_fruit_some_small_some_big():
     assert result == expected_result
 
 
+def test_fruit_some_small_all_big():
+    small_basket = 6
+    big_basket = 4
+    order_amount = 24
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = 4
+    assert result == expected_result
+
+
 """
 def test_fruit_too_big_order():
     small_basket = 2
