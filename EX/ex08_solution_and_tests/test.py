@@ -57,6 +57,14 @@ def test_evening_edge_yes_coffee():
     assert result == expected_result
 
 
+def test_evening_other_edge_yes_coffee():
+    coffee_needs = True
+    clock = 18
+    result = solution.students_study(clock, coffee_needs)
+    expected_result = True
+    assert result == expected_result
+
+
 """
 
 def test_lottery_jackpot():
