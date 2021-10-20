@@ -4,7 +4,7 @@ import math
 
 def students_study(time: int, coffee_needed: bool) -> bool:
     """
-   Check if the conditions are right for studying.
+    Check if the conditions are right for studying.
 
    :param time: Study time in 24h clock time
    :param coffee_needed: is the coffee needed
