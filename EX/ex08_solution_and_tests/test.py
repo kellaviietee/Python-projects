@@ -217,7 +217,6 @@ def test_lottery_all_dif():
     assert result == expected_result
 
 
-
 def test_fruit_zeros():
     small_basket = 0
     big_basket = 0
@@ -226,6 +225,7 @@ def test_fruit_zeros():
     expected_result = small_basket
     assert result == expected_result
 
+
 def test_fruit_zero_amnt_zero_small():
     small_basket = 0
     big_basket = 5
@@ -233,6 +233,26 @@ def test_fruit_zero_amnt_zero_small():
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = small_basket
     assert result == expected_result
+
+
+def test_fruit_zero_amnt_zero_big():
+    small_basket = 6
+    big_basket = 0
+    order_amount = 0
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = small_basket
+    assert result == expected_result
+
+
+def test_fruit_zero_amnt():
+    small_basket = 6
+    big_basket = 3
+    order_amount = 0
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = small_basket
+    assert result == expected_result
+
+
 """
 def test_fruit_too_big_order():
     small_basket = 2
