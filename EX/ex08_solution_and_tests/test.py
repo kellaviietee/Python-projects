@@ -9,7 +9,7 @@ def test_evening_no_coffee():
     assert result == expected_result
 
 
-"""
+
 def test_evening_yes_coffee():
     coffee_needs = True
     clock = 20
@@ -17,7 +17,7 @@ def test_evening_yes_coffee():
     expected_result = True
     assert result == expected_result
 
-
+"""
 def test_morning_yes_coffee():
     coffee_needs = True
     clock = 12
