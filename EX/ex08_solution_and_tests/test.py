@@ -259,6 +259,14 @@ def test_fruit_only_big_exact():
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = small_basket
     assert result == expected_result
+
+def test_fruit_only_big_not_enough_but_mlt_5():
+    small_basket = 0
+    big_basket = 3
+    order_amount = 20
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = -1
+    assert result == expected_result
 """
 def test_fruit_too_big_order():
     small_basket = 2
