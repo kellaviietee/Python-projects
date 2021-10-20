@@ -49,17 +49,17 @@ def test_night_yes_coffee():
     assert result == expected_result
 
 
-def test_undertime_no_coffee():
+def test_evening_edge_no_coffee():
     coffee_needs = False
-    clock = -1
+    clock = 24
     result = solution.students_study(clock, coffee_needs)
     expected_result = False
     assert result == expected_result
 
 
-def test_undertime_yes_coffee():
+def test_evening_yes_coffee():
     coffee_needs = True
-    clock = -1
+    clock = 24
     result = solution.students_study(clock, coffee_needs)
     expected_result = False
     assert result == expected_result
