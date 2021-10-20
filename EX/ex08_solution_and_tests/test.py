@@ -1,3 +1,4 @@
+"""Test, I love tests."""
 import solution
 
 
