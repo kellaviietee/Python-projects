@@ -2,18 +2,16 @@
 
 
 class Factory:
-    """
-    Factory that bakes cakes.
-    """
+    """Factory that bakes cakes."""
+
     def __init__(self):
-        """
-        Initializes the factory.
-        """
+        """Initialize the factory."""
+
         self.all_cakes = []
 
     def bake_cake(self, toppings: int, base: int) -> int:
         """
-        Bakes a cake in a factory giving out basic, medium and large cakes.
+        Bake a cake in a factory giving out basic, medium and large cakes.
 
         :param toppings: How much toppings does the Factory have to work with
         :param base: How many cake bases does factory have.
@@ -39,7 +37,7 @@ class Factory:
 
     def get_last_cakes(self, n: int) -> list:
         """
-        Gets the n last cakes that factory made.
+        Get the n last cakes that factory made.
 
         :param n: How many of the last cakes you interested.
         :return: List of cakes that were made.
@@ -55,6 +53,8 @@ class Factory:
         return self.all_cakes
 
     def __str__(self):
+        """How is factory called."""
+
         if len(self.all_cakes) == 1:
             return f"Factory with {len(self.all_cakes)} cake."
         else:
@@ -62,8 +62,15 @@ class Factory:
 
 
 class Cake:
+    """A pretty cake."""
 
     def __init__(self, base_amount, toppings_amount):
+        """
+        Determine what kind of cake it is.
+
+        :param base_amount: How big of a base it has.
+        :param toppings_amount: How much toppings there is.
+        """
         if (base_amount, toppings_amount) == (1, 1):
             self.type_of_cake = "basic"
         elif (base_amount, toppings_amount) == (2, 2):
@@ -75,15 +82,24 @@ class Cake:
 
     @property
     def type(self):
+        """Get the cake type."""
         return self.type_of_cake
 
     def __repr__(self):
+        """How is the cake represented."""
         rep = f"Cake({self.type})"
         return rep
 
     def __eq__(self, other):
+        """
+        See if two cakes are the same.
+
+        :param other: Cake you are comparing.
+        :return: If they are the same cake or not.
+        """
         return self.type == other.type
 
 
 class WrongIngredientsAmountException(Exception):
+    """The ingredients are wrong you doofus."""
     pass
