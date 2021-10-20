@@ -22,7 +22,7 @@ class Factory:
         return how_many_cakes
 
     def get_last_cakes(self, n: int) -> list:
-        pass
+        return self.all_cakes[-n:]
 
     def get_cakes_baked(self) -> list:
         return self.all_cakes
@@ -41,7 +41,8 @@ class Cake:
         pass
 
     def __repr__(self):
-        pass
+        rep = "A cake"
+        return rep
 
     def __eq__(self, other):
         pass
@@ -49,3 +50,6 @@ class Cake:
 
 class WrongIngredientsAmountException(Exception):
     pass
+
+
+print(Factory.bake_cake(Factory(), 9, 9))
