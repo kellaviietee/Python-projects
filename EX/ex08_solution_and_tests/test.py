@@ -206,6 +206,17 @@ def test_lottery_b_c_same_a_not():
     result = solution.lottery(a, b, c)
     expected_result = 1
     assert result == expected_result
+
+
+def test_lottery_all_dif():
+    a = 6
+    b = 7
+    c = 8
+    result = solution.lottery(a, b, c)
+    expected_result = 1
+    assert result == expected_result
+
+
 """
 
 
