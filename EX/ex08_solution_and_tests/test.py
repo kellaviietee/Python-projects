@@ -351,6 +351,7 @@ def test_fruit_some_small_all_big():
     expected_result = 4
     assert result == expected_result
 
+
 def test_fruit_not_enough():
     small_basket = 6
     big_basket = 4
@@ -358,30 +359,12 @@ def test_fruit_not_enough():
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = -1
     assert result == expected_result
-"""
-def test_fruit_too_big_order():
-    small_basket = 2
-    big_basket = 2
-    order_amount = 20
+
+
+def test_fruit_enough_bigs_not_enough_smalls():
+    small_basket = 3
+    big_basket = 7
+    order_amount = 34
     result = solution.fruit_order(small_basket, big_basket, order_amount)
     expected_result = -1
     assert result == expected_result
-
-
-def test_fruit_no_big_basket():
-    small_basket = 2
-    big_basket = 0
-    order_amount = 2
-    result = solution.fruit_order(small_basket, big_basket, order_amount)
-    expected_result = small_basket
-    assert result == expected_result
-
-
-def test_fruit_not_enough_small():
-    small_basket = 1
-    big_basket = 1
-    order_amount = 4
-    result = solution.fruit_order(small_basket, big_basket, order_amount)
-    expected_result = -1
-    assert result == expected_result
-"""
