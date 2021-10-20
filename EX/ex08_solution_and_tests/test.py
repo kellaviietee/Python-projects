@@ -252,7 +252,13 @@ def test_fruit_zero_amnt():
     expected_result = order_amount
     assert result == expected_result
 
-
+def test_fruit_only_big_exact():
+    small_basket = 0
+    big_basket = 3
+    order_amount = 15
+    result = solution.fruit_order(small_basket, big_basket, order_amount)
+    expected_result = small_basket
+    assert result == expected_result
 """
 def test_fruit_too_big_order():
     small_basket = 2
