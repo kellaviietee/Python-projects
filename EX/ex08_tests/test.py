@@ -135,8 +135,17 @@ def test_generate_combined_list_unique_empty():
     expected_result = 0
     assert len(result) == expected_result
 
+
 def test_generate_combined_list_unique_correct_types():
     input_to_list = [(7, "int")]
     result = solution.generate_combined_list_unique(input_to_list)
     for i in range(7):
         assert type(result[i]) == int
+
+def test_generate_combined_list_unique_correct_types_diff():
+    input_to_list = [(7, "int"), (5, "string")]
+    result = solution.generate_combined_list_unique(input_to_list)
+    for i in range(7):
+        assert type(result[i]) == int
+    for k in range(7, 12):
+        assert type(result[k]) == str
