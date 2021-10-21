@@ -71,7 +71,7 @@ def test_part1_big_numbers():
     assert len(res) == expected_len
 
 
-def test_generate_combined_list_correct_input():
+def test_generate_combined_list_correct_string():
     input_to_list = [(3, "string"), (5, "string")]
     result = solution.generate_combined_list(input_to_list)
     expected_result = 5
@@ -81,4 +81,10 @@ def test_generate_combined_list_empty_input():
     input_to_list = []
     result = solution.generate_combined_list(input_to_list)
     expected_result = 0
+    assert len(result) == expected_result
+
+def test_generate_combined_list_correct_int():
+    input_to_list = [(5, "float"), (3, "float")]
+    result = solution.generate_combined_list(input_to_list)
+    expected_result = 5
     assert len(result) == expected_result
