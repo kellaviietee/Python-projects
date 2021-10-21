@@ -57,7 +57,7 @@ def test_part1_int_incorrect_set():
     assert len(res) == expected_len
 
 def test_part1_all_incorrect():
-    input_amount = 3.4
+    input_amount = -5
     res = solution.generate_list(input_amount, "")
     expected_len = 0
     assert len(res) == expected_len
