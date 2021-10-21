@@ -37,3 +37,21 @@ def test_part1_int_incorrect_list():
     res = solution.generate_list(input_amount, "list")
     expected_len = 3
     assert len(res) == expected_len
+
+def test_part1_int_incorrect_tuple():
+    input_amount = 3
+    res = solution.generate_list(input_amount, "tuple")
+    expected_len = 3
+    assert len(res) == expected_len
+
+def test_part1_int_incorrect_dict():
+    input_amount = 3
+    res = solution.generate_list(input_amount, "dict")
+    expected_len = 3
+    assert len(res) == expected_len
+
+def test_part1_int_incorrect_set():
+    input_amount = 3
+    res = solution.generate_list(input_amount, "set")
+    expected_len = 3
+    assert len(res) == expected_len
