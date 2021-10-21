@@ -142,6 +142,7 @@ def test_generate_combined_list_unique_correct_types():
     for i in range(7):
         assert type(result[i]) == int
 
+
 def test_generate_combined_list_unique_correct_types_diff():
     input_to_list = [(7, "int"), (5, "string")]
     result = solution.generate_combined_list_unique(input_to_list)
@@ -150,8 +151,15 @@ def test_generate_combined_list_unique_correct_types_diff():
     for k in range(7, 12):
         assert type(result[k]) == str
 
+
 def test_generate_combined_list_unique_big_numbers():
     input_to_list = [(7000, "int"), (5000, "string")]
     result = solution.generate_combined_list_unique(input_to_list)
     expected_len = 12000
     assert len(result) == expected_len
+
+def test_generate_combined_list_unique_all_items_unique():
+    input_to_list = [(70, "int"), (50, "string")]
+    result = solution.generate_combined_list_unique(input_to_list)
+    set_of_result = set(result)
+    assert len(result) == len(set_of_result)
