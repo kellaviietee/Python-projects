@@ -94,3 +94,9 @@ def test_generate_combined_list_correct_float():
     result = solution.generate_combined_list(input_to_list)
     expected_result = 5
     assert len(result) == expected_result
+
+def test_generate_combined_list_wrong_types():
+    input_to_list = [(5, "hmm"), (3, "wee")]
+    result = solution.generate_combined_list(input_to_list)
+    expected_result = 0
+    assert len(result) == expected_result
