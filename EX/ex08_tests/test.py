@@ -159,7 +159,7 @@ def test_generate_combined_list_unique_big_numbers():
     assert len(result) == expected_len
 
 def test_generate_combined_list_unique_all_items_unique():
-    input_to_list = [(70, "int"), (50, "string")]
+    input_to_list = [(70, "int"), (50, "string"), (20, "float")]
     result = solution.generate_combined_list_unique(input_to_list)
     set_of_result = set(result)
     assert len(result) == len(set_of_result)
