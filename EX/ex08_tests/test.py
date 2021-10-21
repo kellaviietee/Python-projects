@@ -169,5 +169,5 @@ def test_generate_combined_list_unique_all_items_unique():
 def test_generate_combined_list_unique_float():
     input_to_list = [(7, "float")]
     result = solution.generate_combined_list_unique(input_to_list)
-    expected_len = 7
-    assert len(result) == expected_len
+    set_of_unique = set(result)
+    assert len(result) == len(set_of_unique)
