@@ -8,7 +8,7 @@ def test_part1_int_correct_len():
     assert len(res) == expected_len
 
 
-def test_part1_int_correct_len():
+def test_part1_int_correct_len_type():
     input_amount = 5
     res = solution.generate_list(input_amount, "string")
     for i in range(5):
