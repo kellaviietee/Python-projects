@@ -14,11 +14,13 @@ def test_part1_int_incorrect_string():
     expected_len = 0
     assert len(res) == expected_len
 
+
 def test_part1_no_length():
     input_amount = 0
     result = solution.generate_list(input_amount, "string")
     expected_len = 0
     assert len(result) == expected_len
+
 
 def test_part1_int_incorrect_int():
     input_amount = 3
@@ -26,11 +28,13 @@ def test_part1_int_incorrect_int():
     expected_len = 3
     assert len(res) == expected_len
 
+
 def test_part1_int_incorrect_float():
     input_amount = 3
     res = solution.generate_list(input_amount, "float")
     expected_len = 3
     assert len(res) == expected_len
+
 
 def test_part1_int_incorrect_list():
     input_amount = 3
@@ -38,11 +42,13 @@ def test_part1_int_incorrect_list():
     expected_len = 3
     assert len(res) == expected_len
 
+
 def test_part1_int_incorrect_tuple():
     input_amount = 3
     res = solution.generate_list(input_amount, "tuple")
     expected_len = 3
     assert len(res) == expected_len
+
 
 def test_part1_int_incorrect_dict():
     input_amount = 3
@@ -50,14 +56,23 @@ def test_part1_int_incorrect_dict():
     expected_len = 3
     assert len(res) == expected_len
 
+
 def test_part1_int_incorrect_set():
     input_amount = 3
     res = solution.generate_list(input_amount, "set")
     expected_len = 3
     assert len(res) == expected_len
 
+
 def test_part1_big_numbers():
     input_amount = 30000
     res = solution.generate_list(input_amount, "list")
     expected_len = 30000
     assert len(res) == expected_len
+
+
+def test_generate_combined_list_correct_input():
+    input_to_list = [(3, "string"), (5, "string")]
+    result = solution.generate_combined_list(input_to_list)
+    expected_result = 5
+    assert len(result) == expected_result
