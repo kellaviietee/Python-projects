@@ -80,5 +80,3 @@ def generate_combined_list_unique(inputs: list) -> list:
     for key in what_we_need:
         combined_list += (generate_list(what_we_need[key], key))
     return combined_list
-
-print(generate_list(-5,"week"))

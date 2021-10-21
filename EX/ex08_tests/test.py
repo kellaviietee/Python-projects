@@ -105,8 +105,8 @@ def test_generate_combined_list_big_numbers():
     expected_result = 7000
     assert len(result) == expected_result
 
-def test_generate_combined_list_wrong_int_numbers():
-    input_to_list = [(-1, "int")]
-    result = solution.generate_combined_list(input_to_list)
-    expected_result = 0
+def test_generate_combined_list_unique():
+    input_to_list = [(5, "string")]
+    result = solution.generate_combined_list_unique(input_to_list)
+    expected_result = 5
     assert len(result) == expected_result
