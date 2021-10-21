@@ -39,6 +39,7 @@ def find_fastest_growing(tweets: list) -> Tweet:
 def find_the_growth_of_tweet(number_of_retweets: int, how_long_to_retweet: int) -> float:
     """
     Find the growth rate of a tweet.
+
     :param number_of_retweets: How many times has it been retweeted.
     :param how_long_to_retweet: How long it took to reach that number of retweets
     :return: Rate of growth of those retweets.
@@ -106,8 +107,9 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
                 all_hashtags[hashtag] = tweet.retweets
             else:
                 all_hashtags[hashtag] += tweet.retweets
-    hashtag_popularity = sorted(all_hashtags, key=lambda x: (sorting_hashtag(all_hashtags, x), -x), reverse=True)
+    hashtag_popularity = sorted(all_hashtags, key=lambda x: (-sorting_hashtag(all_hashtags, x), x))
     print(hashtag_popularity)
+    return hashtag_popularity
 
 
 def sorting_hashtag(all_hashtags_dict: dict, key: str) -> int:
@@ -136,7 +138,6 @@ if __name__ == '__main__':
     print(filtered_by_hashtag[0].user)  # -> "@realDonaldTrump"
     print(filtered_by_hashtag[1].user)  # -> "@elonMusk"
     print(sort_hashtags_by_popularity(tweets))
-"""
     sorted_hashtags = sort_hashtags_by_popularity(tweets)
     print(sorted_hashtags[0])  # -> "#heart"
-"""
+
