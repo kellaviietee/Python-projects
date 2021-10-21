@@ -57,7 +57,7 @@ def test_part1_int_incorrect_set():
     assert len(res) == expected_len
 
 def test_part1_big_numbers():
-    input_amount = 300000000
+    input_amount = 3000000
     res = solution.generate_list(input_amount, "list")
-    expected_len = 300000000
+    expected_len = 3000000
     assert len(res) == expected_len
