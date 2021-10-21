@@ -129,8 +129,14 @@ def test_generate_combined_list_correct_types():
         assert type(result[k]) == str
 
 
-def test_generate_combined_list_unique_emptyu():
+def test_generate_combined_list_unique_empty():
     input_to_list = [(0, "string"), (0, "int")]
     result = solution.generate_combined_list_unique(input_to_list)
     expected_result = 0
     assert len(result) == expected_result
+
+def test_generate_combined_list_unique_correct_types():
+    input_to_list = [(7, "int")]
+    result = solution.generate_combined_list_unique(input_to_list)
+    for i in range(7):
+        assert type(result[i]) == int
