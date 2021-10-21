@@ -77,11 +77,13 @@ def test_generate_combined_list_correct_string():
     expected_result = 5
     assert len(result) == expected_result
 
+
 def test_generate_combined_list_empty_input():
     input_to_list = []
     result = solution.generate_combined_list(input_to_list)
     expected_result = 0
     assert len(result) == expected_result
+
 
 def test_generate_combined_list_correct_int():
     input_to_list = [(5, "int"), (3, "int")]
@@ -89,14 +91,16 @@ def test_generate_combined_list_correct_int():
     expected_result = 5
     assert len(result) == expected_result
 
+
 def test_generate_combined_list_correct_float():
     input_to_list = [(5, "float"), (3, "float")]
     result = solution.generate_combined_list(input_to_list)
     expected_result = 5
     assert len(result) == expected_result
 
+
 def test_generate_combined_list_wrong_types():
-    input_to_list = [("int", 5)]
+    input_to_list = [(7, 5)]
     result = solution.generate_combined_list(input_to_list)
     expected_result = 0
     assert len(result) == expected_result
