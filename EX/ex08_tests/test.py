@@ -99,8 +99,14 @@ def test_generate_combined_list_correct_float():
     assert len(result) == expected_result
 
 
-def test_generate_combined_list_wrong_types():
+def test_generate_combined_list_big_numbers():
     input_to_list = [(7000, "int")]
     result = solution.generate_combined_list(input_to_list)
     expected_result = 7000
+    assert len(result) == expected_result
+
+def test_generate_combined_list_wrong_int_numbers():
+    input_to_list = [(-1, "int")]
+    result = solution.generate_combined_list(input_to_list)
+    expected_result = 0
     assert len(result) == expected_result
