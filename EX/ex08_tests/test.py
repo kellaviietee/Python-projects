@@ -130,7 +130,7 @@ def test_generate_combined_list_correct_types():
 
 
 def test_generate_combined_list_unique_empty():
-    input_to_list = []
+    input_to_list = [()]
     result = solution.generate_combined_list_unique(input_to_list)
     expected_result = 0
     assert len(result) == expected_result
