@@ -61,7 +61,7 @@ def sort_by_popularity(tweets: list) -> list:
     :param tweets: Input list of tweets.
     :return: List of tweets by popularity
     """
-    popular_tweets = sorted(tweets, key=lambda x: (x.retweets, x.time), reverse=True)
+    popular_tweets = sorted(tweets, key=lambda x: (x.retweets, -x.time), reverse=True)
     return popular_tweets
 
 
