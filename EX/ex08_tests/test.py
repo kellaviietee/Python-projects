@@ -76,3 +76,9 @@ def test_generate_combined_list_correct_input():
     result = solution.generate_combined_list(input_to_list)
     expected_result = 5
     assert len(result) == expected_result
+
+def test_generate_combined_list_empty_input():
+    input_to_list = []
+    result = solution.generate_combined_list(input_to_list)
+    expected_result = 0
+    assert len(result) == expected_result
