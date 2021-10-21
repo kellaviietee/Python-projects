@@ -109,7 +109,7 @@ def test_generate_combined_list_correct_float():
 def test_generate_combined_list_correct_types():
     input_to_list = [(5, "float"), (3, "float")]
     result = solution.generate_combined_list(input_to_list)
-        assert type(result[0]) == float
+    assert type(result[0]) == float
 
 def test_generate_combined_list_big_numbers():
     input_to_list = [(7000, "int")]
