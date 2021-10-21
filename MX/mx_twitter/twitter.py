@@ -105,7 +105,7 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
             else:
                 all_hashtags[hashtag] += tweet.retweets
     this_is_dummy = all_hashtags.copy()
-    hashtag_popularity = sorted(all_hashtags, key=lambda x: (this_is_dummy[x], x), reverse= True)
+    hashtag_popularity = sorted(all_hashtags, key=lambda x: (this_is_dummy[x], x), reverse=True)
     return hashtag_popularity
 
 
@@ -127,4 +127,3 @@ if __name__ == '__main__':
     tweets = [tweet1, tweet2, tweet3]
 
     print(filter_by_hashtag(tweets, "#heart"))
-
