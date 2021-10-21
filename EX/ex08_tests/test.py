@@ -128,6 +128,7 @@ def test_generate_combined_list_correct_types():
     for k in range(2, 5):
         assert type(result[k]) == str
 
+
 def test_generate_combined_list_unique_empty():
     input_to_list = []
     result = solution.generate_combined_list_unique(input_to_list)
