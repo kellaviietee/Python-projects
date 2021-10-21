@@ -84,6 +84,12 @@ def test_generate_combined_list_empty_input():
     assert len(result) == expected_result
 
 def test_generate_combined_list_correct_int():
+    input_to_list = [(5, "int"), (3, "int")]
+    result = solution.generate_combined_list(input_to_list)
+    expected_result = 5
+    assert len(result) == expected_result
+
+def test_generate_combined_list_correct_float():
     input_to_list = [(5, "float"), (3, "float")]
     result = solution.generate_combined_list(input_to_list)
     expected_result = 5
