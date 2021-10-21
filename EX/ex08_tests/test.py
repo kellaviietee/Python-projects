@@ -7,11 +7,13 @@ def test_part1_int_correct_len():
     expected_len = 5
     assert len(res) == expected_len
 
+
 def test_part1_int_correct_len():
     input_amount = 5
     res = solution.generate_list(input_amount, "string")
     for i in range(5):
         assert type(res[i]) == str
+
 
 def test_part1_int_incorrect_string():
     input_amount = -1
@@ -104,11 +106,19 @@ def test_generate_combined_list_correct_float():
     assert len(result) == expected_result
 
 
+def test_generate_combined_list_correct_types():
+    input_to_list = [(5, "float"), (3, "float")]
+    result = solution.generate_combined_list(input_to_list)
+    for i in range(8):
+        assert type(result[i]) == float
+
+
 def test_generate_combined_list_big_numbers():
     input_to_list = [(7000, "int")]
     result = solution.generate_combined_list(input_to_list)
     expected_result = 7000
     assert len(result) == expected_result
+
 
 def test_generate_combined_list_unique():
     input_to_list = [(5, "string")]
