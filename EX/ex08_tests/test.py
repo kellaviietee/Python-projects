@@ -100,7 +100,7 @@ def test_generate_combined_list_correct_float():
 
 
 def test_generate_combined_list_wrong_types():
-    input_to_list = [(7, 5)]
+    input_to_list = [(7000, "int")]
     result = solution.generate_combined_list(input_to_list)
-    expected_result = 0
+    expected_result = 7000
     assert len(result) == expected_result
