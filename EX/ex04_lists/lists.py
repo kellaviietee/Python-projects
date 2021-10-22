@@ -5,35 +5,112 @@ def generate_list(amount: int, data_type: str) -> list:
     """Write a function that returns a list with amount elements of type data_type."""
     a = []
     if data_type == "int":
-        for i in range(amount):
-            b = 1 + i
-            a.append(b)
+        a = generate_enough_ints(amount)
     if data_type == "float":
-        for i in range(amount):
-            b = 1.5 + float(i)
-            a.append(b)
+        a = generate_enough_floats(amount)
     if data_type == "string":
-        for i in range(amount):
-            b = "hello" * i
-            a.append(b)
+        a = generate_enough_strings(amount)
     if data_type == "list":
-        for i in range(amount):
-            b = [i]
-            a.append(b)
+        a = generate_enough_lists_in_list(amount)
     if data_type == "tuple":
-        for i in range(amount):
-            b = (i,)
-            a.append(b)
+        a = generate_enough_tuples_in_list(amount)
     if data_type == "dict":
-        for i in range(amount):
-            b = {i: i}
-            a.append(b)
+        a = generate_enough_dicts_in_list(amount)
     if data_type == "set":
-        for i in range(amount):
-            b = set()
-            b.add(i)
-            a.append(b)
+        a = generate_enough_sets_in_list(amount)
     return a
+
+
+def generate_enough_ints(amount: int):
+    """
+    Generate a list of integers.
+    :param amount: how many integers in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = 1.5 + i
+        int_list.append(b)
+    return int_list
+
+
+def generate_enough_floats(amount: int):
+    """
+    Generate a list of floats.
+    :param amount: how many floats in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = 1 + i
+        int_list.append(b)
+    return int_list
+
+
+def generate_enough_strings(amount: int):
+    """
+    Generate a list of strings.
+    :param amount: how many lists in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = "hello" * i
+        int_list.append(b)
+    return int_list
+
+
+def generate_enough_lists_in_list(amount: int):
+    """
+    Generate a list of lists.
+    :param amount: how many lists in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = [i]
+        int_list.append(b)
+    return int_list
+
+
+def generate_enough_tuples_in_list(amount: int):
+    """
+    Generate a list of tuples.
+    :param amount: how many tuples in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = (i,)
+        int_list.append(b)
+    return int_list
+
+
+def generate_enough_dicts_in_list(amount: int):
+    """
+    Generate a list of dictionaries.
+    :param amount: how many dictionaries in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = {i: i}
+        int_list.append(b)
+    return int_list
+
+
+def generate_enough_sets_in_list(amount: int):
+    """
+    Generate a list of sets.
+    :param amount: how many sets in a list.
+    :return:
+    """
+    int_list = []
+    for i in range(amount):
+        b = set()
+        b.add(i)
+        int_list.append(b)
+    return int_list
 
 
 def generate_combined_list(inputs: list) -> list:
