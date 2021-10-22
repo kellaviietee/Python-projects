@@ -24,6 +24,7 @@ def generate_list(amount: int, data_type: str) -> list:
 def generate_enough_ints(amount: int):
     """
     Generate a list of integers.
+
     :param amount: how many integers in a list.
     :return:
     """
@@ -37,6 +38,7 @@ def generate_enough_ints(amount: int):
 def generate_enough_floats(amount: int):
     """
     Generate a list of floats.
+
     :param amount: how many floats in a list.
     :return:
     """
@@ -50,6 +52,7 @@ def generate_enough_floats(amount: int):
 def generate_enough_strings(amount: int):
     """
     Generate a list of strings.
+
     :param amount: how many lists in a list.
     :return:
     """
@@ -63,6 +66,7 @@ def generate_enough_strings(amount: int):
 def generate_enough_lists_in_list(amount: int):
     """
     Generate a list of lists.
+
     :param amount: how many lists in a list.
     :return:
     """
@@ -76,6 +80,7 @@ def generate_enough_lists_in_list(amount: int):
 def generate_enough_tuples_in_list(amount: int):
     """
     Generate a list of tuples.
+
     :param amount: how many tuples in a list.
     :return:
     """
@@ -89,6 +94,7 @@ def generate_enough_tuples_in_list(amount: int):
 def generate_enough_dicts_in_list(amount: int):
     """
     Generate a list of dictionaries.
+
     :param amount: how many dictionaries in a list.
     :return:
     """
@@ -102,6 +108,7 @@ def generate_enough_dicts_in_list(amount: int):
 def generate_enough_sets_in_list(amount: int):
     """
     Generate a list of sets.
+
     :param amount: how many sets in a list.
     :return:
     """
