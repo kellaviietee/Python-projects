@@ -29,7 +29,7 @@ def generate_enough_ints(amount: int):
     """
     int_list = []
     for i in range(amount):
-        b = 1.5 + i
+        b = 1 + i
         int_list.append(b)
     return int_list
 
@@ -42,7 +42,7 @@ def generate_enough_floats(amount: int):
     """
     int_list = []
     for i in range(amount):
-        b = 1 + i
+        b = 1.5 + i
         int_list.append(b)
     return int_list
 
@@ -184,6 +184,4 @@ def generate_combined_list_unique_advanced(inputs: list) -> list:
 
 
 # Part 4
-print(generate_combined_list_unique_advanced([(3, 'int'), (5, 'int')]))  # [1, 2, 3, 4, 5]
-print(generate_combined_list_unique_advanced([(2, 'list'), (3, 'string')]))  # ["a", [2], "asd", [], "abc"]
-print(generate_combined_list_unique_advanced([(2, 'float'), (3, 'dict')]))  # [{3: "abd"}, {"a": "a"}, {}, 3.14, 3.15]
+print(generate_list(5, "set"))
