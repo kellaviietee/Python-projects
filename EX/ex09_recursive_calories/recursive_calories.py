@@ -93,6 +93,7 @@ def x_sum_recursion(nums, x) -> int:
             else:
                 return 0
 
+
 def lets_count_calories(salad: float, chocolate_pieces: int, fridge_visits: int) -> int:
     """
     Return how many calories Kadri eats.
@@ -120,7 +121,23 @@ def lets_count_calories(salad: float, chocolate_pieces: int, fridge_visits: int)
     :param chocolate_pieces: pieces of chocolate in the fridge.
     :return: calories eaten while visiting fridge.
     """
-    pass
+    if fridge_visits == 0 or (salad <= 0 and chocolate_pieces == 0):
+        return 0
+    else:
+        print(salad, chocolate_pieces, fridge_visits)
+        if salad > 0 and chocolate_pieces > 0:
+            return 120 + 34 + lets_count_calories(round(salad - 0.1, 1), chocolate_pieces - 1, fridge_visits - 1)
+        elif salad == 0 and chocolate_pieces > 1:
+            return 68 + lets_count_calories(0.0, chocolate_pieces - 2, fridge_visits - 1)
+        elif salad == 0 and chocolate_pieces == 1:
+            return 34 + lets_count_calories(0.0, chocolate_pieces - 1, fridge_visits - 1)
+        elif salad == 0 and chocolate_pieces == 2:
+            return 68 + lets_count_calories(0.0, chocolate_pieces - 2, fridge_visits - 1)
+        elif salad > 0 and chocolate_pieces == 0:
+            return 120 + lets_count_calories(round(salad - 0.1, 1), 0, fridge_visits - 1)
+
+
+
 
 
 def cycle(cyclists: list, distance: float, time: int = 0, index: int = 0) -> str:
@@ -173,4 +190,10 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
     """
     pass
 
-print(x_sum_recursion([43, 90, 115, 500], -4))  # 158
+
+print(lets_count_calories(0.1, 3, 2))  # 120 + 3*34 = 222
+print(lets_count_calories(0.4, 3, 2))  # 2*120 + 2*34 = 308
+print(lets_count_calories(0, 4, 2))  # 4 * 34 = 136
+print(lets_count_calories(3.4, 6, 0))  # 0
+print(lets_count_calories(1.2, 5, 10))  # 1200 + 5*34 = 1370
+print(lets_count_calories(0.3, 7, 6))  # 360 + 3*34 + 2*34 + 2*34 + 34 = 632
