@@ -1,4 +1,5 @@
 """Let's count calories!"""
+import math
 
 
 def recursive_reverse(s: str) -> str:
@@ -137,9 +138,6 @@ def lets_count_calories(salad: float, chocolate_pieces: int, fridge_visits: int)
             return 120 + lets_count_calories(round(salad - 0.1, 1), 0, fridge_visits - 1)
 
 
-
-
-
 def cycle(cyclists: list, distance: float, time: int = 0, index: int = 0) -> str:
     """
     Given cyclists and distance in kilometers, find out who crosses the finish line first.
@@ -166,7 +164,17 @@ def cycle(cyclists: list, distance: float, time: int = 0, index: int = 0) -> str
     :param index: index to know which cyclist's turn it is to be first
     :return: string indicating the last cyclist to carry the others
     """
-    pass
+    if len(cyclists) == 0 or distance < 0:
+        return "Everyone fails."
+    else:
+        cyclist = cyclists[index]
+        if cyclist[1] >= distance:
+            time += cyclist[2]
+            hours = math.floor(time / 60)
+            minutes = time % 60
+            return f"{cyclist[0]} is the last leader. Total time: {hours}h {minutes}min."
+        else:
+            return cycle(cyclists, distance - cyclist[1], time + cyclist[2], (index + 1) % len(cyclists))
 
 
 def count_strings(data: list, pos=None, result: dict = None) -> dict:
@@ -191,9 +199,8 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
     pass
 
 
-print(lets_count_calories(0.1, 3, 2))  # 120 + 3*34 = 222
-print(lets_count_calories(0.4, 3, 2))  # 2*120 + 2*34 = 308
-print(lets_count_calories(0, 4, 2))  # 4 * 34 = 136
-print(lets_count_calories(3.4, 6, 0))  # 0
-print(lets_count_calories(1.2, 5, 10))  # 1200 + 5*34 = 1370
-print(lets_count_calories(0.3, 7, 6))  # 360 + 3*34 + 2*34 + 2*34 + 34 = 632
+print(cycle([("First", 0.1, 9), ("Second", 0.1, 8)], 0.3))  # "First is the last leader. Total time: 0h 26min."
+print(cycle([], 0))  # "Everyone fails."
+print(cycle([("Fernando", 19.8, 42), ("Patricio", 12, 28), ("Daniel", 7.8, 11), ("Robert", 15.4, 49)], 50))  # "Robert
+# is the last leader. Total time: 2h 10min."
+print(cycle([("Loner", 0.1, 1)], 60))  # "Loner is the last leader. Total time: 10h 0min.
