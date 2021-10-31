@@ -177,7 +177,7 @@ def cycle(cyclists: list, distance: float, time: int = 0, index: int = 0) -> str
             return cycle(cyclists, distance - cyclist[1], time + cyclist[2], (index + 1) % len(cyclists))
 
 
-def count_strings(data: list, pos=None, result: dict = {}) -> dict:
+def count_strings(data: list, pos=0, result: dict = {}) -> dict:
     """
     Count strings in list.
 
@@ -197,23 +197,20 @@ def count_strings(data: list, pos=None, result: dict = {}) -> dict:
     :return: dict of given symbols and their count
     """
     if len(data) == 0:
-        if pos is not None:
-            data = pos
-            return count_strings(data, None)
         return result
     else:
-        if pos is None:
-            pos = []
         first_elem = data.pop(0)
         if type(first_elem) == list:
-            pos += first_elem
+            count_strings(first_elem, 0, result)
         if type(first_elem) == str:
             if first_elem in result:
                 result[first_elem] += 1
-            if first_elem not in result:
+            elif first_elem not in result:
                 result[first_elem] = 1
-        print(pos)
-        return count_strings(data, pos)
+        count_strings(data, pos + 1, result)
+    return result
+
+
 
 
 
