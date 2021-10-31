@@ -197,32 +197,24 @@ def count_strings(data: list, pos=None, result: dict = {}) -> dict:
     :return: dict of given symbols and their count
     """
     if len(data) == 0:
+        if pos is not None:
+            data = pos
+            return count_strings(data, None)
         return result
     else:
+        if pos is None:
+            pos = []
         first_elem = data.pop(0)
-        if len(first_elem) == 0:
-            return count_strings(data, None, result)
-        else:
-            #print(data)
-            #print(first_elem)
-            if type(first_elem) == list:
-                if first_elem[0] in result:
-                    result[first_elem[0]] += 1
-                if first_elem[0] not in result:
-                    result[first_elem[0]] = 1
-                if type(first_elem) == list:
-                    del[first_elem[0]]
-                    data.insert(0, first_elem)
-            else:
-                if first_elem in result:
-                    result[first_elem] += 1
-                if first_elem not in result:
-                    result[first_elem] = 1
+        if type(first_elem) == list:
+            pos += first_elem
+        if type(first_elem) == str:
+            if first_elem in result:
+                result[first_elem] += 1
+            if first_elem not in result:
+                result[first_elem] = 1
+        print(pos)
+        return count_strings(data, pos)
 
-            #print(result)
-            #print(first_elem)
-            #print(data)
-            return count_strings(data, None, result)
 
 
 
@@ -231,4 +223,4 @@ def count_strings(data: list, pos=None, result: dict = {}) -> dict:
 # {'J': 1, '*': 5, 'W': 1, 'f': 1, 'j': 2, 'g': 1, '8': 2, '5': 1, '6': 1, 'A': 1}
 #print(count_strings([[], [], [], [], ["h", "h", "m"], [], ["m", "m", "M", "m"]]))  # {'h': 2, 'm': 4, 'M': 1}
 #print(count_strings([]))  # {}
-#print(count_strings([['a'], 'b', ['a', ['b']]]))  # {'a': 2, 'b': 2}
+print(count_strings([['a'], 'b', ['a', ['b']]]))  # {'a': 2, 'b': 2}
