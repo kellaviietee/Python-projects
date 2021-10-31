@@ -177,7 +177,7 @@ def cycle(cyclists: list, distance: float, time: int = 0, index: int = 0) -> str
             return cycle(cyclists, distance - cyclist[1], time + cyclist[2], (index + 1) % len(cyclists))
 
 
-def count_strings(data: list, pos=None, result: dict = None) -> dict:
+def count_strings(data: list, pos=None, result: dict = {}) -> dict:
     """
     Count strings in list.
 
@@ -196,11 +196,39 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
     :param result: figure out how to use it
     :return: dict of given symbols and their count
     """
-    pass
+    if len(data) == 0:
+        return result
+    else:
+        first_elem = data.pop(0)
+        if len(first_elem) == 0:
+            return count_strings(data, None, result)
+        else:
+            #print(data)
+            #print(first_elem)
+            if type(first_elem) == list:
+                if first_elem[0] in result:
+                    result[first_elem[0]] += 1
+                if first_elem[0] not in result:
+                    result[first_elem[0]] = 1
+                if type(first_elem) == list:
+                    del[first_elem[0]]
+                    data.insert(0, first_elem)
+            else:
+                if first_elem in result:
+                    result[first_elem] += 1
+                if first_elem not in result:
+                    result[first_elem] = 1
+
+            #print(result)
+            #print(first_elem)
+            #print(data)
+            return count_strings(data, None, result)
 
 
-print(cycle([("First", 0.1, 9), ("Second", 0.1, 8)], 0.3))  # "First is the last leader. Total time: 0h 26min."
-print(cycle([], 0))  # "Everyone fails."
-print(cycle([("Fernando", 19.8, 42), ("Patricio", 12, 28), ("Daniel", 7.8, 11), ("Robert", 15.4, 49)], 50))  # "Robert
-# is the last leader. Total time: 2h 10min."
-print(cycle([("Loner", 0.1, 1)], 60))  # "Loner is the last leader. Total time: 10h 0min.
+
+
+#print(count_strings([[], ["J", "*", "W", "f"], ["j", "g", "*"], ["j", "8", "5", "6", "*"], ["*", "*", "A", "8"]]))
+# {'J': 1, '*': 5, 'W': 1, 'f': 1, 'j': 2, 'g': 1, '8': 2, '5': 1, '6': 1, 'A': 1}
+#print(count_strings([[], [], [], [], ["h", "h", "m"], [], ["m", "m", "M", "m"]]))  # {'h': 2, 'm': 4, 'M': 1}
+#print(count_strings([]))  # {}
+#print(count_strings([['a'], 'b', ['a', ['b']]]))  # {'a': 2, 'b': 2}
