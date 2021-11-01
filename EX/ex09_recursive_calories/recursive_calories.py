@@ -1,4 +1,4 @@
-"""Let's count calories!"""
+"""Let's count calories."""
 import math
 
 
@@ -177,7 +177,7 @@ def cycle(cyclists: list, distance: float, time: int = 0, index: int = 0) -> str
             return cycle(cyclists, distance - cyclist[1], time + cyclist[2], (index + 1) % len(cyclists))
 
 
-def count_strings(data: list, pos=0, result: dict = {}) -> dict:
+def count_strings(data: list, pos=None, result: dict = None) -> dict:
     """
     Count strings in list.
 
@@ -196,28 +196,14 @@ def count_strings(data: list, pos=0, result: dict = {}) -> dict:
     :param result: figure out how to use it
     :return: dict of given symbols and their count
     """
-    if len(data) == 0:
+    if pos not in range(len(data) - 1):
         return result
-    else:
-        first_elem = data.pop(0)
-        if type(first_elem) == list:
-            count_strings(first_elem, 0, result)
-        if type(first_elem) == str:
-            if first_elem in result:
-                result[first_elem] += 1
-            elif first_elem not in result:
-                result[first_elem] = 1
-        return count_strings(data, 0, result)
-
-
-
-
-
-
-
-
-print(count_strings([[], ["J", "*", "W", "f"], ["j", "g", "*"], ["j", "8", "5", "6", "*"], ["*", "*", "A", "8"]]))
-# {'J': 1, '*': 5, 'W': 1, 'f': 1, 'j': 2, 'g': 1, '8': 2, '5': 1, '6': 1, 'A': 1}
-print(count_strings([[], [], [], [], ["h", "h", "m"], [], ["m", "m", "M", "m"]]))  # {'h': 2, 'm': 4, 'M': 1}
-print(count_strings([]))  # {}
-print(count_strings([['a'], 'b', ['a', ['b']]]))  # {'a': 2, 'b': 2}
+    if isinstance(data[pos], str):
+        if data[pos] in result:
+            result[data[pos]] += 1
+        if data[pos] not in result:
+            result[data[pos]] = 1
+        count_strings(data, pos + 1, result)
+    if isinstance(data[pos], list):
+        count_strings(data[pos], 0, result)
+        count_strings(data, pos + 1, result)
