@@ -93,7 +93,7 @@ def largest_earnings_per_day(filename: str) -> Optional[Client]:
     :return: client with largest earnings.
     """
     all_clients = read_from_file_into_list(filename)
-    largest_earner = max(all_clients, key=lambda client: (client.earnings_per_day(), client.account_age))
+    largest_earner = max(all_clients, key=lambda client: (client.earnings_per_day(), -client.account_age))
     largest_earning = largest_earner.earnings_per_day()
     if largest_earning <= 0:
         return None
