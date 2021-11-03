@@ -1,5 +1,6 @@
 """Hobbies but OOP."""
 
+
 class Person:
     """
     Class for people.
@@ -82,6 +83,7 @@ def sort_by_least_hobbies(people_list: list) -> list:
 def sort_people_and_hobbies(people_list: list) -> list:
     """
     Return a list of people but sorted alphabetically by their full name.
+
     Also sort their list of hobbies alphabetically.
 
     :param people_list: list of people to sort.
@@ -103,7 +105,7 @@ if __name__ == '__main__':
 
     print(sort_by_most_hobbies(people))  # -> [JeffBezos, ElonMusk, MariKukk]
 
-    print(sort_by_least_hobbies(people))   # -> [ElonMusk, MariKukk, JeffBezos]
+    print(sort_by_least_hobbies(people))  # -> [ElonMusk, MariKukk, JeffBezos]
 
     print(sort_people_and_hobbies(people))  # -> [ElonMusk, JeffBezos, MariKukk]
     print(person1.hobbies)  # -> ['biking', 'dancing', 'programming']
