@@ -45,7 +45,7 @@ class Client:
         You can either calculate the value or
         save it into a new attribute and return the value.
         """
-        return (int(self.current_amount) - int(self.starting_amount)) / int(self.account_age)
+        return (self.current_amount - self.starting_amount) / self.account_age
 
 
 def read_from_file_into_list(filename: str) -> list:
@@ -61,7 +61,8 @@ def read_from_file_into_list(filename: str) -> list:
     people: str = data.splitlines()
     for person in people:
         personal_data = person.split(",")
-        new_client = Client(personal_data[0], personal_data[1], personal_data[2], personal_data[3], personal_data[4])
+        new_client = Client(personal_data[0], personal_data[1], int(personal_data[2]), int(personal_data[3]),
+                            int(personal_data[4]))
         all_clients.append(new_client)
     return all_clients
 
