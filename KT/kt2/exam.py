@@ -59,7 +59,6 @@ def take_partial(text: str, leave_count: int, take_count: int) -> str:
         return ""
 
 
-
 def min_diff(nums):
     """
     Find the smallest diff between two integer numbers in the list.
