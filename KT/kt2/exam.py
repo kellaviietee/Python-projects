@@ -114,4 +114,4 @@ def get_symbols_by_occurrences(text: str) -> dict:
     return new_dict
 
 
-print(take_partial("abcdef", 2, 3))
+print(take_partial("abcdef", 0, 1))
