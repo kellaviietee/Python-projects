@@ -112,6 +112,3 @@ def get_symbols_by_occurrences(text: str) -> dict:
         if items[1] not in new_dict:
             new_dict[items[1]] = [items[0]]
     return new_dict
-
-
-print(take_partial("abcdef", 0, 1))
