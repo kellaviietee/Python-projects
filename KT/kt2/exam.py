@@ -57,6 +57,15 @@ def take_partial(text: str, leave_count: int, take_count: int) -> str:
         return ""
     if leave_count >= len(text):
         return ""
+    else:
+        right_word = ""
+        for letter in range(len(text)):
+            pos_checker = letter % (take_count + leave_count)
+            if pos_checker in range(leave_count):
+                continue
+            if pos_checker in range(leave_count + take_count):
+                right_word += text[letter]
+        return right_word
 
 
 def min_diff(nums):
