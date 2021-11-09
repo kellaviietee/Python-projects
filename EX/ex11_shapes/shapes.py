@@ -46,7 +46,7 @@ class Circle(Shape):
         For this exercise, this should return a string:
         Circle (r: {radius}, color: {color})
         """
-        return f"Circle (r: {self.radius}, color: {super().get_color()}"
+        return f"Circle (r: {self.radius}, color: {super().get_color()})"
 
     def get_area(self) -> float:
         """
@@ -79,7 +79,7 @@ class Square(Shape):
         For this exercise, this should return a string:
         Square (a: {side}, color: {color})
         """
-        return f"Square (a: {self.side}, color: {super().get_color()}"
+        return f"Square (a: {self.side}, color: {super().get_color()})"
 
     def get_area(self) -> float:
         """
@@ -113,7 +113,7 @@ class Rectangle(Shape):
         For this exercise, this should return a string:
         Square (a: {side}, color: {color})
         """
-        return f"Rectangle (width: {self.width}, height: {self.height}, color: {super().get_color()}"
+        return f"Rectangle (width: {self.width}, height: {self.height}, color: {super().get_color()})"
 
     def get_area(self) -> float:
         """
