@@ -154,16 +154,22 @@ class ContainerAggregator:
         :param orders: tuple of orders.
         :return: dict where keys are destinations and values are containers to that destination with orders.
         """
-        destination = orders[0].destination
-        orders_to_destination = []
+        all_destinations = {}
         for order in orders:
-            if order.destination == destination:
-                orders_to_destination.append(order)
-            else:
+            if order.total_volume > self.container_volume:
                 self.not_used_orders.append(order)
-        new_container = Container(self.container_volume, orders_to_destination)
-        new_dict = {destination: [new_container]}
-        return new_dict
+            else:
+                if order.destination in all_destinations:
+                    all_destination_containers = all_destinations[order.destination]
+                    for container in all_destination_containers:
+                        if container.volume_left >= order.total_volume:
+                            container.orders.append(order)
+                            continue
+                if order.destination not in all_destinations:
+                    all_destinations[order.destination] = [Container(self.container_volume, [order])]
+        return all_destinations
+
+
 
 
 if __name__ == '__main__':
