@@ -162,7 +162,7 @@ class ContainerAggregator:
             else:
                 self.not_used_orders.append(order)
         new_container = Container(self.container_volume, orders_to_destination)
-        new_dict = {destination: new_container}
+        new_dict = {destination: [new_container]}
         return new_dict
 
 
@@ -204,7 +204,6 @@ if __name__ == '__main__':
     too_big_order.destination = "Somewhere"
     containers = ca.prepare_containers((order1, order2, too_big_order))
     print(f'prepare_containers produced containers to {len(containers)}(1 is correct) different destination(s)')
-
     try:
         containers_to_tallinn = containers['Tallinn']
         print(f'volume of the container to tallinn is {containers_to_tallinn[0].volume}(70000 is correct) cm^3')
