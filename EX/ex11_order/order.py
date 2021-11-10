@@ -98,7 +98,6 @@ class OrderAggregator:
 
     def __init__(self):
         """Initialize order aggregator."""
-
         self.order_items = []
 
     def add_item(self, item: OrderItem):
