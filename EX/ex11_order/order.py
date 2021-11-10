@@ -161,10 +161,12 @@ class ContainerAggregator:
             else:
                 if order.destination in all_destinations:
                     all_destination_containers = all_destinations[order.destination]
-                    for container in all_destination_containers:
-                        if container.volume_left >= order.total_volume:
-                            container.orders.append(order)
-                            continue
+                    for container in range(len(all_destination_containers)):
+                        if all_destination_containers[container].volume_left >= order.total_volume:
+                            all_destination_containers[container].append(order)
+                            break
+                        elif container == len(all_destination_containers) - 1:
+                            all_destinations[order.destination].append(Container(self.container_volume,[order]))
                 if order.destination not in all_destinations:
                     all_destinations[order.destination] = [Container(self.container_volume, [order])]
         return all_destinations
