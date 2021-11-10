@@ -81,7 +81,7 @@ class Container:
 
     # define volume left property method
     @property
-    def total_volume_left(self) -> int:
+    def volume_left(self) -> int:
         volume_left = self.volume
         for order in self.orders:
             volume_left -= order.total_volume
