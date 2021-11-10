@@ -71,7 +71,7 @@ class Container:
     # define constructor
     def __init__(self, volume: int, orders: list):
         """
-        Constructor that creates a container
+        Constructor that creates a container.
 
         :param volume: How big is the container
         :param orders: List of orders that goes into the container.
@@ -82,6 +82,11 @@ class Container:
     # define volume left property method
     @property
     def volume_left(self) -> int:
+        """
+        Check how much room is left.
+
+        :return:how much room is left.
+        """
         volume_left = self.volume
         for order in self.orders:
             volume_left -= order.total_volume
@@ -92,9 +97,8 @@ class OrderAggregator:
     """Algorithm of aggregating orders."""
 
     def __init__(self):
-        """
-        Initialize order aggregator.
-        """
+        """Initialize order aggregator."""
+
         self.order_items = []
 
     def add_item(self, item: OrderItem):
@@ -170,8 +174,6 @@ class ContainerAggregator:
                 if order.destination not in all_destinations:
                     all_destinations[order.destination] = [Container(self.container_volume, [order])]
         return all_destinations
-
-
 
 
 if __name__ == '__main__':
