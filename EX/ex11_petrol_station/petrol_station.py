@@ -218,7 +218,7 @@ class Client:
 
     def get_name(self):
         """Return client name."""
-        return ""
+        return self.__name
 
     def get_client_type(self) -> ClientType:
         """
@@ -226,7 +226,7 @@ class Client:
 
         :return: ClientType
         """
-        pass
+        return self.__client_type
 
     def set_client_type(self, value: ClientType):
         """
@@ -234,7 +234,7 @@ class Client:
 
         :param value: ClientType
         """
-        pass
+        self.__client_type = value
 
     def get_balance(self) -> float:
         """
@@ -242,7 +242,7 @@ class Client:
 
         :return: float
         """
-        return 0.0
+        return self.__balance
 
     def get_history(self) -> list['Order']:
         """
@@ -403,5 +403,3 @@ class PetrolStation:
         """
         pass
 
-new_client_type = ClientType.Basic
-print(new_client_type)
