@@ -4,7 +4,6 @@ from abc import ABC, abstractmethod
 from datetime import date
 from enum import Enum, auto
 
-
 class ClientType(Enum):
     """
     Client type.
@@ -51,7 +50,7 @@ class OrderItem(ABC):
 
         :return: str: name
         """
-        return self.__name
+        return ""
 
     def get_price(self) -> float:
         """
@@ -59,7 +58,7 @@ class OrderItem(ABC):
 
         :return: float: price
         """
-        return self.__price
+        return 0.0
 
     def get_total_price(self, client_type: ClientType, quantity: float = 1.0) -> float:
         """
@@ -72,11 +71,7 @@ class OrderItem(ABC):
         :param quantity: quantity of a product
         :return: float: total price
         """
-        base_price = quantity * self.__price
-        if type(self) == type(ShopItem):
-            return base_price * self.get_discount(client_type)
-        if type(self) == type(Fuel):
-            return quantity * (self.__price - self.get_discount(client_type))
+        return 0.0
 
     @abstractmethod
     def get_discount(self, client_type: ClientType) -> float:
@@ -126,14 +121,7 @@ class ShopItem(OrderItem):
         :param client_type
         :return: float: the discount
         """
-        if client_type == client_type.Basic:
-            return 1.0
-        if client_type == client_type.Bronze:
-            return 0.95
-        if client_type == client_type.Silver:
-            return 0.90
-        if client_type == client_type.Gold:
-            return 0.85
+        return 0.0
 
 
 class Fuel(OrderItem):
@@ -156,14 +144,7 @@ class Fuel(OrderItem):
         :param client_type
         :return: float: the discount
         """
-        if client_type == client_type.Basic:
-            return 0
-        if client_type == client_type.Bronze:
-            return 0.025
-        if client_type == client_type.Silver:
-            return 0.05
-        if client_type == client_type.Gold:
-            return 0.1
+        return 0.0
 
 
 class Order:
@@ -189,7 +170,7 @@ class Order:
 
         :return: date
         """
-        return self.__order_date
+        pass
 
     def get_final_price(self) -> float:
         """
@@ -197,11 +178,7 @@ class Order:
 
         :return: float
         """
-        final_price = 0
-        for item in self.__items:
-            item_cost = item.get_total_price(self.__client_type)
-            final_price += item_cost
-        return final_price
+        return 0.0
 
     def __hash__(self):
         """Hash for using with dictionaries."""
@@ -241,7 +218,7 @@ class Client:
 
     def get_name(self):
         """Return client name."""
-        return self.__name
+        return ""
 
     def get_client_type(self) -> ClientType:
         """
@@ -249,7 +226,7 @@ class Client:
 
         :return: ClientType
         """
-        return self.__client_type
+        pass
 
     def set_client_type(self, value: ClientType):
         """
@@ -257,7 +234,7 @@ class Client:
 
         :param value: ClientType
         """
-        self.__client_type = value
+        pass
 
     def get_balance(self) -> float:
         """
@@ -265,7 +242,7 @@ class Client:
 
         :return: float
         """
-        return self.__balance
+        return 0.0
 
     def get_history(self) -> list['Order']:
         """
@@ -276,12 +253,11 @@ class Client:
         do not affect the dictionary object that does not belong to the class.
         :return: list['Order']
         """
-        order_history = copy.deepcopy(self.__order_history)
-        return order_history
+        pass
 
     def clear_history(self):
         """Clear the purchase history."""
-        self.__order_history = []
+        pass
 
     def get_member_balance(self) -> float:
         """
@@ -289,7 +265,7 @@ class Client:
 
         :return: float: the sum
         """
-        return self.__balance
+        return 0.0
 
     def buy(self, order: 'Order') -> bool:
         """
@@ -426,7 +402,3 @@ class PetrolStation:
         sufficient amount of money to purchase
         """
         pass
-
-
-new_client = Client("Lauri", 500, client_type="Basic")
-print(new_client.get_client_type())
