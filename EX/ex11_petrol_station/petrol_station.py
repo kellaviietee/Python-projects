@@ -51,7 +51,7 @@ class OrderItem(ABC):
 
         :return: str: name
         """
-        return ""
+        return self.__name
 
     def get_price(self) -> float:
         """
@@ -59,7 +59,7 @@ class OrderItem(ABC):
 
         :return: float: price
         """
-        return 0.0
+        return self.__price
 
     def get_total_price(self, client_type: ClientType, quantity: float = 1.0) -> float:
         """
@@ -117,8 +117,8 @@ class ShopItem(OrderItem):
         """
         Discount for shop item.
 
-        Abstract because fuels and products have different uses for discounts.
-        (there is no need to write anything here)
+        This has to be implemented for ShopItem.
+
         :param client_type
         :return: float: the discount
         """
@@ -140,8 +140,8 @@ class Fuel(OrderItem):
         """
         Discount for fuel.
 
-        Abstract because fuels and products have different uses for discounts.
-        (there is no need to write anything here)
+        This has to be implemented for Fuel.
+
         :param client_type
         :return: float: the discount
         """
@@ -250,7 +250,8 @@ class Client:
         Return customer's purchase history.
 
         Returns our customer's purchase history as a copy of the purchase history
-        Use deepcopy.So that changes made with the dictionary in the class do not affect the dictionary object that does not belong to the class.
+        Use deepcopy.So that changes made with the dictionary in the class
+        do not affect the dictionary object that does not belong to the class.
         :return: list['Order']
         """
         pass
@@ -293,7 +294,9 @@ class PetrolStation:
         Constructor (NB! Variables must be private).
 
         Used the deepcopy.
-        So that changes made with the dictionary in the class do not affect the dictionary object that does not belong to the class.
+        So that changes made with the dictionary in the class do not affect the
+        dictionary object that does not belong to the class.
+
         :param fuel_stock: fuel tank
         :param shop_item_stock: products warehouse
         """
@@ -335,8 +338,11 @@ class PetrolStation:
         """
         Remove items.
 
-        The product is released from the warehouse, first it is checked whether it is possible to dispense as many products, if so,
-        then the quantity of the product is lowered, if not, the error RuntimeError () is thrown out.
+        The product is released from the warehouse, first it is
+        checked whether it is possible to dispense as many products, if so,
+        then the quantity of the product is lowered,
+        if not, the error RuntimeError () is thrown out.
+
         :param item:
         :param quantity:
         """
@@ -368,20 +374,32 @@ class PetrolStation:
 
         Check if his loyalty status is valid.
 
-        Check how much time this customer has had since the last purchase, if 2 months or more, the user will be downgraded to Bronze level and their purchase history will be cleared.
+        Check how much time this customer has had since the last purchase,
+        if 2 months or more or there are no purchase history,
+        the user will be downgraded to Bronze level
+        and their purchase history will be cleared.
+        Use customer purchase history instead of Petrol station's history
+        as the customer can buy stuff from other stations.
 
         If the customer is not a regular customer, it remains Basic
 
-        An attempt is made to sell the purchase to the customer (through the purchase method), if this is successful, the purchase is transferred to the sales archive of the service station, the type of which is dict. The key is the customer and the valueon his purchase.
+        An attempt is made to sell the purchase to the customer
+        (through the purchase method), if this is successful,
+        the purchase is transferred to the sales archive of
+        the service station, the type of which is dict.
+        The key is the customer and the valueon his purchase.
 
         If the purchase is successful, we will try to raise the level of the customer
 
-        Check how much the user has spent and if he has spent enough to move to the next status, his status will change.
+        Check how much the user has spent and if he has spent enough to move
+        to the next status, his status will change.
 
-        :param items_to_sell: is the customer's purchase request, given in the form of a `tuple`,
-        which contains the position (fuel or product) and the quantity (NB! the quantity is always a` float`,
-        even if the number is a product)
+        :param items_to_sell: is the customer's purchase request,
+        given in the form of a `tuple`,
+        which contains the position (fuel or product) and the quantity
+        (NB! the quantity is always a` float`, even if the number is a product)
         :param client: is a customer, but the customer can be specified as None,
-        in which case a new customer must be created with `Basic` status and a sufficient amount of money to purchase
+        in which case a new customer must be created with `Basic` status and a
+        sufficient amount of money to purchase
         """
         pass
