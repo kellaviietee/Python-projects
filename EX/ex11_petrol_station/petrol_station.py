@@ -73,6 +73,10 @@ class OrderItem(ABC):
         :return: float: total price
         """
         base_price = quantity * self.__price
+        if type(self) == type(ShopItem):
+            return base_price * self.get_discount(client_type)
+        if type(self) == type(Fuel):
+            return quantity * (self.__price - self.get_discount(client_type))
 
     @abstractmethod
     def get_discount(self, client_type: ClientType) -> float:
