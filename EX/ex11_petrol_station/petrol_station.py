@@ -189,7 +189,7 @@ class Order:
 
         :return: date
         """
-        pass
+        return self.__order_date
 
     def get_final_price(self) -> float:
         """
@@ -197,7 +197,11 @@ class Order:
 
         :return: float
         """
-        return 0.0
+        final_price = 0
+        for item in self.__items:
+            item_cost = item.get_total_price(self.__client_type)
+            final_price += item_cost
+        return final_price
 
     def __hash__(self):
         """Hash for using with dictionaries."""
