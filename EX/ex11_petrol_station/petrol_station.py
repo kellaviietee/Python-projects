@@ -402,3 +402,6 @@ class PetrolStation:
         sufficient amount of money to purchase
         """
         pass
+
+new_client_type = ClientType.Basic
+print(new_client_type)
