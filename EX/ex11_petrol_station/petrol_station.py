@@ -72,7 +72,7 @@ class OrderItem(ABC):
         :param quantity: quantity of a product
         :return: float: total price
         """
-        return 0.0
+        base_price = quantity * self.__price
 
     @abstractmethod
     def get_discount(self, client_type: ClientType) -> float:
@@ -122,7 +122,14 @@ class ShopItem(OrderItem):
         :param client_type
         :return: float: the discount
         """
-        return 0.0
+        if client_type == client_type.Basic:
+            return 1.0
+        if client_type == client_type.Bronze:
+            return 0.95
+        if client_type == client_type.Silver:
+            return 0.90
+        if client_type == client_type.Gold:
+            return 0.85
 
 
 class Fuel(OrderItem):
@@ -145,7 +152,14 @@ class Fuel(OrderItem):
         :param client_type
         :return: float: the discount
         """
-        return 0.0
+        if client_type == client_type.Basic:
+            return 0
+        if client_type == client_type.Bronze:
+            return 0.025
+        if client_type == client_type.Silver:
+            return 0.05
+        if client_type == client_type.Gold:
+            return 0.1
 
 
 class Order:
@@ -219,7 +233,7 @@ class Client:
 
     def get_name(self):
         """Return client name."""
-        return ""
+        return self.__name
 
     def get_client_type(self) -> ClientType:
         """
@@ -227,7 +241,7 @@ class Client:
 
         :return: ClientType
         """
-        pass
+        return self.__client_type
 
     def set_client_type(self, value: ClientType):
         """
@@ -235,7 +249,7 @@ class Client:
 
         :param value: ClientType
         """
-        pass
+        self.__client_type = value
 
     def get_balance(self) -> float:
         """
@@ -243,7 +257,7 @@ class Client:
 
         :return: float
         """
-        return 0.0
+        return self.__balance
 
     def get_history(self) -> list['Order']:
         """
@@ -254,11 +268,12 @@ class Client:
         do not affect the dictionary object that does not belong to the class.
         :return: list['Order']
         """
-        pass
+        order_history = copy.deepcopy(self.__order_history)
+        return order_history
 
     def clear_history(self):
         """Clear the purchase history."""
-        pass
+        self.__order_history = []
 
     def get_member_balance(self) -> float:
         """
@@ -266,7 +281,7 @@ class Client:
 
         :return: float: the sum
         """
-        return 0.0
+        return self.__balance
 
     def buy(self, order: 'Order') -> bool:
         """
@@ -403,3 +418,7 @@ class PetrolStation:
         sufficient amount of money to purchase
         """
         pass
+
+
+new_client = Client("Lauri", 500, client_type="Basic")
+print(new_client.get_client_type())
