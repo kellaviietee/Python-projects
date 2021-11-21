@@ -59,6 +59,12 @@ class App:
         self.customers = []
         self.products = self.import_products("pricelist.txt")
 
+    def find_product_by_name(self,name:str):
+        all_products = self.products
+        for product in all_products:
+            if product.name == name:
+                return product
+
     def get_products(self) -> list:
         """Getter for products list."""
         return self.products
@@ -73,10 +79,15 @@ class App:
 
         Filename is an argument here.
         """
+        product_list = []
         with open(filename) as f:  # Opens file with name of "test.txt"
             data = f.read()  # Reads all the lines from the file and saves it as a string.
         data_list = data.splitlines()
-        return data_list
+        for item in data_list:
+            name_price = item.split(" -")
+            new_product = Product(name_price[0], name_price[1])
+            product_list.append(new_product)
+        return product_list
 
     def order_products(self):
         """Order products in general.
@@ -99,9 +110,10 @@ class App:
         """Method for adding a customer to the list."""
         self.customers.append(customer)
 
-    def add_customers(self):
+    def add_customers(self, customers: list):
         """Method for adding several customers to the list."""
-
+        for customer in customers:
+            self.customers.append(customer)
 
     def show_all_orders(self) -> str:
         """
