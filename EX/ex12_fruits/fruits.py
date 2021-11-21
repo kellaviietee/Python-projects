@@ -17,14 +17,15 @@ class Product:
 class Order:
     """Order class."""
 
-    def __init__(self):
+    def __init__(self, customer: str, products: dict):
         """
         Order constructor.
 
         Expected default customer parameter starting from Part 3. Also, products dictionary
         is expected to be created and products names set as a helper.
         """
-        pass
+        self.customer = customer
+        self.products = products
 
     def get_products_string(self) -> str:
         """
@@ -39,11 +40,12 @@ class Order:
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
-        pass
+        self.products[product[0]] = product[1]
 
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
-        pass
+        for product in products:
+            self.add_product(product)
 
 
 class App:
@@ -59,7 +61,7 @@ class App:
         self.customers = []
         self.products = self.import_products("pricelist.txt")
 
-    def find_product_by_name(self,name:str):
+    def find_product_by_name(self, name: str):
         all_products = self.products
         for product in all_products:
             if product.name == name:
