@@ -85,7 +85,7 @@ class App:
         data_list = data.splitlines()
         for item in data_list:
             name_price = item.split(" -")
-            new_product = Product(name_price[0], name_price[1])
+            new_product = Product(name_price[0], float(name_price[1]))
             product_list.append(new_product)
         return product_list
 
