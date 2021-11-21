@@ -56,7 +56,7 @@ class App:
 
     def __init__(self):
         """App constructor, no arguments expected."""
-        pass
+        self.products = self.import_products("pricelist.txt")
 
     def get_products(self) -> list:
         """Getter for products list."""
@@ -66,13 +66,16 @@ class App:
         """Getter for orders list."""
         pass
 
-    def import_products(self) -> list[Product]:
+    def import_products(self, filename: str) -> list[Product]:
         """
         Import products from a file, return list of Product objects.
 
         Filename is an argument here.
         """
-        pass
+        with open(filename) as f:  # Opens file with name of "test.txt"
+            data = f.read()  # Reads all the lines from the file and saves it as a string.
+        data_list = data.splitlines()
+        return data_list
 
     def order_products(self):
         """Order products in general.
