@@ -17,7 +17,7 @@ class Product:
 class Order:
     """Order class."""
 
-    def __init__(self, customer: str, products: dict):
+    def __init__(self, customer: str, products: dict = {}):
         """
         Order constructor.
 
@@ -26,6 +26,9 @@ class Order:
         """
         self.customer = customer
         self.products = products
+
+    def get_products(self):
+        return self.products
 
     def get_products_string(self) -> str:
         """
