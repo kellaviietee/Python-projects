@@ -43,7 +43,11 @@ class Order:
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
-        self.products[product[0]] = product[1]
+        current_products = self.get_products()
+        if product[0] in current_products:
+            self.products[product[0]] += product[1]
+        else:
+            self.products[product[0]] = product[1]
 
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
@@ -103,7 +107,7 @@ class App:
         """
         pass
 
-    def order(self):
+    def order(self, name: str, orders: tuple):
         """
         Method for ordering products for a customer.
 
