@@ -56,11 +56,12 @@ class App:
 
     def __init__(self):
         """App constructor, no arguments expected."""
+        self.customers = []
         self.products = self.import_products("pricelist.txt")
 
     def get_products(self) -> list:
         """Getter for products list."""
-        pass
+        return self.products
 
     def get_orders(self) -> list:
         """Getter for orders list."""
@@ -94,13 +95,13 @@ class App:
         """
         pass
 
-    def add_customer(self):
+    def add_customer(self, customer):
         """Method for adding a customer to the list."""
-        pass
+        self.customers.append(customer)
 
     def add_customers(self):
         """Method for adding several customers to the list."""
-        pass
+
 
     def show_all_orders(self) -> str:
         """
