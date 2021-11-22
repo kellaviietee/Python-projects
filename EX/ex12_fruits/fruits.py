@@ -43,12 +43,10 @@ class Order:
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
-        new_app = App()
-        actual_product = new_app.find_product_by_name(product[0])
-        if actual_product in self.products:
-            self.products[actual_product] += product[1]
+        if product[0] in self.products:
+            self.products[product[0]] += product[1]
         else:
-            self.products[actual_product] = product[1]
+            self.products[product[0]] = product[1]
 
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
