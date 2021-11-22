@@ -66,6 +66,7 @@ class App:
         """App constructor, no arguments expected."""
         self.customers = []
         self.products = self.import_products("pricelist.txt")
+        self.orders = []
 
     def find_product_by_name(self, name: str):
         all_products = self.products
@@ -79,7 +80,7 @@ class App:
 
     def get_orders(self) -> list:
         """Getter for orders list."""
-        pass
+        return self.orders
 
     def import_products(self, filename: str) -> list[Product]:
         """
@@ -97,14 +98,20 @@ class App:
             product_list.append(new_product)
         return product_list
 
-    def order_products(self, products:list):
+    def order_products(self, products):
         """Order products in general.
 
         The parameter is list of products. Create a new order, then add passed products to
         this order, then add this order to the orders list.
         Products here is list of tuples.
         """
-        pass
+        order = Order()
+        if type(products) == tuple:
+            order.add_product(products)
+        if type(products) == list:
+            order.add_products(products)
+        self.orders.append(order)
+
 
     def order(self, name: str, orders: tuple):
         """
