@@ -43,8 +43,7 @@ class Order:
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
-        current_products = self.get_products()
-        if product[0] in current_products:
+        if product[0] in self.products:
             self.products[product[0]] += product[1]
         else:
             self.products[product[0]] = product[1]
@@ -98,7 +97,7 @@ class App:
             product_list.append(new_product)
         return product_list
 
-    def order_products(self):
+    def order_products(self, products:list):
         """Order products in general.
 
         The parameter is list of products. Create a new order, then add passed products to
