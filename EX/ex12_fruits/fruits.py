@@ -43,10 +43,12 @@ class Order:
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
-        if product[0] in self.products:
-            self.products[product[0]] += product[1]
+        new_app = App()
+        actual_product = new_app.find_product_by_name(product[0])
+        if actual_product in self.products:
+            self.products[actual_product] += product[1]
         else:
-            self.products[product[0]] = product[1]
+            self.products[actual_product] = product[1]
 
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
@@ -112,7 +114,6 @@ class App:
             order.add_products(products)
         self.orders.append(order)
 
-
     def order(self, name: str, orders: tuple):
         """
         Method for ordering products for a customer.
@@ -168,24 +169,8 @@ class Customer:
 
 
 if __name__ == '__main__':
-    app = App()
-    # Adding default customers to our app.
-    app.add_customers([Customer("Anton", "home"), Customer("Rubber Duck", "home-table"), Customer("Svetozar", "Dorm 1"),
-                       Customer("Toivo", "Dorm 2"), Customer("Muhhamad", "Muhha's lair"), Customer("test", "TEST")])
-    # Ordering some food for everyone.
-    app.order("Anton", [("Avocado", 2), ("Orange", 1), ("Papaya", 3), ("Cherry tomato", 2)])
-    app.order("Anton", [("Avocado", 4), ("Orange", 2), ("Papaya", 3), ("Cherry tomato", 2)])
-    app.order("Rubber Duck", [("Mango Irwin", 6)])
-    app.order("Svetozar", [("Lemon", 1)])
-    app.order("Svetozar", [("Grapefruit", 10)])
-    app.order("Muhhamad", [("Grenades", 13), ("Cannon", 1), ("Red pepper", 666)])
-    app.order("Toivo", [("Granadilla", 3), ("Chestnut", 3), ("Pitaya(Dragon Fruit)", 3)])
-    # Checking products dictionary format (we want numeric price, not string).
-    print(app.get_products())
-    print("=======")
-    # Checking how all orders and summary look like.
-    print(app.show_all_orders(False))
-    print("=======")
-    print(app.show_all_orders(True))
-    print("=======")
-    app.calculate_summary()
+    new_product = Product("Apple", 3)
+    new_product_2 = Product("Pear", 4)
+    new_product_3 = Product("Orange", 7)
+    new_product_4 = Product("Apple", 5.6)
+
