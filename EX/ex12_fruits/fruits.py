@@ -167,8 +167,7 @@ class Customer:
 
 
 if __name__ == '__main__':
-    new_product = Product("Apple", 3)
-    new_product_2 = Product("Pear", 4)
-    new_product_3 = Product("Orange", 7)
-    new_product_4 = Product("Apple", 5.6)
+    new_order = Order()
+    new_order.add_products([("Lemon",5), ("Orange",5), ("Lemon", 7)])
+    print(new_order.get_products())
 
