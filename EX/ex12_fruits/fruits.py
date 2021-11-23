@@ -56,10 +56,8 @@ class Order:
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
         for product in products:
-            if product[0] in self.products.keys():
-                self.products[product[0]] += product[1]
-            elif product[0] not in self.products.keys():
-                self.products[product[0]] = product[1]
+            self.add_product(product)
+
 
     def __repr__(self):
         return self.get_products_string()
@@ -189,24 +187,7 @@ class Customer:
 
 
 if __name__ == '__main__':
-    app = App()
-    # Adding default customers to our app.
-    app.add_customers([Customer("Anton", "home"), Customer("Rubber Duck", "home-table"), Customer("Svetozar", "Dorm 1"),
-                       Customer("Toivo", "Dorm 2"), Customer("Muhhamad", "Muhha's lair"), Customer("test", "TEST")])
-    # Ordering some food for everyone.
-    app.order("Anton", [("Avocado", 2), ("Orange", 1), ("Papaya", 3), ("Cherry tomato", 2)])
-    app.order("Anton", [("Avocado", 4), ("Orange", 2), ("Papaya", 3), ("Cherry tomato", 2)])
-    app.order("Rubber Duck", [("Mango Irwin", 6)])
-    app.order("Svetozar", [("Lemon", 1)])
-    app.order("Svetozar", [("Grapefruit", 10)])
-    app.order("Muhhamad", [("Grenades", 13), ("Cannon", 1), ("Red pepper", 666)])
-    app.order("Toivo", [("Granadilla", 3), ("Chestnut", 3), ("Pitaya(Dragon Fruit)", 3)])
-    # Checking products list.
-    print(app.get_orders())
-    print("=======")
-    # Checking how all orders and summary look like.
-    print(app.show_all_orders(False))
-    print("=======")
-    print(app.show_all_orders(True))
-    print("=======")
-    app.calculate_summary()
+    new_order = Order()
+    products_list = [("Avocado", 2), ("Orange", 1), ("Papaya", 3), ("Cherry tomato", 2), ("Avocado", 4), ("Orange", 2), ("Papaya", 3), ("Cherry tomato", 2)]
+    new_order.add_products(products_list)
+    print(new_order.get_products())
