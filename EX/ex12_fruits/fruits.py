@@ -48,17 +48,19 @@ class Order:
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
-        if product[0] in self.products:
+        if product[0] in self.products.keys():
             self.products[product[0]] += product[1]
-        else:
+        elif product[0] not in self.products.keys():
             self.products[product[0]] = product[1]
 
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
         for product in products:
             self.add_product(product)
+
     def __repr__(self):
         return self.get_products_string()
+
 
 class App:
     """
@@ -130,7 +132,7 @@ class App:
                 current_customer = customer
                 break
         if current_customer is not None:
-            current_customer.orders.append(orders)
+            self.orders.append((current_customer.name, orders))
 
     def add_customer(self, customer: ["Customer"]):
         pass
@@ -154,7 +156,6 @@ class App:
             for order in customer.get_orders():
                 pass
         return summary_string
-
 
     def calculate_total(self) -> float:
         """Method for calculating total price for all customer's orders."""
@@ -198,7 +199,7 @@ if __name__ == '__main__':
     app.order("Muhhamad", [("Grenades", 13), ("Cannon", 1), ("Red pepper", 666)])
     app.order("Toivo", [("Granadilla", 3), ("Chestnut", 3), ("Pitaya(Dragon Fruit)", 3)])
     # Checking products list.
-    print(app.get_products())
+    print(app.get_orders())
     print("=======")
     # Checking how all orders and summary look like.
     print(app.show_all_orders(False))
