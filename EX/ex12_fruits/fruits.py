@@ -152,7 +152,7 @@ class App:
         summary_string = ""
         for customer in self.customers:
             for order in customer.get_orders():
-                summary_string += order.get_products_string()
+                pass
         return summary_string
 
 
@@ -185,6 +185,24 @@ class Customer:
 
 
 if __name__ == '__main__':
-    new_order = Order()
-    new_order.add_products([("Lemon", 5), ("Orange", 5), ("Lemon", 7)])
-    print(new_order.get_products_string())
+    app = App()
+    # Adding default customers to our app.
+    app.add_customers([Customer("Anton", "home"), Customer("Rubber Duck", "home-table"), Customer("Svetozar", "Dorm 1"),
+                       Customer("Toivo", "Dorm 2"), Customer("Muhhamad", "Muhha's lair"), Customer("test", "TEST")])
+    # Ordering some food for everyone.
+    app.order("Anton", [("Avocado", 2), ("Orange", 1), ("Papaya", 3), ("Cherry tomato", 2)])
+    app.order("Anton", [("Avocado", 4), ("Orange", 2), ("Papaya", 3), ("Cherry tomato", 2)])
+    app.order("Rubber Duck", [("Mango Irwin", 6)])
+    app.order("Svetozar", [("Lemon", 1)])
+    app.order("Svetozar", [("Grapefruit", 10)])
+    app.order("Muhhamad", [("Grenades", 13), ("Cannon", 1), ("Red pepper", 666)])
+    app.order("Toivo", [("Granadilla", 3), ("Chestnut", 3), ("Pitaya(Dragon Fruit)", 3)])
+    # Checking products list.
+    print(app.get_products())
+    print("=======")
+    # Checking how all orders and summary look like.
+    print(app.show_all_orders(False))
+    print("=======")
+    print(app.show_all_orders(True))
+    print("=======")
+    app.calculate_summary()
