@@ -17,7 +17,7 @@ class Product:
 class Order:
     """Order class."""
 
-    def __init__(self, customer: str = "customer", products: dict = {}):
+    def __init__(self, customer: ["Customer"] = None, products: dict = {}):
         """
         Order constructor.
 
@@ -39,7 +39,12 @@ class Order:
         of such long string there should be no comma, nor string. Example:
         'Avocado: 2 kg, Orange: 1 kg, Papaya: 3 kg, Cherry tomato: 2 kg'
         """
-        pass
+        all_products = self.get_products()
+        all_product_names = []
+        for products in all_products:
+            text = f"{products}: {all_products[products]} kg"
+            all_product_names.append(text)
+        return ", ".join(all_product_names)
 
     def add_product(self, product):
         """Method for adding a single product to the dictionary."""
@@ -52,7 +57,8 @@ class Order:
         """Method for adding several products to the dictionary."""
         for product in products:
             self.add_product(product)
-
+    def __repr__(self):
+        return self.get_products_string()
 
 class App:
     """
@@ -118,25 +124,37 @@ class App:
 
         Products here is list of tuples.
         """
-        pass
+        current_customer = None
+        for customer in self.customers:
+            if customer.name == name:
+                current_customer = customer
+                break
+        if current_customer is not None:
+            current_customer.orders.append(orders)
 
-    def add_customer(self, customer):
+    def add_customer(self, customer: ["Customer"]):
+        pass
         """Method for adding a customer to the list."""
         self.customers.append(customer)
 
-    def add_customers(self, customers: list):
+    def add_customers(self, customers: list["Customer"]):
         """Method for adding several customers to the list."""
         for customer in customers:
             self.customers.append(customer)
 
-    def show_all_orders(self) -> str:
+    def show_all_orders(self, is_summary: bool) -> str:
         """
         Method for returning all orders for all customers.
 
         If is_summary is true, add totals for each customer
         and also global total price.
         """
-        pass
+        summary_string = ""
+        for customer in self.customers:
+            for order in customer.get_orders():
+                summary_string += order.get_products_string()
+        return summary_string
+
 
     def calculate_total(self) -> float:
         """Method for calculating total price for all customer's orders."""
@@ -168,6 +186,5 @@ class Customer:
 
 if __name__ == '__main__':
     new_order = Order()
-    new_order.add_products([("Lemon",5), ("Orange",5), ("Lemon", 7)])
-    print(new_order.get_products())
-
+    new_order.add_products([("Lemon", 5), ("Orange", 5), ("Lemon", 7)])
+    print(new_order.get_products_string())
