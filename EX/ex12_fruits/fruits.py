@@ -56,7 +56,10 @@ class Order:
     def add_products(self, products):
         """Method for adding several products to the dictionary."""
         for product in products:
-            self.add_product(product)
+            if product[0] in self.products.keys():
+                self.products[product[0]] += product[1]
+            elif product[0] not in self.products.keys():
+                self.products[product[0]] = product[1]
 
     def __repr__(self):
         return self.get_products_string()
