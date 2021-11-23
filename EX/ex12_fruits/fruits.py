@@ -28,6 +28,7 @@ class Order:
         self.products = products
 
     def get_products(self):
+        """Return the products."""
         return self.products
 
     def get_products_string(self) -> str:
@@ -58,8 +59,8 @@ class Order:
         for product in products:
             self.add_product(product)
 
-
     def __repr__(self):
+        """Return representative."""
         return self.get_products_string()
 
 
@@ -78,6 +79,7 @@ class App:
         self.orders = []
 
     def find_product_by_name(self, name: str):
+        """Find product by name."""
         all_products = self.products
         for product in all_products:
             if product.name == name:
@@ -136,7 +138,6 @@ class App:
             self.orders.append((current_customer.name, orders))
 
     def add_customer(self, customer: ["Customer"]):
-        pass
         """Method for adding a customer to the list."""
         self.customers.append(customer)
 
@@ -177,17 +178,21 @@ class Customer:
         self.orders = orders
 
     def get_name(self):
+        """Return name."""
         return self.name
 
     def get_address(self):
+        """Return address."""
         return self.address
 
     def get_orders(self):
+        """Return all orders."""
         return self.orders
 
 
 if __name__ == '__main__':
     new_order = Order()
-    products_list = [("Avocado", 2), ("Orange", 1), ("Papaya", 3), ("Cherry tomato", 2), ("Avocado", 4), ("Orange", 2), ("Papaya", 3), ("Cherry tomato", 2)]
+    products_list = [("Avocado", 2), ("Orange", 1), ("Papaya", 3), ("Cherry tomato", 2), ("Avocado", 4), ("Orange", 2),
+                     ("Papaya", 3), ("Cherry tomato", 2)]
     new_order.add_products(products_list)
     print(new_order.get_products())
