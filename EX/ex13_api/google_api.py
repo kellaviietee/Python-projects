@@ -9,7 +9,7 @@ from google.oauth2.credentials import Credentials
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_RANGE_NAME = 'Sheet1'
+SAMPLE_RANGE_NAME = 'Sheet1!A1:A4'
 
 
 def get_links_from_spreadsheet(id: str, token: str) -> list:
