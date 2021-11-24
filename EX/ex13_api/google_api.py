@@ -1,3 +1,4 @@
+"""Request something from Google sheets."""
 from __future__ import print_function
 import os.path
 from googleapiclient.discovery import build
@@ -15,6 +16,7 @@ SAMPLE_RANGE_NAME = 'A1:A4'
 def get_links_from_spreadsheet(id: str, token: str) -> list:
     """
     Return a list of strings from the first column of a Google Spreadsheet with the given ID.
+
     Example input with https://docs.google.com/spreadsheets/d/1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M
         get_links_from_spreadsheet('1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M', 'token.json')
 
