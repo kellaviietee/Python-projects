@@ -57,4 +57,29 @@ def get_links_from_spreadsheet(id: str, token: str) -> list:
     return links_list
 
 
-print(get_links_from_spreadsheet("1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M", "token.json"))
+def get_links_from_playlist(link: str, developer_key: str) -> list:
+    """
+    Return a list of links to songs in the Youtube playlist with the given address.
+    Example input
+        get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK',
+                                'ThisIsNotARealKey_____ThisIsNotARealKey')
+
+    Returns
+        ['https://youtube.com/watch?v=r_It_X7v-1E', 'https://youtube.com/watch?v=U4ogK0MIzqk', ... and so on]
+    """
+    youtube_service = build("youtube", "v3", developerKey=developer_key)
+    request = youtube_service.playlistItems().list(
+        part="contentDetails",
+        playlistId="PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK"
+    )
+    result = request.execute()
+    all_videos = result["items"]
+    all_video_links = []
+    for video in all_videos:
+        video_id = video["contentDetails"]["videoId"]
+        all_video_links.append(f"https://youtube.com/watch?v={video_id}")
+    return all_video_links
+
+
+print(get_links_from_playlist("https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK",
+                              "AIzaSyAJeHD58FQcOM8UvKkwIU5vYLOrJu_pfBY"))
