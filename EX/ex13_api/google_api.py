@@ -70,7 +70,8 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     youtube_service = build("youtube", "v3", developerKey=developer_key)
     request = youtube_service.playlistItems().list(
         part="contentDetails",
-        playlistId="PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK"
+        playlistId="PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK",
+        maxResults=50
     )
     result = request.execute()
     all_videos = result["items"]
@@ -79,7 +80,3 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
         video_id = video["contentDetails"]["videoId"]
         all_video_links.append(f"https://youtube.com/watch?v={video_id}")
     return all_video_links
-
-
-print(get_links_from_playlist("https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK",
-                              "AIzaSyAJeHD58FQcOM8UvKkwIU5vYLOrJu_pfBY"))
