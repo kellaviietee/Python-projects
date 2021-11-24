@@ -60,6 +60,7 @@ def get_links_from_spreadsheet(id: str, token: str) -> list:
 def get_links_from_playlist(link: str, developer_key: str) -> list:
     """
     Return a list of links to songs in the Youtube playlist with the given address.
+
     Example input
         get_links_from_playlist('https://www.youtube.com/playlist?list=PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK',
                                 'ThisIsNotARealKey_____ThisIsNotARealKey')
