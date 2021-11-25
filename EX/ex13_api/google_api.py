@@ -71,7 +71,7 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     youtube_service = build("youtube", "v3", developerKey=developer_key)
     request = youtube_service.playlistItems().list(
         part="contentDetails",
-        playlistId="PLFt_AvWsXl0ehjAfLFsp1PGaatzAwo0uK",
+        playlistId=link,
         maxResults=50
     )
     result = request.execute()
@@ -80,4 +80,40 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     for video in all_videos:
         video_id = video["contentDetails"]["videoId"]
         all_video_links.append(f"https://youtube.com/watch?v={video_id}")
-    return all_video_links
+    result_keys = result.keys()
+    if "nextPageToken" in result_keys:
+        new_page = result["nextPageToken"]
+        return all_video_links + get_more_links_from_playlist(link,developer_key,new_page)
+    elif "nextPageToken" not in result_keys:
+        return all_video_links
+
+
+def get_more_links_from_playlist(link: str, developer_key: str, next_page: str) -> list:
+    """
+    Get all the links from a playlist.
+
+    :param link: link to the youtube playlist.
+    :param developer_key: developer key to be used with the API
+    :param next_page: code for where to get next youtube playlist links
+    :return:
+    """
+    youtube_service = build("youtube", "v3", developerKey=developer_key)
+    request = youtube_service.playlistItems().list(
+        part="contentDetails",
+        playlistId=link,
+        maxResults=50,
+        pageToken=next_page
+    )
+    result = request.execute()
+    all_videos = result["items"]
+    all_video_links = []
+    for video in all_videos:
+        video_id = video["contentDetails"]["videoId"]
+        all_video_links.append(f"https://youtube.com/watch?v={video_id}")
+    result = request.execute()
+    result_keys = result.keys()
+    if "nextPageToken" in result_keys:
+        new_page = result["nextPageToken"]
+        return all_video_links + get_more_links_from_playlist(link, developer_key, new_page)
+    elif "nextPageToken" not in result_keys:
+        return all_video_links
