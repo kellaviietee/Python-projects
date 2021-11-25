@@ -83,7 +83,7 @@ def get_links_from_playlist(link: str, developer_key: str) -> list:
     result_keys = result.keys()
     if "nextPageToken" in result_keys:
         new_page = result["nextPageToken"]
-        return all_video_links + get_more_links_from_playlist(link,developer_key,new_page)
+        return all_video_links + get_more_links_from_playlist(link, developer_key, new_page)
     elif "nextPageToken" not in result_keys:
         return all_video_links
 
