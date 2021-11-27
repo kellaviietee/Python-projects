@@ -238,9 +238,14 @@ class Statistics:
         :param type_of_game:
         :return: Integer of how many games were played.
         """
-        return self.stats_dict["result_types"].count(type_of_game)
+        games_of_type = []
+        for game in self.games:
+            if self.games[game].game_type == type_of_game:
+                games_of_type.append(game)
+        return len(games_of_type)
+
 
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/games"))
+    print(new_stat.get("/total/winner"))
