@@ -216,6 +216,8 @@ class Statistics:
         """Get info about players."""
         name_and_info = path.replace("/players/", "").split("/")
         player_name = name_and_info[0]
+        if player_name not in self.get_players():
+            return None
         request = name_and_info[1]
         all_players = self.stats_dict["players"]
         for player in all_players:
