@@ -222,6 +222,8 @@ class Statistics:
             if player.name == player_name:
                 if request == "amount":
                     return player.total_games_played()
+                if request == "favourite":
+                    return player.favourite_game()
 
     def get_players(self) -> list:
         """Return list of players."""
@@ -255,4 +257,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/players/joosep/amount"))
+    print(new_stat.get("/players/joosep/favourite"))
