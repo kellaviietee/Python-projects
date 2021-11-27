@@ -158,8 +158,10 @@ class Statistics:
         Constructor for Statistics class.
         :param filename: Text file where everything is stored.
         """
-        self.stats_dict = self.parse_statistics_file(filename)
-        self.players = None
+        self.games = {}
+        self.players = {}
+        self.total_games = 0
+        self.parse_statistics_file(filename)
 
     def parse_statistics_file(self, filename: str) -> dict:
         """
@@ -167,33 +169,24 @@ class Statistics:
         :param filename: Text file location
         :return: Dictionary of Games, it's players and results.
         """
-        stat_dict = {"games": [], "players": [], "results": [], "result_types": [], "total_number": 0}
         with open(filename) as text_file:
             data = text_file.read()
         different_lines = data.splitlines()
         for line in different_lines:
-            stat_dict["total_number"] += 1
+            self.total_games += 1
             split_line = line.split(";")
             game_name = split_line[0]
             result_type = split_line[2]
-            stat_dict["result_types"].append(result_type)
-            new_game = Game(game_name, result_type)
-            if new_game not in stat_dict["games"]:
-                stat_dict["games"].append(new_game)
+            game_object = Game(game_name, result_type)
             players = split_line[1].split(",")
             for player in players:
-                new_player = Player(player)
-                new_player.add_games(new_game)
-                if new_player not in stat_dict["players"]:
-                    stat_dict["players"].append(new_player)
-                elif new_player in stat_dict["players"]:
-                    current_players = stat_dict["players"]
-                    for existing_player in current_players:
-                        if existing_player.name == player:
-                            existing_player.add_games(new_game)
-            result = split_line[3]
-            stat_dict["results"].append(result)
-        return stat_dict
+                if player not in self.players:
+                    new_player_object = Player(player)
+                    new_player_object.add_games(game_object)
+                    self.players[player] = new_player_object
+                elif player in self.players:
+                    self.players[player].add_games(game_object)
+
 
     def get(self, path: str):
         """Different API methods."""
@@ -229,11 +222,7 @@ class Statistics:
 
     def get_players(self) -> list:
         """Return list of players."""
-        all_players = self.stats_dict["players"]
-        all_player_names = []
-        for player in all_players:
-            all_player_names.append(player.name)
-        return all_player_names
+        return list(self.players.keys())
 
     def get_games(self) -> list:
         """Return lis of games played."""
@@ -259,5 +248,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/players/joosep/amount"))
-    print(new_stat.get("/players/joosep/favourite"))
+    print(new_stat.get("/players"))
