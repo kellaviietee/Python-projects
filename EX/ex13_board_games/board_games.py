@@ -260,4 +260,4 @@ class Statistics:
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
     print(new_stat.get("/players/joosep/amount"))
-    print(new_stat.get("/players/kristjan/favourite"))
+    print(new_stat.get("/players/joosep/favourite"))
