@@ -212,6 +212,7 @@ class Statistics:
         elif "/players/" in path:
             return self.get_info_about_players(path)
 
+
     def get_info_about_players(self, path: str):
         """Get info about players."""
         name_and_info = path.replace("/players/", "").split("/")
@@ -258,3 +259,4 @@ class Statistics:
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
     print(new_stat.get("/players/joosep/favourite"))
+    print(new_stat.get("/players/kristjan/favourite"))
