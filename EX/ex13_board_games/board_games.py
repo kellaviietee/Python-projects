@@ -14,6 +14,10 @@ class Player:
         """How is the Player represented."""
         return self.name
 
+    def __eq__(self, other):
+        """When are two players considered the same."""
+        return self.name == other.name
+
     def total_games_played(self) -> int:
         """How many games has the player played."""
         return len(self.games_played)
@@ -25,7 +29,8 @@ class Player:
             if favourite_game is None:
                 favourite_game = game
             else:
-                favourite_game = max(self.games_played.count(favourite_game), self.games_played.count(game))
+                if self.games_played.count(favourite_game) < self.games_played.count(game):
+                    favourite_game = game
         return favourite_game
 
     def add_games(self, game_name: str):
@@ -50,6 +55,10 @@ class Game:
     def __repr__(self):
         """How is the Game represented."""
         return self.name
+
+    def __eq__(self, other):
+        """When are two games the same."""
+        return self.name == other.name
 
     def update_amount_played(self):
         """Update number of times the game has been played"""
@@ -166,19 +175,19 @@ class Statistics:
             stat_dict["total_number"] += 1
             split_line = line.split(";")
             game_name = split_line[0]
-            if game_name not in stat_dict["games"]:
-                stat_dict["games"].append(game_name)
-            result_type = split_line[-2]
+            result_type = split_line[2]
             stat_dict["result_types"].append(result_type)
-            result = split_line[-1]
-            stat_dict["results"].append(result)
-            split_line.remove(game_name)
-            split_line.remove(result)
-            split_line.remove(result_type)
-            players = split_line[0].split(",")
+            new_game = Game(game_name, result_type)
+            if new_game not in stat_dict["games"]:
+                stat_dict["games"].append(new_game)
+            players = split_line[1].split(",")
             for player in players:
-                if player not in stat_dict["players"]:
-                    stat_dict["players"].append(player)
+                new_player = Player(player)
+                if new_player not in stat_dict["players"]:
+                    stat_dict["players"].append(new_player)
+
+            result = split_line[3]
+            stat_dict["results"].append(result)
         return stat_dict
 
     def get(self, path: str):
@@ -220,6 +229,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/total/{points}"))
-    print(new_stat.get("/total/{places}"))
-    print(new_stat.get("/total/{winner}"))
+    print(new_stat.stats_dict)
