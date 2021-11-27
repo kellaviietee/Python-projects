@@ -229,7 +229,7 @@ class Statistics:
 
     def get_total_games(self) -> int:
         """Return total games played."""
-        return self.stats_dict["total_number"]
+        return self.total_games
 
     def get_count_game_types_played(self, type_of_game: str) -> int:
         """
