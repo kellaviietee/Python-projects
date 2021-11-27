@@ -33,7 +33,7 @@ class Player:
                     favourite_game = game
         return favourite_game
 
-    def add_games(self, game_name: str):
+    def add_games(self, game_name: "Game"):
         """Add a game to the list of played games."""
         self.games_played.append(game_name)
 
@@ -183,9 +183,14 @@ class Statistics:
             players = split_line[1].split(",")
             for player in players:
                 new_player = Player(player)
+                new_player.add_games(new_game)
                 if new_player not in stat_dict["players"]:
                     stat_dict["players"].append(new_player)
-
+                elif new_player in stat_dict["players"]:
+                    current_players = stat_dict["players"]
+                    for existing_player in current_players:
+                        if existing_player.name == player:
+                            existing_player.add_games(new_game)
             result = split_line[3]
             stat_dict["results"].append(result)
         return stat_dict
@@ -204,6 +209,19 @@ class Statistics:
             return self.get_count_game_types_played("places")
         elif "winner" in path:
             return self.get_count_game_types_played("winner")
+        elif "/players/" in path:
+            return self.get_info_about_players(path)
+
+    def get_info_about_players(self, path: str):
+        """Get info about players."""
+        name_and_info = path.replace("/players/", "").split("/")
+        player_name = name_and_info[0]
+        request = name_and_info[1]
+        all_players = self.stats_dict["players"]
+        for player in all_players:
+            if player.name == player_name:
+                if request == "amount":
+                    return player.total_games_played()
 
     def get_players(self) -> list:
         """Return list of players."""
@@ -237,4 +255,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.stats_dict)
+    print(new_stat.get("/players/joosep/amount"))
