@@ -31,7 +31,7 @@ class Player:
             else:
                 if self.games_played.count(favourite_game) < self.games_played.count(game):
                     favourite_game = game
-        return favourite_game
+        return favourite_game.name
 
     def add_games(self, game_name: "Game"):
         """Add a game to the list of played games."""
@@ -258,5 +258,5 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/players/joosep/favourite"))
+    print(type(new_stat.get("/players/joosep/favourite")))
     print(new_stat.get("/players/kristjan/favourite"))
