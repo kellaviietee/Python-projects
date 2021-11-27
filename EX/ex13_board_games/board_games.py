@@ -191,7 +191,6 @@ class Statistics:
                 elif player in self.players:
                     self.players[player].add_games(game_object)
 
-
     def get(self, path: str):
         """Different API methods."""
         if path == "/players":
@@ -238,14 +237,14 @@ class Statistics:
         :param type_of_game:
         :return: Integer of how many games were played.
         """
-        games_of_type = []
+        games_of_type = 0
         for game in self.games:
             if self.games[game].game_type == type_of_game:
-                games_of_type.append(game)
-        return len(games_of_type)
-
+                test = self.games[game].amount_played
+                games_of_type += test
+        return games_of_type
 
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/total/winner"))
+    print(new_stat.get("/total/points"))
