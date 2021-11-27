@@ -212,13 +212,8 @@ class Statistics:
         if player_name not in self.get_players():
             return None
         request = name_and_info[1]
-        all_players = self.stats_dict["players"]
-        for player in all_players:
-            if player.name == player_name:
-                if request == "amount":
-                    return player.total_games_played()
-                if request == "favourite":
-                    return player.favourite_game()
+        if request == "amount":
+            return self.players[player_name].total_games_played()
 
     def get_players(self) -> list:
         """Return list of players."""
@@ -248,4 +243,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/players"))
+    print(new_stat.get("/players/joosep/amount"))
