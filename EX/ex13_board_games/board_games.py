@@ -207,7 +207,11 @@ class Statistics:
 
     def get_players(self) -> list:
         """Return list of players."""
-        return self.stats_dict["players"]
+        all_players = self.stats_dict["players"]
+        all_player_names = []
+        for player in all_players:
+            all_player_names.append(player.name)
+        return all_player_names
 
     def get_games(self) -> list:
         """Return lis of games played."""
