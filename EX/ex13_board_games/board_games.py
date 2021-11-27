@@ -178,6 +178,10 @@ class Statistics:
             game_name = split_line[0]
             result_type = split_line[2]
             game_object = Game(game_name, result_type)
+            if game_name not in self.games:
+                self.games[game_name] = game_object
+            elif game_name in self.games:
+                self.games[game_name].update_amount_played()
             players = split_line[1].split(",")
             for player in players:
                 if player not in self.players:
@@ -221,11 +225,7 @@ class Statistics:
 
     def get_games(self) -> list:
         """Return lis of games played."""
-        all_games = self.stats_dict["games"]
-        all_game_names = []
-        for game in all_games:
-            all_game_names.append(game.name)
-        return all_game_names
+        return list(self.games.keys())
 
     def get_total_games(self) -> int:
         """Return total games played."""
@@ -243,4 +243,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/players/joosep/amount"))
+    print(new_stat.get("/games"))
