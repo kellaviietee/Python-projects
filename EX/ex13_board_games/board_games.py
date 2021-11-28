@@ -53,7 +53,7 @@ class Game:
         self.winners = []
         self.losers = []
         self.players = []
-        self.record_holder = None
+        self.record_holder = []
 
     def __repr__(self):
         """How is the Game represented."""
@@ -131,18 +131,18 @@ class Game:
                 if most_frequent_loser is None:
                     most_frequent_loser = player
                 else:
-                    most_loser_percentage = self.losers.count(most_frequent_loser) /\
+                    most_loser_percentage = self.losers.count(most_frequent_loser) / \
                                             self.players.count(most_frequent_loser)
                     player_percentage = self.losers.count(player) / self.players.count(player)
                     if player_percentage > most_loser_percentage:
                         most_frequent_loser = player
         return most_frequent_loser
 
-    def record_holder(self, contender: [list]):
+    def update_record_holder(self, contender: list):
         """Update games record holder."""
-        if self.game_type == "points" and self.record_holder is None:
+        if not self.record_holder:
             self.record_holder = contender
-        elif self.game_type == "points":
+        else:
             if contender[1] > self.record_holder[1]:
                 self.record_holder = contender
 
@@ -205,6 +205,8 @@ class Statistics:
                 self.players[sorted_results[0][0]].win_game()
                 game_object.winners.append(sorted_results[0][0])
                 game_object.losers.append(sorted_results[-1][0])
+                record_contender = list(sorted_results[0])
+                game_object.update_record_holder(record_contender)
             elif result_type == "winner":
                 winner = result[0]
                 self.players[winner].win_game()
@@ -229,7 +231,6 @@ class Statistics:
         elif "/player/" in path:
             return self.get_info_about_players(path)
 
-
     def get_info_about_game(self, path: str):
         """Get info about specific game."""
         name_and_info = path.replace("/game/", "").split("/")
@@ -247,6 +248,8 @@ class Statistics:
             return self.games[game_name].most_losses()
         elif request == "most-frequent-loser":
             return self.games[game_name].most_frequent_loser()
+        elif request == "record-holder":
+            return self.games[game_name].get_record_holder()
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -289,4 +292,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/terraforming mars/player-amount"))
+    print(new_stat.get("/game/7 wonders/record-holder"))
