@@ -52,7 +52,7 @@ class Game:
         self.player_counts = []
         self.winners = []
         self.losers = []
-        self.players = {}
+        self.players = []
         self.record_holder = None
 
     def __repr__(self):
@@ -93,12 +93,9 @@ class Game:
                     most_wins = player
         return most_wins
 
-    def add_player(self, player: Player):
-        """Add a player to Game dictionary to see how many_times player has played the game."""
-        if player in self.players:
-            self.players[player] += 1
-        else:
-            self.players[player] = 1
+    def add_player(self, player: str):
+        """Add a player to Game's players list"""
+        self.players.append(player)
 
     def most_frequent_winner(self) -> str:
         """Find who has the best winning percentage."""
@@ -108,11 +105,12 @@ class Game:
                 if most_frequent_winner is None:
                     most_frequent_winner = player
                 else:
-                    most_freq_percentage = self.winners.count(most_frequent_winner) / self.players[most_frequent_winner]
-                    player_percentage = self.winners.count(player) / self.players[player]
+                    most_freq_percentage = self.winners.count(most_frequent_winner) / \
+                                           self.players.count(most_frequent_winner)
+                    player_percentage = self.winners.count(player) / self.players.count(player)
                     if player_percentage > most_freq_percentage:
                         most_frequent_winner = player
-        return most_frequent_winner.name
+        return most_frequent_winner
 
     def most_losses(self) -> str:
         """Find who has lost the most games."""
@@ -133,11 +131,12 @@ class Game:
                 if most_frequent_loser is None:
                     most_frequent_loser = player
                 else:
-                    most_loser_percentage = self.losers.count(most_frequent_loser) / self.players[most_frequent_loser]
-                    player_percentage = self.losers.count(player) / self.players[player]
+                    most_loser_percentage = self.losers.count(most_frequent_loser) /\
+                                            self.players.count(most_frequent_loser)
+                    player_percentage = self.losers.count(player) / self.players.count(player)
                     if player_percentage > most_loser_percentage:
                         most_frequent_loser = player
-        return most_frequent_loser.name
+        return most_frequent_loser
 
     def record_holder(self, contender: [list]):
         """Update games record holder."""
@@ -187,6 +186,7 @@ class Statistics:
             players = split_line[1].split(",")
             game_object.add_player_count(len(players))
             for player in players:
+                game_object.add_player(player)
                 if player not in self.players:
                     new_player_object = Player(player)
                     new_player_object.add_games(game_object)
@@ -209,7 +209,9 @@ class Statistics:
 
     def get(self, path: str):
         """Different API methods."""
-        if path == "/players":
+        if "/game/" in path:
+            return self.get_info_about_game(path)
+        elif path == "/players":
             return self.get_players()
         elif path == "/games":
             return self.get_games()
@@ -223,8 +225,7 @@ class Statistics:
             return self.get_count_game_types_played("winner")
         elif "/player/" in path:
             return self.get_info_about_players(path)
-        elif "/game/" in path:
-            return self.get_info_about_game(path)
+
 
     def get_info_about_game(self, path: str):
         """Get info about specific game"""
@@ -237,6 +238,8 @@ class Statistics:
             return self.games[game_name].most_frequent_player_count()
         if request == "most-wins":
             return self.games[game_name].most_wins()
+        if request == "most-frequent-winner":
+            return self.games[game_name].most_frequent_winner()
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -279,4 +282,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/chess/most-wins"))
+    print(new_stat.get("/game/game of thrones/most-frequent-winner"))
