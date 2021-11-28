@@ -196,13 +196,16 @@ class Statistics:
             result = split_line[3].split(",")
             if result_type == "places":
                 self.players[result[0]].win_game()
+                game_object.winners.append(result[0])
             elif result_type == "points":
                 pair_results = list(zip(players, result))
                 sorted_results = sorted(pair_results, key=lambda results: int(results[1]), reverse=True)
                 self.players[sorted_results[0][0]].win_game()
+                game_object.winners.append(sorted_results[0][0])
             elif result_type == "winner":
                 winner = result[0]
                 self.players[winner].win_game()
+                game_object.winners.append(winner)
 
     def get(self, path: str):
         """Different API methods."""
@@ -232,6 +235,8 @@ class Statistics:
             return self.games[game_name].amount_played
         if request == "player-amount":
             return self.games[game_name].most_frequent_player_count()
+        if request == "most-wins":
+            return self.games[game_name].most_wins()
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -274,4 +279,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/terraforming mars/player-amount"))
+    print(new_stat.get("/game/chess/most-wins"))
