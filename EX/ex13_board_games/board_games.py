@@ -107,7 +107,7 @@ class Game:
                     most_frequent_winner = player
                 else:
                     most_freq_percentage = self.winners.count(most_frequent_winner) / \
-                                         self.players.count(most_frequent_winner)
+                    self.players.count(most_frequent_winner)
                     player_percentage = self.winners.count(player) / self.players.count(player)
                     if player_percentage > most_freq_percentage:
                         most_frequent_winner = player
@@ -133,7 +133,7 @@ class Game:
                     most_frequent_loser = player
                 else:
                     most_loser_percentage = self.losers.count(most_frequent_loser) / \
-                                          self.players.count(most_frequent_loser)
+                                            self.players.count(most_frequent_loser)
                     player_percentage = self.losers.count(player) / self.players.count(player)
                     if player_percentage > most_loser_percentage:
                         most_frequent_loser = player
