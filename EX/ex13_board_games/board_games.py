@@ -78,8 +78,8 @@ class Game:
             if most_frequent_count is None:
                 most_frequent_count = count
             else:
-                most_frequent_count = max(self.player_counts.count(most_frequent_count),
-                                          self.player_counts.count(count))
+                if self.player_counts.count(most_frequent_count) < self.player_counts.count(count):
+                    most_frequent_count = count
         return most_frequent_count
 
     def most_wins(self) -> str:
