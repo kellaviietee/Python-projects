@@ -230,7 +230,7 @@ class Statistics:
 
 
     def get_info_about_game(self, path: str):
-        """Get info about specific game"""
+        """Get info about specific game."""
         name_and_info = path.replace("/game/", "").split("/")
         game_name = name_and_info[0]
         request = name_and_info[1]
@@ -244,6 +244,8 @@ class Statistics:
             return self.games[game_name].most_frequent_winner()
         if request == "most-losses":
             return self.games[game_name].most_losses()
+        if request == "most-frequent-loser":
+            return self.games[game_name].most_frequent_loser()
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -286,4 +288,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/terraforming mars/most-losses"))
+    print(new_stat.get("/game/7 wonders/most-frequent-loser"))
