@@ -37,6 +37,9 @@ class Player:
         """Add a game to the list of played games."""
         self.games_played.append(game_name)
 
+    def win_game(self):
+        self.won_games += 1
+
 
 class Game:
     """Game statistics"""
@@ -163,11 +166,10 @@ class Statistics:
         self.total_games = 0
         self.parse_statistics_file(filename)
 
-    def parse_statistics_file(self, filename: str) -> dict:
+    def parse_statistics_file(self, filename: str):
         """
-        Read a text file and organize it into a dictionary to work with
+        Read a text file and organize it into a workable form.
         :param filename: Text file location
-        :return: Dictionary of Games, it's players and results.
         """
         with open(filename) as text_file:
             data = text_file.read()
@@ -190,6 +192,16 @@ class Statistics:
                     self.players[player] = new_player_object
                 elif player in self.players:
                     self.players[player].add_games(game_object)
+            result = split_line[3].split(",")
+            if result_type == "places":
+                self.players[result[0]].win_game()
+            elif result_type == "points":
+                pair_results = list(zip(players, result))
+                sorted_results = sorted(pair_results, key=lambda results: int(results[1]), reverse=True)
+                self.players[sorted_results[0][0]].win_game()
+            elif result_type == "winner":
+                winner = result[0]
+                self.players[winner].win_game()
 
     def get(self, path: str):
         """Different API methods."""
@@ -217,6 +229,8 @@ class Statistics:
             return self.players[player_name].total_games_played()
         elif request == "favourite":
             return self.players[player_name].favourite_game()
+        elif request == "won":
+            return self.players[player_name].won_games
 
     def get_players(self) -> list:
         """Return list of players."""
@@ -247,4 +261,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/player/joosep/favourite"))
+    print(new_stat.get("/player/joosep/won"))
