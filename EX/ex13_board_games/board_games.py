@@ -219,6 +219,16 @@ class Statistics:
             return self.get_count_game_types_played("winner")
         elif "/player/" in path:
             return self.get_info_about_players(path)
+        elif "/game/" in path:
+            return self.get_info_about_game(path)
+
+    def get_info_about_game(self, path: str):
+        """Get info about specific game"""
+        name_and_info = path.replace("/game/", "").split("/")
+        game_name = name_and_info[0]
+        request = name_and_info[1]
+        if request == "amount":
+            return self.games[game_name].amount_played
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -261,4 +271,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/player/joosep/won"))
+    print(new_stat.get("/game/game of thrones/amount"))
