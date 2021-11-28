@@ -38,11 +38,12 @@ class Player:
         self.games_played.append(game_name)
 
     def win_game(self):
+        """Add more wins to the player."""
         self.won_games += 1
 
 
 class Game:
-    """Game statistics"""
+    """Game statistics."""
 
     def __init__(self, name: str, game_type: str):
         """Initialize Game instant."""
@@ -64,11 +65,11 @@ class Game:
         return self.name == other.name
 
     def update_amount_played(self):
-        """Update number of times the game has been played"""
+        """Update number of times the game has been played."""
         self.amount_played += 1
 
     def add_player_count(self, player_count: int):
-        """How many players played the game"""
+        """How many players played the game."""
         self.player_counts.append(player_count)
 
     def most_frequent_player_count(self) -> int:
@@ -94,7 +95,7 @@ class Game:
         return most_wins
 
     def add_player(self, player: str):
-        """Add a player to Game's players list"""
+        """Add a player to Game's players list."""
         self.players.append(player)
 
     def most_frequent_winner(self) -> str:
@@ -106,7 +107,7 @@ class Game:
                     most_frequent_winner = player
                 else:
                     most_freq_percentage = self.winners.count(most_frequent_winner) / \
-                                           self.players.count(most_frequent_winner)
+                                         self.players.count(most_frequent_winner)
                     player_percentage = self.winners.count(player) / self.players.count(player)
                     if player_percentage > most_freq_percentage:
                         most_frequent_winner = player
@@ -132,7 +133,7 @@ class Game:
                     most_frequent_loser = player
                 else:
                     most_loser_percentage = self.losers.count(most_frequent_loser) / \
-                                            self.players.count(most_frequent_loser)
+                                          self.players.count(most_frequent_loser)
                     player_percentage = self.losers.count(player) / self.players.count(player)
                     if player_percentage > most_loser_percentage:
                         most_frequent_loser = player
@@ -158,6 +159,7 @@ class Statistics:
     def __init__(self, filename: str):
         """
         Constructor for Statistics class.
+
         :param filename: Text file where everything is stored.
         """
         self.games = {}
@@ -168,6 +170,7 @@ class Statistics:
     def parse_statistics_file(self, filename: str):
         """
         Read a text file and organize it into a workable form.
+
         :param filename: Text file location
         """
         with open(filename) as text_file:
