@@ -182,6 +182,7 @@ class Statistics:
             if game_name not in self.games:
                 self.games[game_name] = game_object
             elif game_name in self.games:
+                game_object = self.games[game_name]
                 self.games[game_name].update_amount_played()
             players = split_line[1].split(",")
             game_object.add_player_count(len(players))
@@ -288,4 +289,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/7 wonders/most-frequent-loser"))
+    print(new_stat.get("/game/terraforming mars/most-frequent-loser"))
