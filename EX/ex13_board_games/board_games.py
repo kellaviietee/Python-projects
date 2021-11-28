@@ -185,6 +185,7 @@ class Statistics:
             elif game_name in self.games:
                 self.games[game_name].update_amount_played()
             players = split_line[1].split(",")
+            game_object.add_player_count(len(players))
             for player in players:
                 if player not in self.players:
                     new_player_object = Player(player)
@@ -229,6 +230,8 @@ class Statistics:
         request = name_and_info[1]
         if request == "amount":
             return self.games[game_name].amount_played
+        if request == "player-amount":
+            return self.games[game_name].most_frequent_player_count()
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -271,4 +274,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/game of thrones/amount"))
+    print(new_stat.get("/game/terraforming mars/player-amount"))
