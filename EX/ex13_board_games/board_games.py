@@ -237,15 +237,15 @@ class Statistics:
         request = name_and_info[1]
         if request == "amount":
             return self.games[game_name].amount_played
-        if request == "player-amount":
+        elif request == "player-amount":
             return self.games[game_name].most_frequent_player_count()
-        if request == "most-wins":
+        elif request == "most-wins":
             return self.games[game_name].most_wins()
-        if request == "most-frequent-winner":
+        elif request == "most-frequent-winner":
             return self.games[game_name].most_frequent_winner()
-        if request == "most-losses":
+        elif request == "most-losses":
             return self.games[game_name].most_losses()
-        if request == "most-frequent-loser":
+        elif request == "most-frequent-loser":
             return self.games[game_name].most_frequent_loser()
 
     def get_info_about_players(self, path: str):
@@ -289,4 +289,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/terraforming mars/most-frequent-loser"))
+    print(new_stat.get("/game/terraforming mars/player-amount"))
