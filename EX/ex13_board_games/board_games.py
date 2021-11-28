@@ -121,7 +121,7 @@ class Game:
             else:
                 if self.losers.count(most_losses) < self.losers.count(player):
                     most_losses = player
-        return most_losses.name
+        return most_losses
 
     def most_frequent_loser(self) -> str:
         """Find the most frequent loser."""
@@ -197,11 +197,13 @@ class Statistics:
             if result_type == "places":
                 self.players[result[0]].win_game()
                 game_object.winners.append(result[0])
+                game_object.losers.append(result[-1])
             elif result_type == "points":
                 pair_results = list(zip(players, result))
                 sorted_results = sorted(pair_results, key=lambda results: int(results[1]), reverse=True)
                 self.players[sorted_results[0][0]].win_game()
                 game_object.winners.append(sorted_results[0][0])
+                game_object.losers.append(sorted_results[-1][0])
             elif result_type == "winner":
                 winner = result[0]
                 self.players[winner].win_game()
@@ -240,6 +242,8 @@ class Statistics:
             return self.games[game_name].most_wins()
         if request == "most-frequent-winner":
             return self.games[game_name].most_frequent_winner()
+        if request == "most-losses":
+            return self.games[game_name].most_losses()
 
     def get_info_about_players(self, path: str):
         """Get info about players."""
@@ -282,4 +286,4 @@ class Statistics:
 
 if __name__ == '__main__':
     new_stat = Statistics("games.txt")
-    print(new_stat.get("/game/game of thrones/most-frequent-winner"))
+    print(new_stat.get("/game/terraforming mars/most-losses"))
