@@ -1,2 +1,1 @@
-git clone https://github.com/Hattyot/FollowerBot.git
-pip3 install -e FollowerBot
+git+https://github.com/Hattyot/FollowerBot.git#egg=FollowerBot
