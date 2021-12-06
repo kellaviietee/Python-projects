@@ -8,3 +8,7 @@ def test_run(robot: FollowerBot):
     robot.sleep(10)
     robot.set_wheels_speed(0)
     robot.done()
+
+
+if __name__ == "main":
+    test_run(FollowerBot())
