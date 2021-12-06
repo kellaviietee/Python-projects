@@ -44,4 +44,4 @@ def the_true_follower(robot: FollowerBot):
 
 
 if __name__ == '__main__':
-    test_run(FollowerBot())
+    pass
