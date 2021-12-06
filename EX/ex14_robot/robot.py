@@ -11,4 +11,4 @@ def test_run(robot: FollowerBot):
 
 
 if __name__ == "main":
-    test_run(FollowerBot())
+    pass
