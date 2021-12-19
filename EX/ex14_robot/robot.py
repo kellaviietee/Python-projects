@@ -26,35 +26,52 @@ def follow_the_line(robot: FollowerBot):
         robot.sleep(0.01)
         robot.set_wheels_speed(0)
     while 0 in robot.get_line_sensors():
-        if robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() == 0:
-            robot.set_wheels_speed(100)
-            robot.sleep(0.01)
-            robot.set_wheels_speed(0)
-        elif robot.get_left_line_sensor() == 1024 and robot.get_right_line_sensor() == 0:
-            robot.set_left_wheel_speed(-100)
-            robot.set_right_wheel_speed(100)
-            robot.sleep(0.01)
-            robot.set_wheels_speed(0)
-        elif robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() == 1024:
-            robot.set_right_wheel_speed(-100)
-            robot.set_left_wheel_speed(100)
-            robot.sleep(0.01)
-            robot.set_wheels_speed(0)
-        elif 0 not in robot.get_left_line_sensors() and 0 in robot.get_right_line_sensors():
-            robot.set_left_wheel_speed(-100)
-            robot.set_right_wheel_speed(100)
-            robot.sleep(0.01)
-            robot.set_wheels_speed(0)
-        elif 0 not in robot.get_right_line_sensors() and 0 in robot.get_left_line_sensors():
-            robot.set_left_wheel_speed(100)
-            robot.set_right_wheel_speed(-100)
-            robot.sleep(0.01)
-            robot.set_wheels_speed(0)
+        if robot.get_left_line_sensor() != robot.get_right_line_sensor():
+            if robot.get_left_line_sensor() < robot.get_right_line_sensor():
+                robot.set_left_wheel_speed(100)
+                robot.set_right_wheel_speed(-100)
+                robot.sleep(0.01)
+                robot.set_wheels_speed(0)
+            elif robot.get_left_line_sensor() > robot.get_right_line_sensor():
+                robot.set_left_wheel_speed(-100)
+                robot.set_right_wheel_speed(100)
+                robot.sleep(0.01)
+                robot.set_wheels_speed(0)
+        elif robot.get_left_line_sensor() == robot.get_right_line_sensor():
+            if robot.get_second_line_sensor_from_left() != robot.get_second_line_sensor_from_right():
+                if robot.get_left_line_sensor() != robot.get_right_line_sensor():
+                    if robot.get_second_line_sensor_from_left() < robot.get_second_line_sensor_from_right():
+                        robot.set_left_wheel_speed(100)
+                        robot.set_right_wheel_speed(-100)
+                        robot.sleep(0.01)
+                        robot.set_wheels_speed(0)
+                    elif robot.get_second_line_sensor_from_left() > robot.get_second_line_sensor_from_right():
+                        robot.set_left_wheel_speed(-100)
+                        robot.set_right_wheel_speed(100)
+                        robot.sleep(0.01)
+                        robot.set_wheels_speed(0)
+            if robot.get_left_line_sensor() == robot.get_right_line_sensor():
+                if robot.get_third_line_sensor_from_left() < robot.get_third_line_sensor_from_right():
+                    print("track on the left")
+                    robot.set_left_wheel_speed(100)
+                    robot.set_right_wheel_speed(-100)
+                    robot.sleep(0.01)
+                    robot.set_wheels_speed(0)
+                elif robot.get_third_line_sensor_from_left() > robot.get_third_line_sensor_from_right():
+                    print("track on the right")
+                    robot.set_left_wheel_speed(-100)
+                    robot.set_right_wheel_speed(100)
+                    robot.sleep(0.01)
+                    robot.set_wheels_speed(0)
+                else:
+                    robot.set_wheels_speed(100)
+                    robot.sleep(0.01)
+                    robot.set_wheels_speed(0)
+
 
         else:
             break
-    print(robot.get_left_line_sensors())
-    print(robot.get_right_line_sensors())
+    print(robot.get_line_sensors())
     robot.done()
 
 
