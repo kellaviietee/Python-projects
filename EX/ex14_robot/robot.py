@@ -30,27 +30,34 @@ def follow_the_line(robot: FollowerBot):
             robot.set_wheels_speed(100)
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
+        elif robot.get_left_line_sensor() == 1024 and robot.get_right_line_sensor() == 0:
+            robot.set_left_wheel_speed(-100)
+            robot.set_right_wheel_speed(100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+        elif robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() == 1024:
+            robot.set_right_wheel_speed(-100)
+            robot.set_left_wheel_speed(100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+        elif 0 not in robot.get_left_line_sensors() and 0 in robot.get_right_line_sensors():
+            robot.set_left_wheel_speed(-100)
+            robot.set_right_wheel_speed(100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+        elif 0 not in robot.get_right_line_sensors() and 0 in robot.get_left_line_sensors():
+            robot.set_left_wheel_speed(100)
+            robot.set_right_wheel_speed(-100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+
         else:
-            left_count = robot.get_left_line_sensors().count(0)
-            right_count = robot.get_right_line_sensors().count(0)
-            if left_count < right_count:
-                robot.set_left_wheel_speed(-100)
-                robot.set_right_wheel_speed(100)
-                robot.sleep(0.01)
-                robot.set_wheels_speed(0)
-                continue
-            elif right_count < left_count:
-                robot.set_right_wheel_speed(-100)
-                robot.set_left_wheel_speed(100)
-                robot.sleep(0.01)
-                robot.set_wheels_speed(0)
-                continue
             break
-
-
     print(robot.get_left_line_sensors())
     print(robot.get_right_line_sensors())
     robot.done()
+
+
 
 
 if __name__ == '__main__':
