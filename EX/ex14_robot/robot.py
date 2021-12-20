@@ -157,5 +157,5 @@ def the_true_follower(robot: FollowerBot):
 
 
 if __name__ == '__main__':
-    robo = FollowerBot(start_x=380, start_y=255, track_image="track.png")
-    follow_the_line(robo)
+    robo = FollowerBot(start_x=265, start_y=283, track_image="track3.png")
+    the_true_follower(robo)
