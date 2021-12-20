@@ -102,7 +102,7 @@ def the_true_follower(robot: FollowerBot):
                 robot.set_right_wheel_speed(100)
                 robot.sleep(0.1407)
                 robot.set_wheels_speed(0)
-            if 0 in robot.get_right_line_sensors():
+            if 0 in robot.get_left_line_sensors():
                 robot.set_left_wheel_speed(100)
                 robot.set_right_wheel_speed(-100)
                 robot.sleep(0.1407)
@@ -116,14 +116,14 @@ def the_true_follower(robot: FollowerBot):
         elif left_on_line == right_on_line + 1:
             print("this triggers")
             robot.set_left_wheel_speed(100)
-            robot.set_right_wheel_speed(0)
+            robot.set_right_wheel_speed(50)
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
             left_on_line = robot.get_left_line_sensors().count(0)
             right_on_line = robot.get_right_line_sensors().count(0)
         elif left_on_line == right_on_line - 1:
             print("this triggers 2")
-            robot.set_left_wheel_speed(0)
+            robot.set_left_wheel_speed(50)
             robot.set_right_wheel_speed(100)
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
@@ -132,14 +132,14 @@ def the_true_follower(robot: FollowerBot):
         elif left_on_line == right_on_line + 2:
             print("this triggers 3")
             robot.set_left_wheel_speed(50)
-            robot.set_right_wheel_speed(-50)
+            robot.set_right_wheel_speed(10)
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
             left_on_line = robot.get_left_line_sensors().count(0)
             right_on_line = robot.get_right_line_sensors().count(0)
         elif left_on_line == right_on_line - 2:
             print("this triggers 4")
-            robot.set_left_wheel_speed(-50)
+            robot.set_left_wheel_speed(10)
             robot.set_right_wheel_speed(50)
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
@@ -169,5 +169,5 @@ def the_true_follower(robot: FollowerBot):
 
 
 if __name__ == '__main__':
-    robo = FollowerBot(start_x=133, start_y=280, track_image="track3.png")
+    robo = FollowerBot(start_x=169, start_y=270, track_image="track3.png")
     the_true_follower(robo)
