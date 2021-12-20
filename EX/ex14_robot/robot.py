@@ -96,7 +96,18 @@ def the_true_follower(robot: FollowerBot):
     left_on_line = robot.get_left_line_sensors().count(0)
     right_on_line = robot.get_right_line_sensors().count(0)
     while 0 in robot.get_line_sensors():
-        if left_on_line == right_on_line:
+        if robot.get_line_sensors().count(0) == 1:
+            if 0 in robot.get_left_line_sensors():
+                robot.set_left_wheel_speed(-100)
+                robot.set_right_wheel_speed(100)
+                robot.sleep(0.1407)
+                robot.set_wheels_speed(0)
+            if 0 in robot.get_right_line_sensors():
+                robot.set_left_wheel_speed(100)
+                robot.set_right_wheel_speed(-100)
+                robot.sleep(0.1407)
+                robot.set_wheels_speed(0)
+        elif left_on_line == right_on_line:
             robot.set_wheels_speed(100)
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
@@ -156,6 +167,7 @@ def the_true_follower(robot: FollowerBot):
     robot.done()
 
 
+
 if __name__ == '__main__':
-    robo = FollowerBot(start_x=265, start_y=283, track_image="track3.png")
+    robo = FollowerBot(start_x=133, start_y=280, track_image="track3.png")
     the_true_follower(robo)
