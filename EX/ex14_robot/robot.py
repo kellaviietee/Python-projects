@@ -89,10 +89,22 @@ def follow_the_line(robot: FollowerBot):
 
 
 def the_true_follower(robot: FollowerBot):
+    initial_drive_to_the_line(robot)
+    drive_along_the_path(robot)
+    if 500 < robot.get_left_line_sensor() < 1024 and 500 < robot.get_right_line_sensor() < 1024:
+        turn_robot_around(robot)
+    drive_along_the_path(robot)
+    robot.done()
+
+
+def initial_drive_to_the_line(robot: FollowerBot):
     while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
         robot.set_wheels_speed(100)
         robot.sleep(0.01)
         robot.set_wheels_speed(0)
+
+
+def drive_along_the_path(robot: FollowerBot):
     while 0 in robot.get_line_sensors():
         if robot.get_left_line_sensor() == 0 and robot.get_right_line_sensor() == 0:
             robot.set_wheels_speed(100)
@@ -109,9 +121,23 @@ def the_true_follower(robot: FollowerBot):
             robot.sleep(0.01)
             robot.set_wheels_speed(0)
         else:
+            return
+def turn_robot_around(robot:FollowerBot):
+    initial_rotation = robot.get_rotation()
+    current_rotation = initial_rotation
+    for i in range(20):
+        robot.set_left_wheel_speed(100)
+        robot.set_right_wheel_speed(-100)
+        robot.sleep(0.02)
+        current_rotation = robot.get_rotation()
+        rotation_diff = abs(current_rotation - initial_rotation)
+        if 175 < rotation_diff <185:
             break
-    print(robot.get_line_sensors())
-    robot.done()
+    print(abs(current_rotation - initial_rotation))
+    robot.set_wheels_speed(100)
+    robot.sleep(0.01)
+    robot.set_wheels_speed(0)
+    return
 
 
 
