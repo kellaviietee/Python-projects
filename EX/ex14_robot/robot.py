@@ -21,9 +21,79 @@ def drive_to_line(robot: FollowerBot):
 
 
 def follow_the_line(robot: FollowerBot):
+    while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
+        robot.set_wheels_speed(100)
+        robot.sleep(0.01)
+        robot.set_wheels_speed(0)
+    left_on_line = robot.get_left_line_sensors().count(0)
+    right_on_line = robot.get_right_line_sensors().count(0)
+    while 0 in robot.get_line_sensors():
+        if left_on_line == right_on_line:
+            robot.set_wheels_speed(100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        elif left_on_line == right_on_line + 1:
+            print("this triggers")
+            robot.set_left_wheel_speed(100)
+            robot.set_right_wheel_speed(0)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        elif left_on_line == right_on_line - 1:
+            print("this triggers 2")
+            robot.set_left_wheel_speed(0)
+            robot.set_right_wheel_speed(100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        elif left_on_line == right_on_line + 2:
+            print("this triggers 3")
+            robot.set_left_wheel_speed(50)
+            robot.set_right_wheel_speed(-50)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        elif left_on_line == right_on_line - 2:
+            print("this triggers 4")
+            robot.set_left_wheel_speed(-50)
+            robot.set_right_wheel_speed(50)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        elif left_on_line == right_on_line + 3:
+            print("this triggers 5")
+            robot.set_left_wheel_speed(100)
+            robot.set_right_wheel_speed(-100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        elif left_on_line == right_on_line - 3:
+            print("this triggers 6")
+            robot.set_left_wheel_speed(-100)
+            robot.set_right_wheel_speed(100)
+            robot.sleep(0.01)
+            robot.set_wheels_speed(0)
+            left_on_line = robot.get_left_line_sensors().count(0)
+            right_on_line = robot.get_right_line_sensors().count(0)
+        else:
+            break
+    print(robot.get_line_sensors())
+    robot.done()
+
+
+def the_true_follower(robot: FollowerBot):
     initial_drive_to_the_line(robot)
     drive_along_the_path(robot)
-    print(robot.get_line_sensors())
+    if 500 < robot.get_left_line_sensor() < 1024 and 500 < robot.get_right_line_sensor() < 1024:
+        turn_robot_around(robot)
+    drive_along_the_path(robot)
     robot.done()
 
 
