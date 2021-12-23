@@ -118,8 +118,7 @@ def drive_along_the_path(robot: FollowerBot):
     command = "straight"
     while command != "stop":
         current_sensors = robot.get_line_sensors()
-        if 500 < robot.get_right_line_sensor() < 1024 and 500 < robot.get_left_line_sensor() < 1024:
-            turn_robot_around(robot)
+        turn_robot_around(robot)
         if current_sensors != initial_sensors:
             if robot.get_left_line_sensors() == robot.get_right_line_sensors() and 0 in robot.get_line_sensors():
                 command = "straight"
@@ -188,20 +187,21 @@ def turn_robot_closest_90(robot: FollowerBot):
 
 def turn_robot_around(robot: FollowerBot):
     """Roomba making a 180."""
-    initial_rotation = robot.get_rotation()
-    current_rotation = initial_rotation
-    for i in range(20):
-        robot.set_left_wheel_speed(100)
-        robot.set_right_wheel_speed(-100)
-        robot.sleep(0.02)
-        current_rotation = robot.get_rotation()
-        rotation_diff = abs(current_rotation - initial_rotation)
-        if 175 < rotation_diff < 185:
-            break
-    print(abs(current_rotation - initial_rotation))
-    robot.set_wheels_speed(100)
-    robot.sleep(0.01)
-    robot.set_wheels_speed(0)
+    if 500 < robot.get_right_line_sensor() < 1024 and 500 < robot.get_left_line_sensor() < 1024:
+        initial_rotation = robot.get_rotation()
+        current_rotation = initial_rotation
+        for i in range(20):
+            robot.set_left_wheel_speed(100)
+            robot.set_right_wheel_speed(-100)
+            robot.sleep(0.02)
+            current_rotation = robot.get_rotation()
+            rotation_diff = abs(current_rotation - initial_rotation)
+            if 175 < rotation_diff < 185:
+                break
+        print(abs(current_rotation - initial_rotation))
+        robot.set_wheels_speed(100)
+        robot.sleep(0.01)
+        robot.set_wheels_speed(0)
     return
 
 
