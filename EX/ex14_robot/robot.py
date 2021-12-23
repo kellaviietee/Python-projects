@@ -129,6 +129,7 @@ def drive_along_the_path(robot: FollowerBot):
 
 
 def make_adjustment(robot: FollowerBot) -> list:
+    """Adjust the robot movement."""
     if robot.get_left_line_sensors() == robot.get_right_line_sensors() and 0 in robot.get_line_sensors():
         return ["straight", robot.get_line_sensors()]
     elif robot.get_second_line_sensor_from_left() < robot.get_second_line_sensor_from_right():
