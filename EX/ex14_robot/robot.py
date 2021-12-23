@@ -97,13 +97,6 @@ def the_true_follower(robot: FollowerBot):
     robot.done()
 
 
-def the_true_follower(robot: FollowerBot):
-    initial_drive_to_the_line(robot)
-    drive_along_the_path(robot)
-    print(robot.get_line_sensors())
-    robot.done()
-
-
 def initial_drive_to_the_line(robot: FollowerBot):
     while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
         robot.set_wheels_speed(100)
@@ -116,14 +109,11 @@ def drive_along_the_path(robot: FollowerBot):
     initial_sensors = robot.get_line_sensors()
     command = "straight"
     while command != "stop":
-        if command == "straight":
-            robot.set_wheels_speed(100)
-            robot.sleep(0.01)
         current_sensors = robot.get_line_sensors()
         if 500 < robot.get_right_line_sensor() < 1024 and 500 < robot.get_left_line_sensor() < 1024:
-            command = "stop"
+            turn_robot_around(robot)
         if current_sensors != initial_sensors:
-            if robot.get_left_line_sensors() == robot.get_right_line_sensors():
+            if robot.get_left_line_sensors() == robot.get_right_line_sensors() and 0 in robot.get_line_sensors():
                 command = "straight"
                 initial_sensors = current_sensors
             elif robot.get_second_line_sensor_from_left() < robot.get_second_line_sensor_from_right():
@@ -147,7 +137,45 @@ def drive_along_the_path(robot: FollowerBot):
                 robot.set_wheels_speed(0)
                 command = "straight"
                 initial_sensors = current_sensors
+            elif 0 in robot.get_right_line_sensors() and 0 not in robot.get_left_line_sensors():
+                robot.set_left_wheel_speed(-100)
+                robot.set_right_wheel_speed(100)
+                robot.sleep(0.15)
+                robot.set_wheels_speed(0)
+                command = "straight"
+                initial_sensors = current_sensors
+            elif 0 not in robot.get_line_sensors():
+                turn_robot_closest_90(robot)
+                for checks in range(5):
+                    robot.set_wheels_speed(100)
+                    robot.sleep(0.01)
+                    if 0 in robot.get_line_sensors():
+                        command = "straight"
+                        break
+                    command = "stop"
+        if command == "straight":
+            robot.set_wheels_speed(80)
+            robot.sleep(0.01)
 
+
+
+def turn_robot_closest_90(robot: FollowerBot):
+    initial_rotation = robot.get_rotation()
+    print(initial_rotation)
+    print("got here")
+    number_of_turns = round(initial_rotation / 90)
+    closest_rotation = number_of_turns * 90
+    if closest_rotation > initial_rotation:
+        while robot.get_rotation() < closest_rotation:
+            robot.set_left_wheel_speed(-20)
+            robot.set_right_wheel_speed(20)
+            robot.sleep(0.01)
+    elif closest_rotation < initial_rotation:
+        while robot.get_rotation() > closest_rotation:
+            robot.set_left_wheel_speed(20)
+            robot.set_right_wheel_speed(-20)
+            robot.sleep(0.01)
+    print(robot.get_rotation())
 
 def turn_robot_around(robot: FollowerBot):
     initial_rotation = robot.get_rotation()
