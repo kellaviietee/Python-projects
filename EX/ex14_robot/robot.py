@@ -120,49 +120,51 @@ def drive_along_the_path(robot: FollowerBot):
         current_sensors = robot.get_line_sensors()
         turn_robot_around(robot)
         if current_sensors != initial_sensors:
-            if robot.get_left_line_sensors() == robot.get_right_line_sensors() and 0 in robot.get_line_sensors():
-                command = "straight"
-                initial_sensors = current_sensors
-            elif robot.get_second_line_sensor_from_left() < robot.get_second_line_sensor_from_right():
-                robot.set_left_wheel_speed(100)
-                robot.set_right_wheel_speed(-100)
-                robot.sleep(0.01)
-                robot.set_wheels_speed(0)
-                command = "straight"
-                initial_sensors = current_sensors
-            elif robot.get_second_line_sensor_from_left() > robot.get_second_line_sensor_from_right():
-                robot.set_left_wheel_speed(-100)
-                robot.set_right_wheel_speed(100)
-                robot.sleep(0.01)
-                robot.set_wheels_speed(0)
-                command = "straight"
-                initial_sensors = current_sensors
-            elif 0 in robot.get_left_line_sensors() and 0 not in robot.get_right_line_sensors():
-                robot.set_left_wheel_speed(100)
-                robot.set_right_wheel_speed(-100)
-                robot.sleep(0.15)
-                robot.set_wheels_speed(0)
-                command = "straight"
-                initial_sensors = current_sensors
-            elif 0 in robot.get_right_line_sensors() and 0 not in robot.get_left_line_sensors():
-                robot.set_left_wheel_speed(-100)
-                robot.set_right_wheel_speed(100)
-                robot.sleep(0.15)
-                robot.set_wheels_speed(0)
-                command = "straight"
-                initial_sensors = current_sensors
-            elif 0 not in robot.get_line_sensors():
-                turn_robot_closest_90(robot)
-                for checks in range(5):
-                    robot.set_wheels_speed(100)
-                    robot.sleep(0.01)
-                    if 0 in robot.get_line_sensors():
-                        command = "straight"
-                        break
-                    command = "stop"
+            adjustment = make_adjustment(robot)
+            command = adjustment[0]
+            initial_sensors = adjustment[1]
         if command == "straight":
             robot.set_wheels_speed(80)
             robot.sleep(0.01)
+
+
+def make_adjustment(robot: FollowerBot) -> list:
+    if robot.get_left_line_sensors() == robot.get_right_line_sensors() and 0 in robot.get_line_sensors():
+        return ["straight", robot.get_line_sensors()]
+    elif robot.get_second_line_sensor_from_left() < robot.get_second_line_sensor_from_right():
+        robot.set_left_wheel_speed(100)
+        robot.set_right_wheel_speed(-100)
+        robot.sleep(0.01)
+        robot.set_wheels_speed(0)
+        return ["straight", robot.get_line_sensors()]
+    elif robot.get_second_line_sensor_from_left() > robot.get_second_line_sensor_from_right():
+        robot.set_left_wheel_speed(-100)
+        robot.set_right_wheel_speed(100)
+        robot.sleep(0.01)
+        robot.set_wheels_speed(0)
+        return ["straight", robot.get_line_sensors()]
+    elif 0 in robot.get_left_line_sensors() and 0 not in robot.get_right_line_sensors():
+        robot.set_left_wheel_speed(100)
+        robot.set_right_wheel_speed(-100)
+        robot.sleep(0.15)
+        robot.set_wheels_speed(0)
+        return ["straight", robot.get_line_sensors()]
+    elif 0 in robot.get_right_line_sensors() and 0 not in robot.get_left_line_sensors():
+        robot.set_left_wheel_speed(-100)
+        robot.set_right_wheel_speed(100)
+        robot.sleep(0.15)
+        robot.set_wheels_speed(0)
+        return ["straight", robot.get_line_sensors()]
+    elif 0 not in robot.get_line_sensors():
+        turn_robot_closest_90(robot)
+        for checks in range(5):
+            robot.set_wheels_speed(100)
+            robot.sleep(0.01)
+            if 0 in robot.get_line_sensors():
+                return ["straight", robot.get_line_sensors()]
+        return ["stop", robot.get_line_sensors()]
+    else:
+        return ["straight", robot.get_line_sensors()]
 
 
 def turn_robot_closest_90(robot: FollowerBot):
