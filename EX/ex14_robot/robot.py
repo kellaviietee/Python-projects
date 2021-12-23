@@ -1,7 +1,10 @@
+"""Roomba robot"""
+
 from FollowerBot import FollowerBot
 
 
 def test_run(robot: FollowerBot):
+    """Just testing the roomba."""
     robot.set_wheels_speed(30)
     robot.sleep(5)
     robot.set_wheels_speed(0)
@@ -9,6 +12,7 @@ def test_run(robot: FollowerBot):
 
 
 def drive_to_line(robot: FollowerBot):
+    "Drive to the line and then some."
     while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
         robot.set_wheels_speed(100)
         robot.sleep(0.01)
@@ -21,6 +25,7 @@ def drive_to_line(robot: FollowerBot):
 
 
 def follow_the_line(robot: FollowerBot):
+    """Just following continuous line as best as it can."""
     while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
         robot.set_wheels_speed(100)
         robot.sleep(0.01)
@@ -89,6 +94,7 @@ def follow_the_line(robot: FollowerBot):
 
 
 def the_true_follower(robot: FollowerBot):
+    """All kind of following happening here."""
     initial_drive_to_the_line(robot)
     drive_along_the_path(robot)
     if 500 < robot.get_left_line_sensor() < 1024 and 500 < robot.get_right_line_sensor() < 1024:
@@ -98,6 +104,7 @@ def the_true_follower(robot: FollowerBot):
 
 
 def initial_drive_to_the_line(robot: FollowerBot):
+    """Driving to the line and no more."""
     while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
         robot.set_wheels_speed(100)
         robot.sleep(0.01)
@@ -106,6 +113,7 @@ def initial_drive_to_the_line(robot: FollowerBot):
 
 
 def drive_along_the_path(robot: FollowerBot):
+    """Driving on continous and dashed lines."""
     initial_sensors = robot.get_line_sensors()
     command = "straight"
     while command != "stop":
@@ -158,8 +166,8 @@ def drive_along_the_path(robot: FollowerBot):
             robot.sleep(0.01)
 
 
-
 def turn_robot_closest_90(robot: FollowerBot):
+    """Turn roomba to the closest 90 degrees."""
     initial_rotation = robot.get_rotation()
     print(initial_rotation)
     print("got here")
@@ -177,7 +185,9 @@ def turn_robot_closest_90(robot: FollowerBot):
             robot.sleep(0.01)
     print(robot.get_rotation())
 
+
 def turn_robot_around(robot: FollowerBot):
+    """Roomba making a 180."""
     initial_rotation = robot.get_rotation()
     current_rotation = initial_rotation
     for i in range(20):
