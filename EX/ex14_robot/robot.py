@@ -1,4 +1,4 @@
-"""Roomba robot"""
+"""Roomba robot."""
 
 from FollowerBot import FollowerBot
 
@@ -12,7 +12,7 @@ def test_run(robot: FollowerBot):
 
 
 def drive_to_line(robot: FollowerBot):
-    "Drive to the line and then some."
+    """Drive to the line and then some."""
     while robot.get_line_sensors() == [1024, 1024, 1024, 1024, 1024, 1024]:
         robot.set_wheels_speed(100)
         robot.sleep(0.01)
