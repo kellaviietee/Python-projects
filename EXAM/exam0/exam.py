@@ -1,11 +1,11 @@
 """Test Exam."""
 
 
-def find_capital_letters(text: str) -> list:
-    capital_letters = []
+def find_capital_letters(text: str) -> str:
+    capital_letters = ""
     for letter in text:
         if letter.isupper():
-            capital_letters.append(letter)
+            capital_letters += letter
     return capital_letters
 
 
