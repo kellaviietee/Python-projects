@@ -14,6 +14,8 @@ def close_far(a: int, b: int, c: int) -> bool:
         return True
     elif abs(abs(a) - abs(c)) <= 1 and abs(abs(a) - abs(b)) >= 2:
         return True
+    elif abs(abs(b) - abs(c)) <= 1 and abs(abs(a) - abs(c)) >= 2:
+        return True
     else:
         return False
 
