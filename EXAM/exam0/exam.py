@@ -18,7 +18,7 @@ def close_far(a: int, b: int, c: int) -> bool:
         else:
             return False
     else:
-        if sorted_numbers[1] - sorted_numbers[2] <= 1 and sorted_numbers[0] - sorted_numbers[2] >= 2:
+        if sorted_numbers[1] - sorted_numbers[2] <= 1 and sorted_numbers[0] - sorted_numbers[1] >= 2:
             return True
         else:
             return False
@@ -26,4 +26,4 @@ def close_far(a: int, b: int, c: int) -> bool:
 
 if __name__ == "__main__":
     print(find_capital_letters("asdfsddddfvKJSHJDJKSKDkSKJDJKKJDSJFJKSJJdjsjdjsjejsjdjSjkDJsndJDKJjksd"))
-    print(close_far(1, 2, 4))
+    print(close_far(1, 0, 0))
