@@ -36,19 +36,12 @@ def close_far(a: int, b: int, c: int) -> bool:
     close_far(1, 2, 3) => False
     close_far(4, 1, 3) => True
     """
-    numbers = [a, b, c]
-    sorted_nums = sorted(numbers, reverse=True)
-    if sorted_nums[0] - sorted_nums[1] <= 1:
-        if sorted_nums[1] - sorted_nums[2] >=2:
-            return True
-        else:
-            return False
+    if abs(a - b) <= 1 and abs(a - c) >= 2 and abs(b - c) >= 2:
+        return True
+    elif abs(a - c) <= 1 and abs(a - b) >= 2 and abs(b - c) >= 2:
+        return True
     else:
-        if sorted_nums[1] - sorted_nums[2] <= 1:
-            if sorted_nums[0] - sorted_nums[1] >= 2:
-                return True
-            else:
-                return False
+        return False
 
 
 def get_names_from_results(results_string: str, min_result: int) -> list:
