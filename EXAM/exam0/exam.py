@@ -10,11 +10,10 @@ def find_capital_letters(text: str) -> str:
 
 
 def close_far(a: int, b: int, c: int) -> bool:
-    if abs(abs(a) - abs(b)) <= 1 and abs(abs(a) - abs(c)) >= 2:
-        return True
-    elif abs(abs(a) - abs(c)) <= 1 and abs(abs(a) - abs(b)) >= 2:
-        return True
-    elif abs(abs(b) - abs(c)) <= 1 and abs(abs(a) - abs(c)) >= 2:
+    numbers = [a, b, c]
+    sorted_numbers = sorted(numbers,reverse=True)
+    if (sorted_numbers[0] - sorted_numbers[2] >= 2) and (sorted_numbers[0] - sorted_numbers[1] <= 1
+                                                         or sorted_numbers[1] - sorted_numbers[2] <= 1):
         return True
     else:
         return False
@@ -22,4 +21,4 @@ def close_far(a: int, b: int, c: int) -> bool:
 
 if __name__ == "__main__":
     print(find_capital_letters("asdfsddddfvKJSHJDJKSKDkSKJDJKKJDSJFJKSJJdjsjdjsjejsjdjSjkDJsndJDKJjksd"))
-    print(close_far(1, 2,3))
+    print(close_far(-3, -4, -5))
