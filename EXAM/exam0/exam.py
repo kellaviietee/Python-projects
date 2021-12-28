@@ -98,7 +98,25 @@ def tic_tac_toe(game: list) -> int:
     :param game
     :return: winning player id
     """
-    pass
+    for row in game:
+        if row.count(1) == 3:
+            return 1
+        elif row.count(2) == 3:
+            return 2
+    columns = [[game[0][0], game[1][0], game[2][0]], [game[0][1], game[1][1], game[2][1]],
+               [game[0][2], game[1][2], game[2][2]]]
+    for column in columns:
+        if column.count(1) == 3:
+            return 1
+        elif column.count(2) == 3:
+            return 2
+    diagonals = [[game[0][0], game[1][1], game[2][2]], [game[0][2], game[1][1], game[2][0]]]
+    for diagonal in diagonals:
+        if diagonal.count(1) == 3:
+            return 1
+        elif diagonal.count(2) == 3:
+            return 2
+    return 0
 
 
 def rainbows(field: str, lower=False) -> int:
@@ -316,7 +334,9 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    print(get_names_from_results("ago 123,peeter 11,33", 10))
+    print(tic_tac_toe([[1, 2, 1], [2, 1, 2], [2, 2, 1]]))  # = > 1
+    print(tic_tac_toe([[1, 0, 1], [2, 1, 2], [2, 2, 0]]))  # = > 0
+    print(tic_tac_toe([[2, 2, 2], [0, 2, 0], [0, 1, 0]]))  # = > 2
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
