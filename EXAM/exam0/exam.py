@@ -1,5 +1,6 @@
 """Exam0."""
 from typing import Optional
+import re
 
 
 def find_capital_letters(s: str) -> str:
@@ -63,11 +64,12 @@ def get_names_from_results(results_string: str, min_result: int) -> list:
     get_names_from_results("ago 123,peeter 11,kusti riin 14", 12) => ["ago", "kusti riin"]
     """
     above_min = []
-    different_lines = results_string.split(",")
-    for result in different_lines:
-        hmm = result.rsplit(maxsplit=1)
-        if int(hmm[1]) >= min_result:
-            above_min.append(hmm[0])
+    separated_results = results_string.split(",")
+    for ind_result in separated_results:
+        pattern = r"(.+)[\D](\d+)$"
+        results = re.findall(pattern, ind_result)
+        if int(results[0][1]) >= min_result:
+            above_min.append(results[0][0])
     return above_min
 
 
@@ -309,7 +311,7 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    print(get_names_from_results("ago 123,peeter 11,kusti riin 14", 12))
+    print(get_names_from_results("ago 123,peeter 11,kitty11!! 33", 11))
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
