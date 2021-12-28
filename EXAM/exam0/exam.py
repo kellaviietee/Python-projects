@@ -68,8 +68,13 @@ def get_names_from_results(results_string: str, min_result: int) -> list:
     for ind_result in separated_results:
         pattern = r"(.+)[\D](\d+)$"
         results = re.findall(pattern, ind_result)
-        if int(results[0][1]) >= min_result:
-            above_min.append(results[0][0])
+        if len(results) == 0:
+            continue
+        if len(results[0]) > 1:
+            if int(results[0][1]) >= min_result:
+                above_min.append(results[0][0])
+        else:
+            continue
     return above_min
 
 
@@ -311,7 +316,7 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    print(get_names_from_results("ago 123,peeter 11,kitty11!! 33", 11))
+    print(get_names_from_results("ago 123,peeter 11,33", 10))
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
