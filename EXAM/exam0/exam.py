@@ -172,15 +172,15 @@ def longest_substring(text: str) -> str:
     abBcd => Bcd
     '' -> ''
     """
-    set_from_text = set(text)
+    lowered_word = text.lower()
     long_word = ""
-    for start_pos in range(len(text) + 1):
-        for end_pos in range(start_pos + 1, len(text) + 1):
-            current_word = text[start_pos:end_pos]
+    for start_pos in range(len(lowered_word) + 1):
+        for end_pos in range(start_pos + 1, len(lowered_word) + 1):
+            current_word = lowered_word[start_pos:end_pos]
             current_set = set(current_word)
             if len(current_word) == len(current_set):
                 if len(current_word) > len(long_word):
-                    long_word = current_word
+                    long_word = text[start_pos:end_pos]
     return long_word
 
 
