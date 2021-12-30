@@ -172,7 +172,16 @@ def longest_substring(text: str) -> str:
     abBcd => Bcd
     '' -> ''
     """
-    pass
+    set_from_text = set(text)
+    long_word = ""
+    for start_pos in range(len(text)):
+        for end_pos in range(start_pos + 1, len(text)):
+            current_word = text[start_pos:end_pos]
+            current_set = set(current_word)
+            if len(current_word) == len(current_set):
+                if len(current_word) > len(long_word):
+                    long_word = current_word
+    return long_word
 
 
 class Student:
@@ -351,9 +360,7 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    print(rainbows("rainbowThisIsJustSomeNoiserainbow"))  # Lisaks vikerkaarele on veel sümboleid
-    print(rainbows("WoBniar"))  # Vikerkaar on tagurpidi ja sisaldab suuri tähti
-    print(rainbows("rainbowobniar"))  # Kaks vikerkaart jagavad tähte seega üks neist ei ole valiidn
+    longest_substring("abbcdeaa")
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
