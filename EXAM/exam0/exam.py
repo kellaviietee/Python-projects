@@ -174,8 +174,8 @@ def longest_substring(text: str) -> str:
     """
     set_from_text = set(text)
     long_word = ""
-    for start_pos in range(len(text)):
-        for end_pos in range(start_pos + 1, len(text)):
+    for start_pos in range(len(text) + 1):
+        for end_pos in range(start_pos + 1, len(text) + 1):
             current_word = text[start_pos:end_pos]
             current_set = set(current_word)
             if len(current_word) == len(current_set):
