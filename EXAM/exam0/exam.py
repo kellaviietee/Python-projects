@@ -205,6 +205,7 @@ def create_student(name: str, grades: list, credit_points: int) -> Student:
         return Student(name, 0, credit_points)
     else:
         average_grade = round(sum(grades) / len(grades), 3)
+        print(average_grade)
         return Student(name, average_grade, credit_points)
 
 
@@ -364,7 +365,7 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    longest_substring("abbcdeaa")
+    create_student("Kaisa", [4, 3, 4, 3], 30)
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
