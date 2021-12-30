@@ -262,7 +262,7 @@ def add_result_to_student(student: Student, grades_count: int, new_grade: int, c
     Return the modified student object.
     """
     current_gpa = student.average_grade
-    new_gpa = (current_gpa * grades_count + new_grade) /(grades_count + 1)
+    new_gpa = round(current_gpa * grades_count + new_grade / (grades_count + 1), 3)
     new_credit = student.credit_points + credit_points
     student.average_grade = new_gpa
     student.credit_points = new_credit
