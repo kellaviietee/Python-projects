@@ -201,22 +201,32 @@ def create_student(name: str, grades: list, credit_points: int) -> Student:
     Round the average grade up to three decimal places.
     If the list of grades is empty, the average grade will be 0.
     """
+    gpa = 0
     if len(grades) == 0:
-        return Student(name, 0, credit_points)
+        return Student(name, gpa, credit_points)
     else:
         average_grade = round(sum(grades) / len(grades), 3)
         print(average_grade)
         return Student(name, average_grade, credit_points)
 
 
-def get_top_student_with_credit_points(students: list, min_credit_points: int):
+def get_top_student_with_credit_points(students: list[Student], min_credit_points: int):
     """
     Return the student with the highest average grade who has enough credit points.
 
     If there are no students with enough credit points, return None.
     If several students have the same average score, return the first.
     """
-    pass
+    students_with_enough_credit = []
+    for student in students:
+        if student.credit_points >= min_credit_points:
+            students_with_enough_credit.append(student)
+    if len(students_with_enough_credit) == 0:
+        return None
+    else:
+        return max(students_with_enough_credit, key=lambda x: x.average_grade)
+
+
 
 
 def add_result_to_student(student: Student, grades_count: int, new_grade: int, credit_points) -> Student:
@@ -365,7 +375,7 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    create_student("Kaisa", [4, 3, 4, 3], 30)
+    create_student("Kaisa", [], 30)
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
