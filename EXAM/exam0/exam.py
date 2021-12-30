@@ -134,17 +134,18 @@ def rainbows(field: str, lower=False) -> int:
     :param field: string to search rainbows from
     :return: number of rainbows in the string
     """
+    print(field)
     word_to_change = field.lower()
-    how_many = 0
     if "rainbow" in word_to_change:
-        word_to_change = word_to_change.strip("rainbow")
-        return 1 + rainbows(word_to_change)
+        rainbow_location = word_to_change.find("rainbow")
+        new_word = field[rainbow_location + len("rainbow"):]
+        return 1 + rainbows(new_word)
+
     elif "wobniar" in word_to_change:
-        word_to_change = word_to_change.strip("wobniar")
-        return 1 + rainbows(word_to_change)
+        rainbow_location = word_to_change.find("wobniar")
+        new_word = field[rainbow_location + len("wobniar"):]
+        return 1 + rainbows(new_word)
     return 0
-
-
 
 
 def longest_substring(text: str) -> str:
@@ -344,9 +345,9 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    print(rainbows("rainbowThisIsJustSomeNoise"))  # Lisaks vikerkaarele on veel sümboleid
-    print(rainbows("WoBniar")) # Vikerkaar on tagurpidi ja sisaldab suuri tähti
-    print(rainbows("rainbowobniar")) # Kaks vikerkaart jagavad tähte seega üks neist ei ole valiidn
+    print(rainbows("rainbowThisIsJustSomeNoiserainbow"))  # Lisaks vikerkaarele on veel sümboleid
+    print(rainbows("WoBniar"))  # Vikerkaar on tagurpidi ja sisaldab suuri tähti
+    print(rainbows("rainbowobniar"))  # Kaks vikerkaart jagavad tähte seega üks neist ei ole valiidn
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
