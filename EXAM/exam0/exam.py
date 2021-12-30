@@ -137,14 +137,20 @@ def rainbows(field: str, lower=False) -> int:
     print(field)
     word_to_change = field.lower()
     if "rainbow" in word_to_change:
-        rainbow_location = word_to_change.find("rainbow")
-        new_word = field[rainbow_location + len("rainbow"):]
-        return 1 + rainbows(new_word)
+        rainbow_start_location = word_to_change.find("rainbow")
+        end_pos = rainbow_start_location + len("rainbow")
+        string_start = field[:rainbow_start_location]
+        string_end = field[end_pos:]
+        remaining_string = "".join([string_start, string_end])
+        return 1 + rainbows(remaining_string)
 
     elif "wobniar" in word_to_change:
-        rainbow_location = word_to_change.find("wobniar")
-        new_word = field[rainbow_location + len("wobniar"):]
-        return 1 + rainbows(new_word)
+        rainbow_start_location = word_to_change.find("wobniar")
+        end_pos = rainbow_start_location + len("wobniar")
+        string_start = field[:rainbow_start_location]
+        string_end = field[end_pos:]
+        remaining_string = "".join([string_start, string_end])
+        return 1 + rainbows(remaining_string)
     return 0
 
 
