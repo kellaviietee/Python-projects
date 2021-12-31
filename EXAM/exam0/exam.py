@@ -282,9 +282,12 @@ def get_ordered_students(students: list) -> list:
 class Room:
     """Room."""
 
-    def __init__(self, number: int, price: int):
+    def __init__(self, number: int, price: int, features: list = None, booked: bool = False):
         """Constructor."""
-        pass
+        self.booked = booked
+        self.features = features
+        self.price = price
+        self.number = number
 
     def add_feature(self, feature: str) -> bool:
         """
@@ -295,19 +298,27 @@ class Room:
         - the room is booked.
         Otherwise, add the feature to the room and return True
         """
-        pass
+        if self.features is None:
+            self.features = [feature]
+            return True
+        else:
+            if feature in self.features:
+                return False
+            elif feature not in self.features:
+                self.features.append(feature)
+                return True
 
     def get_features(self) -> list:
         """Return all the features of the room."""
-        pass
+        return self.features
 
     def get_price(self) -> int:
         """Return the price."""
-        pass
+        return self.price
 
     def get_number(self) -> int:
         """Return the room number."""
-        pass
+        return self.number
 
 
 class Hotel:
@@ -381,7 +392,6 @@ class Hotel:
 
 
 if __name__ == '__main__':
-    create_student("Kaisa", [], 30)
     hotel = Hotel()
     room1 = Room(1, 100)
     room1.add_feature("tv")
