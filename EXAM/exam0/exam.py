@@ -301,6 +301,8 @@ class Room:
         - the room is booked.
         Otherwise, add the feature to the room and return True
         """
+        if self.booked:
+            return False
         if not self.features:
             self.features = [feature]
             return True
