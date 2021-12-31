@@ -282,7 +282,7 @@ def get_ordered_students(students: list) -> list:
 class Room:
     """Room."""
 
-    def __init__(self, number: int, price: int, features: list = None, booked: bool = False):
+    def __init__(self, number: int, price: int, features: list = [], booked: bool = False):
         """Constructor."""
         self.booked = booked
         self.features = features
@@ -298,7 +298,7 @@ class Room:
         - the room is booked.
         Otherwise, add the feature to the room and return True
         """
-        if self.features is None:
+        if not self.features:
             self.features = [feature]
             return True
         else:
@@ -328,7 +328,7 @@ class Room:
 class Hotel:
     """Hotel."""
 
-    def __init__(self, rooms: list[Room] = None):
+    def __init__(self, rooms: list[Room] = []):
         """Constructor."""
         self.rooms = rooms
 
@@ -339,7 +339,7 @@ class Hotel:
         If a room with the given number already exists, do not add a room and return False.
         Otherwise add the room to hotel and return True.
         """
-        if self.rooms is None:
+        if not self.rooms:
             self.rooms = [room]
             return True
         else:
