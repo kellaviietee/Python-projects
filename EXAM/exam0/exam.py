@@ -331,7 +331,7 @@ class Room:
 class Hotel:
     """Hotel."""
 
-    def __init__(self, rooms: list[Room] = []):
+    def __init__(self, rooms: list[Room] = None):
         """Constructor."""
         self.rooms = rooms
 
