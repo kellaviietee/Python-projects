@@ -430,7 +430,15 @@ class Hotel:
         'd': 200
         }
         """
-        pass
+        booked_rooms = self.get_booked_rooms()
+        booked_features = {}
+        for room in booked_rooms:
+            for feature in room.features:
+                if feature not in booked_features:
+                    booked_features[feature] = room.price
+                elif feature in booked_features:
+                    booked_features[feature] += room.price
+        return booked_features
 
     def get_most_profitable_feature(self) -> Optional[str]:
         """
@@ -441,7 +449,9 @@ class Hotel:
         If there are several with the same max value, return the feature which is alphabetically lower (a < z)
         If there are no features booked, return None.
         """
-        pass
+        profitable_features = self.get_feature_profits()
+        sort_profitable = sorted(profitable_features.items(), key=lambda x: (-x[1], x[0]))
+        return sort_profitable[0][0]
 
 
 if __name__ == '__main__':
@@ -464,7 +474,6 @@ if __name__ == '__main__':
     assert hotel.get_booked_rooms() == [room1]
     assert hotel.book_room([]) == room2
     assert hotel.get_available_rooms() == []
-
     assert hotel.get_feature_profits() == {
         'tv': 300,
         'bed': 100,
