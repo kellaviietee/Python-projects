@@ -331,7 +331,7 @@ class Room:
 class Hotel:
     """Hotel."""
 
-    def __init__(self, rooms: list[Room] = None):
+    def __init__(self, rooms: list[Room] = []):
         """Constructor."""
         self.rooms = rooms
 
@@ -400,7 +400,7 @@ class Hotel:
     def get_rooms(self) -> list:
         """Return all the rooms (both booked and available)."""
         if not self.rooms:
-            return None
+            return []
         else:
             return self.rooms
 
