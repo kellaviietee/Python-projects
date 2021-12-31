@@ -289,6 +289,9 @@ class Room:
         self.price = price
         self.number = number
 
+    def __repr__(self):
+        return f"Room nr: {self.number}, {self.price} EUR"
+
     def add_feature(self, feature: str) -> bool:
         """
         Add a feature to the room.
@@ -381,7 +384,9 @@ class Hotel:
                         appropriate_room = [room]
                     elif current_features_covered == features_covered:
                         appropriate_room.append(room)
-        return min(appropriate_room, key=lambda app_room: app_room.number)
+        room_to_book = min(appropriate_room, key=lambda app_room: app_room.number)
+        room_to_book.booked = True
+        return room_to_book
 
     def get_available_rooms(self) -> list:
         """Return a list of available (not booked) rooms."""
@@ -450,13 +455,13 @@ if __name__ == '__main__':
     hotel.add_room(room1)
     hotel.add_room(room2)
     # TODO: try to add room with existing number, try to add existing feature to room
+    room3 = Room(1, 150)
+    hotel.add_room(room3)
     assert hotel.get_rooms() == [room1, room2]
     assert hotel.get_booked_rooms() == []
-
     assert hotel.book_room(["tv", "president"]) == room1
     assert hotel.get_available_rooms() == [room2]
     assert hotel.get_booked_rooms() == [room1]
-    print("this onr fails")
     assert hotel.book_room([]) == room2
     assert hotel.get_available_rooms() == []
 
