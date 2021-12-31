@@ -394,7 +394,10 @@ class Hotel:
 
     def get_rooms(self) -> list:
         """Return all the rooms (both booked and available)."""
-        return self.rooms
+        if not self.rooms:
+            return None
+        else:
+            return self.rooms
 
     def get_booked_rooms(self) -> list:
         """Return all the booked rooms."""
