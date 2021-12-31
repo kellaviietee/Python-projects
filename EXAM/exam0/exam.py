@@ -324,9 +324,9 @@ class Room:
 class Hotel:
     """Hotel."""
 
-    def __init__(self):
+    def __init__(self, rooms: list[Room] is None):
         """Constructor."""
-        pass
+        self.rooms = rooms
 
     def add_room(self, room: Room) -> bool:
         """
@@ -335,7 +335,18 @@ class Hotel:
         If a room with the given number already exists, do not add a room and return False.
         Otherwise add the room to hotel and return True.
         """
-        pass
+        if self.rooms is None:
+            self.rooms = [room]
+            return True
+        else:
+            all_room_numbers = []
+            for hotel_room in self.rooms:
+                all_room_numbers.append(hotel_room.number)
+            if room.number in all_room_numbers:
+                return False
+            elif room.number not in all_room_numbers:
+                self.rooms.append(room)
+                return True
 
     def book_room(self, required_features: list) -> Optional[Room]:
         """
