@@ -452,6 +452,8 @@ class Hotel:
         If there are no features booked, return None.
         """
         profitable_features = self.get_feature_profits()
+        if not profitable_features:
+            return None
         sort_profitable = sorted(profitable_features.items(), key=lambda x: (-x[1], x[0]))
         return sort_profitable[0][0]
 
