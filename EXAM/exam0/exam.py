@@ -320,6 +320,10 @@ class Room:
         """Return the room number."""
         return self.number
 
+    def get_booked(self) -> bool:
+        """Return if the room is booked."""
+        return self.booked
+
 
 class Hotel:
     """Hotel."""
@@ -356,11 +360,37 @@ class Hotel:
         If there are several with the same amount of matching features, return the one with the smallest room number.
         If there is no available rooms, return None
         """
-        pass
+        available_rooms = self.get_available_rooms()
+        if len(available_rooms) == 0:
+            return None
+        else:
+            features_covered = 0
+            appropriate_room = None
+            for room in available_rooms:
+                current_features_covered = 0
+                for req_feature in required_features:
+                    if req_feature in room.features:
+                        current_features_covered += 1
+                if appropriate_room is None:
+                    appropriate_room = [room]
+                    features_covered = current_features_covered
+                    continue
+                else:
+                    if current_features_covered > features_covered:
+                        features_covered = current_features_covered
+                        appropriate_room = [room]
+                    elif current_features_covered == features_covered:
+                        appropriate_room.append(room)
+        return min(appropriate_room, key=lambda app_room: app_room.number)
 
     def get_available_rooms(self) -> list:
         """Return a list of available (not booked) rooms."""
-        pass
+        all_available_rooms = []
+        for room in self.rooms:
+            if not room.get_booked():
+                all_available_rooms.append(room)
+        print(all_available_rooms)
+        return all_available_rooms
 
     def get_rooms(self) -> list:
         """Return all the rooms (both booked and available)."""
@@ -368,7 +398,11 @@ class Hotel:
 
     def get_booked_rooms(self) -> list:
         """Return all the booked rooms."""
-        pass
+        all_booked_rooms = []
+        for room in self.rooms:
+            if room.get_booked():
+                all_booked_rooms.append(room)
+        return all_booked_rooms
 
     def get_feature_profits(self) -> dict:
         """
@@ -419,7 +453,7 @@ if __name__ == '__main__':
     assert hotel.book_room(["tv", "president"]) == room1
     assert hotel.get_available_rooms() == [room2]
     assert hotel.get_booked_rooms() == [room1]
-
+    print("this onr fails")
     assert hotel.book_room([]) == room2
     assert hotel.get_available_rooms() == []
 
