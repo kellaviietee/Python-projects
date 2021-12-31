@@ -387,7 +387,7 @@ class Hotel:
                         appropriate_room = [room]
                     elif current_features_covered == features_covered:
                         appropriate_room.append(room)
-        room_to_book = min(appropriate_room, key=lambda app_room: app_room.number)
+        room_to_book = min(appropriate_room, key=lambda app_room: (app_room.number, len(app_room.features)))
         room_to_book.booked = True
         return room_to_book
 
