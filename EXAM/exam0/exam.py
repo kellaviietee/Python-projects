@@ -290,6 +290,7 @@ class Room:
         self.number = number
 
     def __repr__(self):
+        """Represent the Room."""
         return f"Room nr: {self.number}, {self.price} EUR"
 
     def add_feature(self, feature: str) -> bool:
