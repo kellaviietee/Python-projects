@@ -342,8 +342,8 @@ class PetrolStation:
         :param fuel_stock: fuel tank
         :param shop_item_stock: products warehouse
         """
-        self.__fuel_stock = fuel_stock
-        self.__shop_item_stock = shop_item_stock
+        self.__fuel_stock = copy.deepcopy(fuel_stock)
+        self.__shop_item_stock = copy.deepcopy(shop_item_stock)
 
     def add_fuel(self, fuel: Fuel, quantity: float):
         """
