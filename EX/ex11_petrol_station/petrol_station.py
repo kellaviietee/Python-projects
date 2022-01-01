@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 from datetime import date
 from enum import Enum, auto
 
+
 class ClientType(Enum):
     """
     Client type.
@@ -42,7 +43,11 @@ class OrderItem(ABC):
         In case the price is negative, raise RuntimeError().
         """
         self.__name = name
-        self.__price = price
+        try:
+            if price >= 0:
+                self.__price = price
+        except price < 0:
+            raise RuntimeError
 
     def get_name(self) -> str:
         """
@@ -218,7 +223,7 @@ class Client:
 
     def get_name(self):
         """Return client name."""
-        return self.__name
+        return ""
 
     def get_client_type(self) -> ClientType:
         """
@@ -226,7 +231,7 @@ class Client:
 
         :return: ClientType
         """
-        return self.__client_type
+        pass
 
     def set_client_type(self, value: ClientType):
         """
@@ -234,7 +239,7 @@ class Client:
 
         :param value: ClientType
         """
-        self.__client_type = value
+        pass
 
     def get_balance(self) -> float:
         """
@@ -242,7 +247,7 @@ class Client:
 
         :return: float
         """
-        return self.__balance
+        return 0.0
 
     def get_history(self) -> list['Order']:
         """
@@ -402,4 +407,3 @@ class PetrolStation:
         sufficient amount of money to purchase
         """
         pass
-
