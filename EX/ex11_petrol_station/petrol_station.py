@@ -185,6 +185,7 @@ class Order:
         self.__client_type = client_type
 
     def check_items(self):
+        """Check if an item has a negative price."""
         all_items = self.__items
         item_values = all_items.values()
         for value in item_values:
@@ -341,7 +342,8 @@ class PetrolStation:
         :param fuel_stock: fuel tank
         :param shop_item_stock: products warehouse
         """
-        # define variables here
+        self.__fuel_stock = fuel_stock
+        self.__shop_item_stock = shop_item_stock
 
     def add_fuel(self, fuel: Fuel, quantity: float):
         """
@@ -350,7 +352,10 @@ class PetrolStation:
         :param fuel:
         :param quantity:
         """
-        pass
+        if fuel in self.__fuel_stock:
+            self.__fuel_stock[fuel] += quantity
+        elif fuel not in self.__fuel_stock:
+            self.__fuel_stock[fuel] = quantity
 
     def add_shop_item(self, item: ShopItem, quantity: float):
         """
@@ -359,7 +364,10 @@ class PetrolStation:
         :param item:
         :param quantity:
         """
-        pass
+        if item in self.__shop_item_stock:
+            self.__shop_item_stock[item] += quantity
+        elif item not in self.__shop_item_stock:
+            self.__shop_item_stock[item] = quantity
 
     def remove_fuel(self, fuel: Fuel, quantity: float):
         """
@@ -373,7 +381,11 @@ class PetrolStation:
         :param fuel:
         :param quantity:
         """
-        pass
+        fuel_in_tank = self.__fuel_stock[fuel]
+        if fuel_in_tank >= quantity:
+            self.__fuel_stock[fuel] -= quantity
+        else:
+            raise RuntimeError
 
     def remove_items(self, item: ShopItem, quantity: float):
         """
@@ -387,7 +399,11 @@ class PetrolStation:
         :param item:
         :param quantity:
         """
-        pass
+        if item in self.__shop_item_stock and self.__shop_item_stock[item] >= quantity:
+            self.__shop_item_stock[item] -= quantity
+        else:
+            raise RuntimeError
+
 
     def get_fuel_dict(self) -> dict[Fuel, float]:
         """Return dict with Fuel objects as keys and quantities as values."""
