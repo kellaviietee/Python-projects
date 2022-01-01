@@ -167,6 +167,7 @@ class Fuel(OrderItem):
 
 class Order:
     """Order with order items and date."""
+
     def __init__(self, items: dict[OrderItem, float], order_date: date, client_type: ClientType):
         """
         Constructor (NB! Variables must be private).
@@ -177,7 +178,6 @@ class Order:
         : param order_date: date of purchase
         : param client_type: The type of client that made the purchase
         """
-
         self.__items = items
         self.check_items()
         self.__order_date = order_date
