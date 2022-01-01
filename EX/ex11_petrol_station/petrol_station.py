@@ -75,7 +75,7 @@ class OrderItem(ABC):
         :param quantity: quantity of a product
         :return: float: total price
         """
-        return 0.0
+        return quantity * self.get_discount(client_type)
 
     @abstractmethod
     def get_discount(self, client_type: ClientType) -> float:
@@ -125,7 +125,14 @@ class ShopItem(OrderItem):
         :param client_type
         :return: float: the discount
         """
-        return 0.0
+        if client_type == ClientType.Basic:
+            return self.get_price()
+        elif client_type == ClientType.Bronze:
+            return 0.95 * self.get_price()
+        elif client_type == ClientType.Silver:
+            return 0.9 * self.get_price()
+        elif client_type == ClientType.Gold:
+            return 0.85 * self.get_price()
 
 
 class Fuel(OrderItem):
@@ -148,7 +155,14 @@ class Fuel(OrderItem):
         :param client_type
         :return: float: the discount
         """
-        return 0.0
+        if client_type == ClientType.Basic:
+            return self.get_price()
+        elif client_type == ClientType.Bronze:
+            return self.get_price() - 0.05
+        elif client_type == ClientType.Silver:
+            return self.get_price() - 0.1
+        elif client_type == ClientType.Gold:
+            return self.get_price() - 0.15
 
 
 class Order:
