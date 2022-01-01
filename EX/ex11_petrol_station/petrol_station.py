@@ -54,7 +54,7 @@ class OrderItem(ABC):
 
         :return: str: name
         """
-        return ""
+        return self.__name
 
     def get_price(self) -> float:
         """
@@ -62,7 +62,7 @@ class OrderItem(ABC):
 
         :return: float: price
         """
-        return 0.0
+        return self.__price
 
     def get_total_price(self, client_type: ClientType, quantity: float = 1.0) -> float:
         """
@@ -102,7 +102,7 @@ class OrderItem(ABC):
 
     def __repr__(self):
         """String representation for OrderItem."""
-        return "Fill this as you wish"
+        return f"{self.__name} - {self.__price}"
 
 
 class ShopItem(OrderItem):
