@@ -178,9 +178,19 @@ class Order:
         : param order_date: date of purchase
         : param client_type: The type of client that made the purchase
         """
+
         self.__items = items
+        self.check_items()
         self.__order_date = order_date
         self.__client_type = client_type
+
+    def check_items(self):
+        all_items = self.__items
+        item_values = all_items.values()
+        for value in item_values:
+            if value < 0:
+                raise RuntimeError
+        return
 
     def get_date(self) -> date:
         """
