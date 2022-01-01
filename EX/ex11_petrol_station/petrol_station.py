@@ -158,11 +158,11 @@ class Fuel(OrderItem):
         if client_type == ClientType.Basic:
             return self.get_price()
         elif client_type == ClientType.Bronze:
-            return self.get_price() - 0.05
+            return self.get_price() - 0.025
         elif client_type == ClientType.Silver:
-            return self.get_price() - 0.1
+            return self.get_price() - 0.05
         elif client_type == ClientType.Gold:
-            return self.get_price() - 0.15
+            return self.get_price() - 0.1
 
 
 class Order:
