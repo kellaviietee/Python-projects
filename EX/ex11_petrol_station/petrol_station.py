@@ -167,7 +167,6 @@ class Fuel(OrderItem):
 
 class Order:
     """Order with order items and date."""
-
     def __init__(self, items: dict[OrderItem, float], order_date: date, client_type: ClientType):
         """
         Constructor (NB! Variables must be private).
