@@ -198,7 +198,7 @@ class Order:
 
         :return: date
         """
-        pass
+        return self.__order_date
 
     def get_final_price(self) -> float:
         """
