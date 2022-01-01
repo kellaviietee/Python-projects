@@ -244,12 +244,11 @@ class Client:
         self.__name = name
         self.__balance = balance
         self.__client_type = client_type
-
         self.__order_history: list['Order'] = []  # Kliendi ostu ajalugu
 
     def get_name(self):
         """Return client name."""
-        return ""
+        return self.__name
 
     def get_client_type(self) -> ClientType:
         """
@@ -257,7 +256,7 @@ class Client:
 
         :return: ClientType
         """
-        pass
+        return self.__client_type
 
     def set_client_type(self, value: ClientType):
         """
@@ -265,7 +264,8 @@ class Client:
 
         :param value: ClientType
         """
-        pass
+        self.__client_type = value
+        return
 
     def get_balance(self) -> float:
         """
@@ -273,7 +273,7 @@ class Client:
 
         :return: float
         """
-        return 0.0
+        return self.__balance
 
     def get_history(self) -> list['Order']:
         """
@@ -284,11 +284,12 @@ class Client:
         do not affect the dictionary object that does not belong to the class.
         :return: list['Order']
         """
-        pass
+        history = copy.deepcopy(self.__order_history)
+        return history
 
     def clear_history(self):
         """Clear the purchase history."""
-        pass
+        self.__order_history = []
 
     def get_member_balance(self) -> float:
         """
@@ -309,7 +310,13 @@ class Client:
         :param order:
         :return: boolean
         """
-        pass
+        order_cost = order.get_final_price()
+        if self.__balance >= order_cost:
+            self.__order_history.append(order)
+            self.__balance -= order_cost
+            return True
+        else:
+            return False
 
     def __repr__(self):
         """String representation of the client."""
