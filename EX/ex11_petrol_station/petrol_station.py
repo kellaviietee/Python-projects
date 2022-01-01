@@ -404,14 +404,13 @@ class PetrolStation:
         else:
             raise RuntimeError
 
-
     def get_fuel_dict(self) -> dict[Fuel, float]:
         """Return dict with Fuel objects as keys and quantities as values."""
-        pass
+        return self.__fuel_stock
 
     def get_shop_item_dict(self) -> dict[ShopItem, float]:
         """Return dict with ShopItem objects as keys and quantities as values."""
-        pass
+        return self.__shop_item_stock
 
     def get_sell_history(self) -> dict[Client, list[Order]]:
         """Return sell history dict where key is Client, value is a list of Orders."""
