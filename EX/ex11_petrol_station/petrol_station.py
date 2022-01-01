@@ -43,10 +43,9 @@ class OrderItem(ABC):
         In case the price is negative, raise RuntimeError().
         """
         self.__name = name
-        try:
-            if price >= 0:
-                self.__price = price
-        except price < 0:
+        if price >= 0:
+            self.__price = price
+        elif price < 0:
             raise RuntimeError
 
     def get_name(self) -> str:
