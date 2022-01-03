@@ -4,6 +4,7 @@ import math
 
 def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2) -> int:
     """Calculate the meeting position of 2 jangurus.
+
     @:param pos1: position of first janguru
     @:param jump_distance1: jump distance of first janguru
     @:param sleep1: sleep time of first janguru
@@ -45,6 +46,7 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2) -> int:
 
 
 def find_time_stamps(initial_time_stamp: list, lcm: int, sleep1: int, sleep2: int, start_lcm: int) -> list:
+    """Find times when to check the jangurus positions."""
     step_loc = []
     step = 1
     while (lcm - step * sleep1) > 0:
