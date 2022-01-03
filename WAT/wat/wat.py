@@ -2,7 +2,7 @@
 
 
 def function_a(argument):
-    pass
+    return 5
 
 
 def function_b(argument):
@@ -26,7 +26,7 @@ def function_f(argument):
 
 
 def function_g(argument):
-    pass
+    return -argument
 
 
 def function_h(argument):
