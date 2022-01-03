@@ -2,15 +2,18 @@
 
 
 def function_a(argument):
+    """Return a number 5."""
     return 5
 
 
 def function_b(argument):
-    pass
+    """Add 11 to argument"""
+    return argument + 11
 
 
 def function_c(argument):
-    pass
+    """Cube the argument"""
+    return argument**3
 
 
 def function_d(argument):
@@ -26,6 +29,7 @@ def function_f(argument):
 
 
 def function_g(argument):
+    """Return opposite argument"""
     return -argument
 
 
