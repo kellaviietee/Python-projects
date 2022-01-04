@@ -17,11 +17,11 @@ def function_c(argument):
 
 
 def function_d(argument):
-    29*argument**2
+    return 29*argument**2
 
 
 def function_e(argument):
-    23*argument
+    return 23*argument
 
 
 def function_f(argument):
