@@ -21,7 +21,7 @@ def function_d(argument):
 
 
 def function_e(argument):
-    pass
+    23*argument
 
 
 def function_f(argument):
