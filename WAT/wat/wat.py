@@ -25,7 +25,7 @@ def function_e(argument):
 
 
 def function_f(argument):
-    return argument - 10141
+    return argument - 10000
 
 
 def function_g(argument):
