@@ -7,12 +7,12 @@ def function_a(argument):
 
 
 def function_b(argument):
-    """Add 11 to argument"""
+    """Add 11 to argument."""
     return argument + 11
 
 
 def function_c(argument):
-    """Cube the argument"""
+    """Cube the argument."""
     return argument**3
 
 
