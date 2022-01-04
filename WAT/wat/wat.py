@@ -17,7 +17,7 @@ def function_c(argument):
 
 
 def function_d(argument):
-    pass
+    29*argument**2
 
 
 def function_e(argument):
