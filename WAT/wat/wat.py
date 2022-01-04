@@ -25,7 +25,7 @@ def function_e(argument):
 
 
 def function_f(argument):
-    pass
+    return argument / 2 - 366.5
 
 
 def function_g(argument):
